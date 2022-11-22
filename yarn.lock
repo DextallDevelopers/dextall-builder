@@ -277,19 +277,17 @@
   dependencies:
     mime "^3.0.0"
 
-"@emotionagency/smoothscroll@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@emotionagency/smoothscroll/-/smoothscroll-1.0.1.tgz#cc3e5bf2c26b3318feb3f569626b5fe81cc434f5"
-  integrity sha512-FybZEB03t3jRC4KJNpxJFWMj4Qpi6fPOI0PQiX0gEQia5NiUe+GVMP2KFuDgVtHlYbI9Ku+ucnui78iirLKHSA==
+"@emotionagency/smoothscroll@latest":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@emotionagency/smoothscroll/-/smoothscroll-1.0.3.tgz#731efff534f0086818f6349df818232cb7d87a6e"
+  integrity sha512-23IJoDv6Ibn2wxCt5SwPk88oo8LJ7Wu2QEFg/GGc2IiWn0KXFxEBTByHeCNSRfIw1Z4nI1VBvzRIMStiRq5bVQ==
   dependencies:
     virtual-scroll "^2.1.1"
 
-"@emotionagency/utils@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@emotionagency/utils/-/utils-1.0.0.tgz#79f51119415094430b2c5e6a4eed443a2e08be35"
-  integrity sha512-3Knsbzeih8AJTZ+/2rGWxI0bqnP4hMpJs0rMEeBmZE5XTYlapninZkkrQdqkWKar9BV7cGmn7YKJmODN8D4IxQ==
-  dependencies:
-    debounce "^1.2.0"
+"@emotionagency/utils@latest":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@emotionagency/utils/-/utils-1.0.7.tgz#a1d66f0260a0c4ca7e2bc54cf185f813e30cd610"
+  integrity sha512-QOsIegh9x1o1/cBE3LpQsUlMeDcciua6ccPQG4gZWuli6eKQryqz1PioGmy89yANkTXAaQclVvjQ3rePruXfJw==
 
 "@eslint/eslintrc@^1.2.2":
   version "1.2.2"
@@ -1622,11 +1620,6 @@ data-uri-to-buffer@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/data-uri-to-buffer/-/data-uri-to-buffer-4.0.0.tgz#b5db46aea50f6176428ac05b73be39a57701a64b"
   integrity sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==
-
-debounce@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.1.tgz#38881d8f4166a5c5848020c11827b834bcb3e0a5"
-  integrity sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==
 
 debug@2.6.9:
   version "2.6.9"

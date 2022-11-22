@@ -25,7 +25,7 @@ onMounted(async () => {
 <template>
   <div id="app">
     <Head>
-      <Title>Emotion</Title>
+      <Title>Dextall Builder</Title>
       <Meta name="viewport" conten="width=device-width, initial-scale=1"></Meta>
       <Link rel="icon" type="image/x-icon" href="/favicon.ico"></Link>
     </Head>

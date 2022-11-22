@@ -1,5 +1,58 @@
-// @mixin reg {
-//   font-family: 'NeueHaas', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-//     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-//   font-weight: 400;
-// }
+@mixin light {
+  font-family: 'Helvetica', 'HelveticaNeue', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  font-weight: 300;
+}
+
+@mixin reg {
+  font-family: 'Helvetica', 'HelveticaNeue', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  font-weight: 400;
+}
+
+@mixin medium {
+  font-family: 'Helvetica', 'HelveticaNeue', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+}
+
+@mixin italic {
+  font-family: 'Helvetica', 'HelveticaNeue', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@mixin default {
+  @include reg;
+  font-size: vw(20);
+  line-height: 130%;
+
+  @media (max-width: $br1) {
+    font-size: size(20, 16);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 16px;
+  }
+}
+
+@mixin h1 {
+  @include reg;
+  color: var(--main);
+  font-size: vw(100);
+  line-height: 100%;
+  text-transform: uppercase;
+
+  @media (max-width: $br1) {
+    font-size: size(100, 36);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 36px;
+  }
+}

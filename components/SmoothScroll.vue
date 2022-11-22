@@ -19,5 +19,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <slot />
+  <div id="scroll-container">
+    <slot />
+  </div>
 </template>

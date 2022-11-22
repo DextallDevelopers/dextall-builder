@@ -1,9 +1,9 @@
 :root {
-  --black: #212022;
-  --bg: #f4f4f4;
+  --black: #000000;
+  --bg: #ececec;
   --white: #ffffff;
   --red: #e73737;
-  --accent: green;
+  --main: #304e49;
 }
 
 //screen config
@@ -22,6 +22,6 @@ $br4: 460px;
 $easing: cubic-bezier(0.16, 1, 0.3, 1);
 
 // layouts
-$g-offset: vw(56);
+$g-offset: vw(75);
 $g-sm: 32px;
 $g-s: 20px;

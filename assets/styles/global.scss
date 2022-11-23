@@ -1,7 +1,7 @@
 * {
   &::selection {
     color: white;
-    background: #ece5df;
+    background: var(--main);
   }
 }
 
@@ -23,6 +23,11 @@ body {
   @media (min-width: 1060px) {
     overflow: hidden;
   }
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 .e-fixed {

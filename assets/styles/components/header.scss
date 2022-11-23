@@ -1,0 +1,25 @@
+.header {
+  position: fixed;
+  background-color: var(--white);
+  width: 100%;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  padding-top: vw(17.5);
+  padding-bottom: vw(17.5);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  &.loading {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  width: vw(188);
+  height: vw(41);
+}

@@ -49,9 +49,7 @@
 
 .section {
   padding-top: vw(300);
-  &--nm {
-    padding-top: 0;
-  }
+
   &--pb {
     padding-bottom: vw(300);
   }
@@ -66,5 +64,8 @@
     &--pb {
       padding-bottom: 120px;
     }
+  }
+  &--nm {
+    padding-top: 0;
   }
 }

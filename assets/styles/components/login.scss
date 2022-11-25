@@ -1,6 +1,5 @@
 .login {
   height: 100%;
-  min-height: 100vh;
   width: 100%;
 }
 
@@ -10,9 +9,14 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  min-height: 100vh;
   padding-top: vw(176);
   padding-bottom: vw(25);
+  min-height: 100vh;
+
+  @media (max-width: $br1) {
+    padding-top: 136px;
+    padding-bottom: 12px;
+  }
 }
 
 .login__h1 {
@@ -26,12 +30,27 @@
   flex-direction: column;
   margin-top: vw(40);
   width: 100%;
+
+  @media (max-width: $br1) {
+    margin-top: 20px;
+  }
 }
 
 .login__title {
   max-width: vw(595);
   font-size: vw(40);
   line-height: 130%;
+
+  @media (max-width: $br1) {
+    max-width: 100%;
+    font-size: size(40, 20);
+    max-width: 70%;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
+    max-width: 100%;
+  }
 }
 
 .login__input-wrapper {
@@ -40,24 +59,59 @@
   margin-top: vw(100);
   row-gap: vw(60);
   width: vw(878);
+
+  @media (max-width: $br1) {
+    margin-top: 80px;
+    row-gap: 40px;
+    width: 60%;
+  }
+
+  @media (max-width: $br3) {
+    width: 100%;
+  }
 }
 
 .login__btn {
   margin-top: vw(40);
+
+  @media (max-width: $br1) {
+    margin-top: 40px;
+  }
 }
 
 .login__date-wrapper {
   display: flex;
   margin-top: vw(60);
   column-gap: vw(80);
+
+  @media (max-width: $br1) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    column-gap: 0;
+    row-gap: 20px;
+  }
 }
 
 .login__date {
   display: flex;
   @include default;
   line-height: 100%;
+
+  @media (max-width: $br1) {
+    font-size: size(20, 14);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 14px;
+  }
 }
 
 .login__date-text {
   margin-right: vw(24);
+
+  @media (max-width: $br1) {
+    margin-right: 24px;
+  }
 }

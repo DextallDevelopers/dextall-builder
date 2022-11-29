@@ -1,0 +1,33 @@
+.included__left-block {
+  @include col(1, 5);
+}
+
+.included__title {
+  @include h2;
+}
+
+.included__desc {
+  margin-top: vw(20);
+}
+
+.included__list {
+  margin-top: vw(50);
+}
+
+.include__line {
+  height: 2px;
+  width: 100%;
+  background-color: var(--main);
+}
+
+.include__text {
+  line-height: 100%;
+  margin-top: vw(16);
+  margin-bottom: vw(16);
+}
+
+.included__right-block {
+  position: relative;
+  padding-top: vw(120);
+  @include col(7, 12);
+}

@@ -28,13 +28,12 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(12, 1fr);
-  column-gap: vw(30);
+  column-gap: vw(20);
   grid-auto-flow: column;
   @media (max-width: $br1) {
-    column-gap: 30px;
+    column-gap: 20px;
   }
   @media (max-width: $br4) {
-    column-gap: 20px;
     grid-template-columns: repeat(4, 1fr);
   }
 }

@@ -1,0 +1,15 @@
+.team__h1 {
+  @include h1;
+}
+
+.team__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: vw(20);
+  width: 100%;
+}
+
+.team__card {
+  margin-top: vw(72);
+}

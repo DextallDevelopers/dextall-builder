@@ -1,0 +1,60 @@
+.card__li {
+  display: flex;
+  column-gap: vw(68);
+  background-color: var(--white);
+  border-radius: 20px;
+  padding: vw(20);
+  width: calc(50% - vw(20));
+}
+
+.card__profile-icon {
+  display: block;
+  width: vw(70);
+  height: vw(70);
+}
+.card__link-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: vw(13);
+  margin-top: vw(20);
+}
+
+.card__link-icon {
+  display: block;
+  width: vw(24);
+  height: vw(24);
+}
+
+.card__profile-name {
+  @include reg;
+  font-size: vw(40);
+  line-height: 100%;
+}
+
+.card__profile-career {
+  margin-top: vw(12);
+}
+
+.card__contacts-wrapper {
+  display: flex;
+  column-gap: vw(20);
+  margin-top: vw(22);
+}
+
+.card__email {
+  line-height: 100%;
+}
+
+.card__phone {
+  line-height: 100%;
+}
+
+.card__contact {
+  @include light;
+}
+
+.card__about {
+  margin-top: vw(32);
+  max-width: vw(536);
+}

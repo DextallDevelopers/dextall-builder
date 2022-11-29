@@ -6,7 +6,8 @@ useTransition()
 <template>
   <NuxtLayout>
     <div data-page>
-      <Login />
+      <!-- <Login /> -->
+      <Team />
     </div>
   </NuxtLayout>
 </template>

@@ -9,7 +9,8 @@ useTransition()
       <!-- <Login /> -->
       <!-- <Team /> -->
       <!-- <Included /> -->
-      <Drawings />
+      <!-- <Drawings /> -->
+      <Contacts />
     </div>
   </NuxtLayout>
 </template>

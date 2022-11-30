@@ -1,0 +1,17 @@
+.color-change {
+  display: flex;
+  align-items: center;
+}
+
+.color-change__background {
+  display: block;
+  background-color: #00b050;
+  height: vw(40);
+  width: vw(130);
+  margin-right: vw(35);
+}
+
+.color-change__text {
+  @include italic;
+  text-transform: uppercase;
+}

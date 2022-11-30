@@ -9,4 +9,13 @@
   gap: vw(20);
   width: 100%;
   margin-top: vw(72);
+
+  @media (max-width: $br1) {
+    gap: 20px;
+    margin-top: 36px;
+  }
+
+  @media (max-width: $br2) {
+    flex-direction: column;
+  }
 }

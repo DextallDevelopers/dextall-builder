@@ -1,11 +1,24 @@
 .drawings__title {
   @include h2;
   max-width: vw(878);
+
+  @media (max-width: $br1) {
+    max-width: 100%;
+  }
 }
 
 .drawings__desc {
   max-width: vw(729);
   margin-top: vw(40);
+
+  @media (max-width: $br1) {
+    margin-top: 20px;
+    max-width: 70%;
+  }
+
+  @media (max-width: $br3) {
+    max-width: 100%;
+  }
 }
 
 .drawings__img-list {
@@ -14,6 +27,30 @@
   column-gap: vw(20);
   row-gap: vw(72);
   margin-top: vw(72);
+
+  @media (max-width: $br1) {
+    column-gap: 20px;
+    row-gap: 60px;
+    margin-top: 36px;
+  }
+
+  @media (max-width: $br2) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $br4) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 0;
+    row-gap: 20px;
+  }
+}
+
+.drawings__img-li {
+  display: block;
+  height: fit-content;
 }
 
 .drawings__img-desc {
@@ -21,11 +58,20 @@
   font-size: vw(16);
   line-height: 100%;
   margin-top: vw(20);
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+    margin-top: 16px;
+  }
 }
 
 .drawings__elevation {
   position: relative;
   margin-top: vw(160);
+
+  @media (max-width: $br1) {
+    margin-top: 72px;
+  }
 }
 
 .drawings__lines-wrapper {
@@ -35,6 +81,10 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: $br1) {
+    display: none;
+  }
 }
 
 .drawings__line {
@@ -66,6 +116,27 @@
   grid-auto-flow: row;
   column-gap: vw(130);
   row-gap: vw(152);
+
+  @media (max-width: $br1) {
+    column-gap: 60px;
+    row-gap: 80px;
+  }
+
+  @media (max-width: $br2) {
+    column-gap: 32px;
+    row-gap: 20px;
+  }
+
+  @media (max-width: $br3) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+.drawings__elevation-li {
+  display: block;
+  height: fit-content;
 }
 
 .drawings__elevation-title {
@@ -73,15 +144,41 @@
   font-size: vw(48);
   line-height: 100%;
   text-transform: uppercase;
+
+  @media (max-width: $br1) {
+    font-size: size(48, 28);
+  }
+
+  @media (max-width: $br1) {
+    font-size: 28px;
+  }
 }
 
 .drawings__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.drawings__elevation-img {
+  display: block;
+  width: 100%;
+  height: 100%;
   margin-top: vw(28);
+
+  @media (max-width: $br1) {
+    margin-top: 16px;
+  }
 }
 
 .drawings__colors-list {
   display: flex;
   flex-direction: column;
   row-gap: vw(16);
-  margin-top: vw(76);
+  margin-top: vw(68);
+
+  @media (max-width: $br1) {
+    row-gap: 16px;
+    margin-top: 42px;
+  }
 }

@@ -8,8 +8,8 @@ useTransition()
     <div data-page>
       <!-- <Login /> -->
       <!-- <Team /> -->
-      <Included />
-      <!-- <Drawings /> -->
+      <!-- <Included /> -->
+      <Drawings />
     </div>
   </NuxtLayout>
 </template>

@@ -94,7 +94,7 @@ const colorList = ref([
           >
             <h3 class="drawings__elevation-title">{{ elem.text }}</h3>
             <img
-              class="drawings__img"
+              class="drawings__elevation-img"
               src="/images/drawings/elevation/1.jpg"
               alt="Image"
             />

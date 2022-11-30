@@ -1,14 +1,25 @@
 .color-change {
-  display: flex;
-  align-items: center;
+  @media (min-width: $br3) {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .color-change__background {
-  display: block;
   background-color: #00b050;
   height: vw(40);
   width: vw(130);
   margin-right: vw(35);
+
+  @media (max-width: $br1) {
+    height: 20px;
+    width: 75px;
+    margin-right: 32px;
+  }
+
+  @media (max-width: $br3) {
+    float: left;
+  }
 }
 
 .color-change__text {

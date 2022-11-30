@@ -11,7 +11,7 @@ defineProps<iProps>()
 </script>
 
 <template>
-  <li class="card__li">
+  <li class="card">
     <div class="card__img-block">
       <IconsProfile class="card__profile-icon" />
       <div class="card__link-wrapper">

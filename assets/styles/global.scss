@@ -20,10 +20,6 @@ body {
   overscroll-behavior-y: none;
   @include smooth-font;
   @include default;
-
-  @media (min-width: 1060px) {
-    overflow: hidden;
-  }
 }
 
 img {

@@ -13,6 +13,6 @@ defineProps<iProps>()
       class="color-change__background"
       :style="{ border: stroke, backgroundColor: background }"
     ></div>
-    <p class="color-change__text">{{ text }}</p>
+    <p class="color-change__text">— {{ text }}</p>
   </li>
 </template>

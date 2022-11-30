@@ -6,7 +6,7 @@ const imgList = ref([
   },
   {
     image: '/images/drawings/1.jpg',
-    description: 'image description',
+    description: '',
   },
   {
     image: '/images/drawings/1.jpg',
@@ -14,7 +14,7 @@ const imgList = ref([
   },
   {
     image: '/images/drawings/1.jpg',
-    description: 'image description',
+    description: '',
   },
   {
     image: '/images/drawings/1.jpg',
@@ -43,12 +43,12 @@ const elevationList = ref([
 
 const colorList = ref([
   {
-    text: '—Legend',
+    text: 'Legend',
     stroke: '',
     background: '#CBDEF4',
   },
   {
-    text: '—Legend',
+    text: 'Legend',
     stroke: '3px solid #29F73E',
     background: 'transparent',
   },

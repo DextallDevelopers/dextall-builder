@@ -1,18 +1,9 @@
 <script setup lang="ts">
-import { useAppStore } from '~/store/app'
 import { useFonts } from '~/composables/fonts'
 
 useFonts()
 
-const appStore = useAppStore()
 onMounted(async () => {
-  const { default: supportsWebP } = await import('supports-webp')
-
-  if (await supportsWebP) {
-    appStore.setIsWebp(true)
-  } else {
-    appStore.setIsWebp(false)
-  }
   const { hello } = await import('~/assets/scripts/utils/hello')
   hello()
 
@@ -31,9 +22,7 @@ onMounted(async () => {
     </Head>
     <AppGrid />
     <UiLoader />
-    <SmoothScroll>
-      <TheHeader />
-      <slot />
-    </SmoothScroll>
+    <TheHeader />
+    <slot />
   </div>
 </template>

@@ -2,7 +2,14 @@
   bottom: 0;
   width: 100%;
   overflow: hidden;
-  background-color: rgba(255, 0, 0, 0);
+  background-color: var(--white);
+  padding-top: vw(42);
+  padding-bottom: vw(42);
+
+  @media (max-width: $br1) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }
 
 .ticker__items {

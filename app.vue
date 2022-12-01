@@ -7,12 +7,12 @@ useTransition()
   <NuxtLayout>
     <div data-page>
       <!-- <Login /> -->
-      <!-- <Team /> -->
-      <!-- <Included /> -->
-      <!-- <Drawings /> -->
-      <!-- <Contacts /> -->
-      <!-- <Benefits1 /> -->
-      <!-- <Benefits2 /> -->
+      <Team />
+      <Included />
+      <Drawings />
+      <Contacts />
+      <Benefits1 />
+      <Benefits2 />
       <News />
     </div>
   </NuxtLayout>

@@ -10,7 +10,8 @@ useTransition()
       <!-- <Team /> -->
       <!-- <Included /> -->
       <!-- <Drawings /> -->
-      <Contacts />
+      <!-- <Contacts /> -->
+      <Benefits1 />
     </div>
   </NuxtLayout>
 </template>

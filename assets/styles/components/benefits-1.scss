@@ -1,0 +1,134 @@
+.benefits-1__title {
+  @include default;
+  line-height: 110%;
+  text-transform: uppercase;
+  font-size: vw(100);
+
+  @media (max-width: $br1) {
+    font-size: size(100, 36);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 36px;
+  }
+}
+
+.benefits-1__list {
+  margin-top: vw(50);
+
+  @media (max-width: $br1) {
+    margin-top: 27px;
+  }
+}
+
+.benefits-1__li {
+  &:nth-of-type(2) {
+    margin-top: vw(200);
+
+    @media (max-width: $br1) {
+      margin-top: 50px;
+    }
+  }
+}
+
+.benefits-1__line {
+  width: 100%;
+  height: 2px;
+  background-color: var(--main);
+}
+
+.benefits-1__mob-line {
+  display: none;
+  width: 100%;
+  height: 2px;
+  background-color: var(--main);
+
+  @media (max-width: $br1) {
+    display: block;
+  }
+}
+
+.benefits-1__content-wrapper {
+  @media (max-width: $br1) {
+    display: inline;
+  }
+}
+
+.benefits-1__text-wrapper {
+  @include col(1, 7);
+  margin-top: vw(10);
+
+  @media (max-width: $br1) {
+    margin-top: 10px;
+  }
+}
+
+.benefits-1__content-title {
+  @include default;
+  margin-top: vw(10);
+  font-size: vw(50);
+  line-height: 110%;
+  text-transform: uppercase;
+
+  @media (max-width: $br1) {
+    margin-top: 10px;
+    font-size: size(50, 25);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 25px;
+  }
+}
+
+.benefits-1__content-desc {
+  @include default;
+  line-height: 100%;
+  text-transform: uppercase;
+  font-size: vw(16);
+  margin-top: vw(20);
+
+  @media (max-width: $br1) {
+    font-size: size(16, 14);
+    margin-top: 10px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 14px;
+  }
+}
+
+.benefits-1__content-list {
+  @include col(8, 15);
+
+  @media (max-width: $br1) {
+    margin-top: 40px;
+  }
+}
+
+.benefits-1__content-text {
+  @include default;
+  line-height: 110%;
+  text-transform: none;
+  margin-top: vw(30);
+  margin-bottom: vw(30);
+
+  &--nm {
+    margin-top: 0;
+  }
+
+  @media (max-width: $br1) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.benefits-1__about-text {
+  @include default;
+  margin-top: vw(100);
+  max-width: vw(350);
+
+  @media (max-width: $br1) {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+}

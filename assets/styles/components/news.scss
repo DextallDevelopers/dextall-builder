@@ -1,0 +1,29 @@
+.news__title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.news__title {
+  @include default;
+  line-height: 110%;
+  text-transform: uppercase;
+  font-size: vw(100);
+  text-align: center;
+
+  @media (max-width: $br1) {
+    font-size: size(100, 36);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 36px;
+  }
+}
+
+.news__cards {
+  margin-top: vw(42);
+
+  @media (max-width: $br1) {
+    margin-top: 40px;
+  }
+}

@@ -22,7 +22,7 @@ const news = ref([
   <section class="section news">
     <div class="container news__wrapper">
       <div class="news__title-wrapper">
-        <h3 class="news__title">Latest news</h3>
+        <h2 class="news__title">Latest news</h2>
       </div>
       <div class="cards-wrapper">
         <ul class="cards">

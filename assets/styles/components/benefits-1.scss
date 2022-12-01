@@ -1,16 +1,5 @@
 .benefits-1__title {
-  @include default;
-  line-height: 110%;
-  text-transform: uppercase;
-  font-size: vw(100);
-
-  @media (max-width: $br1) {
-    font-size: size(100, 36);
-  }
-
-  @media (max-width: $br4) {
-    font-size: 36px;
-  }
+  @include h2;
 }
 
 .benefits-1__list {

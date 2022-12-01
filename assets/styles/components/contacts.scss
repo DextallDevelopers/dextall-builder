@@ -1,16 +1,97 @@
+.contacts__block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: vw(40);
+
+  @media (max-width: $br1) {
+    margin-top: 36px;
+  }
+}
+
+.contacts__comments {
+  font-size: vw(40);
+  line-height: 120%;
+  text-align: center;
+  max-width: vw(1180);
+
+  @media (max-width: $br1) {
+    font-size: size(40, 20);
+    max-width: 80%;
+  }
+
+  @media (max-width: $br3) {
+    max-width: 100%;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
+  }
+}
+
+.contacts__card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: vw(118);
+
+  @media (max-width: $br1) {
+    margin-top: 72px;
+  }
+}
+
+.contacts__card-title {
+  @include italic;
+  font-size: vw(36);
+  line-height: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  max-width: vw(878);
+
+  @media (max-width: $br1) {
+    font-size: size(36, 28);
+    max-width: 80%;
+  }
+
+  @media (max-width: $br3) {
+    max-width: 100%;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 28px;
+  }
+}
+
+.contacts__card {
+  margin-top: vw(28);
+  width: 100%;
+
+  @media (max-width: $br1) {
+    margin-top: 36px;
+    width: 80%;
+  }
+
+  @media (max-width: $br3) {
+    width: 90%;
+  }
+
+  @media (max-width: $br4) {
+    width: 100%;
+  }
+}
+
 .contacts__form-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  padding-top: vw(176);
-  padding-bottom: vw(25);
-  min-height: 100vh;
+  margin-top: vw(100);
 
   @media (max-width: $br1) {
-    padding-top: 136px;
-    padding-bottom: 12px;
+    margin-top: 86px;
   }
 }
 
@@ -28,6 +109,8 @@
 }
 
 .contacts__title {
+  @include italic;
+  text-transform: uppercase;
   font-size: vw(36);
   line-height: 100%;
 

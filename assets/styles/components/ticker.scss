@@ -1,0 +1,58 @@
+.ticker {
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(255, 0, 0, 0);
+}
+
+.ticker__items {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.ticker__item {
+  @include default;
+  display: flex;
+  align-items: center;
+  color: var(--main);
+  font-size: vw(30);
+  line-height: 100%;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  svg {
+    display: block;
+    width: vw(30);
+    height: vw(30);
+    animation: flower 10s linear infinite;
+    position: relative;
+    margin-left: vw(28);
+    margin-right: vw(20);
+
+    @media (max-width: $br1) {
+      width: 20px;
+      height: 20px;
+      margin-left: 26px;
+      margin-right: 20px;
+    }
+  }
+
+  @keyframes flower {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: $br1) {
+    font-size: size(30, 20);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
+  }
+}

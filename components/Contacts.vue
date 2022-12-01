@@ -39,32 +39,38 @@ const formData = reactive({
   ],
 })
 
-const { onInputValue, onSubmit } = useForm(formData, $inputs, 'Dextall login')
+const { onInputValue, onSubmit } = useForm(
+  formData,
+  $inputs,
+  'Dextall contacts'
+)
 </script>
 
 <template>
   <section class="section section--pb contacts">
     <div class="container contacts__wrapper">
-      <div class="contacts__ticker"></div>
-      <p class="contacts__comments">
-        We would like to hear from you. Any comments or questions that you might
-        have, please feel free to ask at anytime.
-      </p>
-      <div class="contacts__card-wrapper">
-        <h3 class="contacts__card-title">
-          Contact your personal sales representative:
-        </h3>
-        <Card
-          v-for="(member, idx) in team"
-          :key="idx"
-          :name="member.name"
-          :career="member.career"
-          :email="member.email"
-          :phone="member.phone"
-          :text="member.text"
-          :linkedin="member.linkedin"
-          class="team__card"
-        />
+      <TheTicker text="Thank you for your business!" class="contacts__ticker" />
+      <div class="contacts__block">
+        <p class="contacts__comments">
+          We would like to hear from you. Any comments or questions that you
+          might have, please feel free to ask at anytime.
+        </p>
+        <div class="contacts__card-wrapper">
+          <h3 class="contacts__card-title">
+            Contact your personal sales representative:
+          </h3>
+          <Card
+            v-for="(member, idx) in team"
+            :key="idx"
+            :name="member.name"
+            :career="member.career"
+            :email="member.email"
+            :phone="member.phone"
+            :text="member.text"
+            :linkedin="member.linkedin"
+            class="contacts__card"
+          />
+        </div>
       </div>
       <div class="contacts__form-wrapper">
         <form class="contacts__form" novalidate @submit.prevent="onSubmit">

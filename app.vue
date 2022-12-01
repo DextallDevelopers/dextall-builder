@@ -11,7 +11,8 @@ useTransition()
       <!-- <Included /> -->
       <!-- <Drawings /> -->
       <!-- <Contacts /> -->
-      <Benefits1 />
+      <!-- <Benefits1 /> -->
+      <Benefits2 />
     </div>
   </NuxtLayout>
 </template>

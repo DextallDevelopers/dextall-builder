@@ -1,0 +1,82 @@
+.pricing__title {
+  @include h2;
+  font-size: vw(120);
+
+  @media (max-width: $br1) {
+    font-size: size(120, 42);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 42px;
+  }
+}
+
+.pricing__list {
+  margin-top: vw(72);
+
+  @media (max-width: $br1) {
+    margin-top: 36px;
+  }
+}
+
+.pricing__line {
+  height: 2px;
+  width: 100%;
+  background-color: var(--main);
+}
+
+.pricing__text-wrapper {
+  grid-template-columns: repeat(8, 1fr);
+  padding: vw(20) 0;
+  align-items: center;
+
+  @media (max-width: $br1) {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 15px 0;
+  }
+}
+
+.pricing__text {
+  @include col(1, 6);
+  font-size: vw(60);
+  line-height: 100%;
+  text-transform: uppercase;
+
+  @media (max-width: $br1) {
+    @include col(1, 4);
+    font-size: size(60, 32);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 32px;
+  }
+}
+
+.pricing__price {
+  @include col(7, 8);
+  text-align: right;
+  font-size: vw(28);
+  line-height: 100%;
+  text-transform: uppercase;
+
+  @media (max-width: $br1) {
+    @include col(1, 4);
+    @include row(2, 2);
+    font-size: size(28, 18);
+    text-align: left;
+    margin-top: 10px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 18px;
+  }
+}
+
+.pricing__btn {
+  margin: 0 auto;
+  margin-top: vw(72);
+
+  @media (max-width: $br1) {
+    margin-top: 36px;
+  }
+}

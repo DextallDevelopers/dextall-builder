@@ -1,0 +1,57 @@
+.specifications-table-wrapper {
+  padding: vw(60) vw(20);
+  background-color: var(--white);
+  border-radius: 20px;
+  width: 100%;
+}
+
+.specifications-table {
+  width: 100%;
+  background-color: var(--white);
+  text-transform: uppercase;
+
+  th {
+    padding-bottom: vw(20);
+    font-weight: 500;
+    font-size: vw(36);
+    line-height: 100%;
+    text-align: left;
+
+    @media (max-width: $br1) {
+      font-size: size(36, 20);
+    }
+
+    @media (max-width: $br4) {
+      font-size: 20px;
+    }
+  }
+
+  td {
+    padding: vw(20) 0;
+    font-size: vw(28);
+    line-height: 100%;
+
+    &.specifications-table__big-text {
+      font-size: vw(36);
+      line-height: 100%;
+
+      @media (max-width: $br1) {
+        font-size: size(36, 20);
+      }
+
+      @media (max-width: $br4) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  tr {
+    border-bottom: 2px solid var(--main);
+  }
+
+  thead {
+    tr {
+      border-bottom: 4px solid var(--main);
+    }
+  }
+}

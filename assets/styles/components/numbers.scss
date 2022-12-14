@@ -1,0 +1,135 @@
+.numbers__wrapper {
+  display: flex;
+  position: relative;
+
+  @media (max-width: $br3) {
+    flex-direction: column-reverse;
+  }
+}
+
+.numbers__left-block-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  height: var(--vh);
+}
+
+.numbers__left-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+
+  @media (min-width: $br1) {
+    width: 50%;
+  }
+
+  @media (max-width: $br1) {
+    height: 100%;
+  }
+}
+
+.numbers__title {
+  @include default;
+  font-size: vw(62);
+
+  @media (max-width: $br1) {
+    font-size: size(62, 36);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 36px;
+  }
+}
+
+.numbers__desc {
+  @include default;
+  margin-top: vw(20);
+  max-width: vw(386);
+
+  @media (max-width: $br1) {
+    margin-top: 15px;
+    max-width: 100%;
+  }
+}
+
+.numbers__right-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background-color: #e0e0e0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+
+  @media (min-width: $br1) {
+    width: 50%;
+  }
+
+  @media (max-width: $br1) {
+    height: 50vh;
+    height: calc(var(--vh) / 2);
+  }
+}
+
+.numbers__ellipse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+
+  @media (min-width: $br1) {
+    height: vw(515);
+    width: vw(515);
+  }
+
+  @media (max-width: $br1) {
+    height: 284px;
+    width: 284px;
+  }
+}
+
+.numbers__number {
+  @include default;
+  font-size: vw(100);
+  line-height: 110%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  &.active {
+    opacity: 1;
+  }
+
+  @media (max-width: $br1) {
+    font-size: 55px;
+  }
+}
+
+.numbers__span-number {
+  -webkit-text-stroke: 1px;
+}
+
+.numbers__text {
+  @include default;
+  margin-top: vw(6);
+  max-width: vw(204);
+
+  @media (max-width: $br1) {
+    font-size: 10px;
+    margin-top: 5px;
+    max-width: 112px;
+  }
+}

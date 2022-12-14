@@ -20,8 +20,8 @@ const li = [
     <div class="model__about">
       <p class="model__italic-text">
         Use your mouse or touchbar to spin the building model
+        <span><IconsDragArrow class="model__icon" /></span>
       </p>
-      <IconsDragArrow />
     </div>
     <div class="grid model__bottom-block">
       <div class="model__3d-wrapper">

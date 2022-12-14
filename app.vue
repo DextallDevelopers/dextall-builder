@@ -14,9 +14,10 @@ useTransition()
       <Benefits1 />
       <Benefits2 />
       <News /> -->
-      <ProductSpecifications />
+      <!-- <ProductSpecifications /> -->
       <!-- <AdvantagesList /> -->
       <!-- <Pricing /> -->
+      <Notes />
     </div>
   </NuxtLayout>
 </template>

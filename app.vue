@@ -17,7 +17,8 @@ useTransition()
       <!-- <ProductSpecifications /> -->
       <!-- <AdvantagesList /> -->
       <!-- <Pricing /> -->
-      <Notes />
+      <!-- <Notes /> -->
+      <Main />
     </div>
   </NuxtLayout>
 </template>

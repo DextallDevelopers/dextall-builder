@@ -19,7 +19,7 @@ const news = ref([
 </script>
 
 <template>
-  <section class="section news">
+  <section class="section section--pb news">
     <div class="container news__wrapper">
       <div class="news__title-wrapper">
         <h2 class="news__title">Latest news</h2>

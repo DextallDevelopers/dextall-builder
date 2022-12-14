@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section class="section notes">
+  <section class="section section--pb notes">
     <div class="container notes__wrapper">
       <div class="notes__line"></div>
       <div class="notes__main-block">

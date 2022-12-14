@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section class="section section specifications-1">
+  <section class="section specifications-1">
     <div class="container specifications-1__wrapper">
       <div class="specifications-1__top-block">
         <div class="specifications-1__text-wrapper">

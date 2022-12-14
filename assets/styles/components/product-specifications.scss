@@ -86,3 +86,9 @@
     padding-top: 36px;
   }
 }
+
+.specifications-2__wrapper {
+  @media (max-width: $br1) {
+    overflow: auto;
+  }
+}

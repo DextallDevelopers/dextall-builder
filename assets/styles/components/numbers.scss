@@ -36,10 +36,10 @@
 
 .numbers__title {
   @include default;
-  font-size: vw(62);
+  font-size: vw(60);
 
   @media (max-width: $br1) {
-    font-size: size(62, 36);
+    font-size: size(60, 36);
   }
 
   @media (max-width: $br4) {
@@ -48,11 +48,12 @@
 }
 
 .numbers__desc {
-  @include default;
+  font-size: vw(16);
   margin-top: vw(20);
   max-width: vw(386);
 
   @media (max-width: $br1) {
+    font-size: 16px;
     margin-top: 15px;
     max-width: 100%;
   }
@@ -115,21 +116,5 @@
 
   @media (max-width: $br1) {
     font-size: 55px;
-  }
-}
-
-.numbers__span-number {
-  -webkit-text-stroke: 1px;
-}
-
-.numbers__text {
-  @include default;
-  margin-top: vw(6);
-  max-width: vw(204);
-
-  @media (max-width: $br1) {
-    font-size: 10px;
-    margin-top: 5px;
-    max-width: 112px;
   }
 }

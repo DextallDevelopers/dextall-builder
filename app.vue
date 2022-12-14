@@ -19,7 +19,8 @@ useTransition()
       <AdvantagesList />
       <Pricing />
       <Notes /> -->
-      <Numbers />
+      <!-- <Numbers /> -->
+      <ImagesList />
     </div>
   </NuxtLayout>
 </template>

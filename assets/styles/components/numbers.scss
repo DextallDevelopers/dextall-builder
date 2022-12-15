@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
 
-  @media (max-width: $br3) {
+  @media (max-width: $br1) {
     flex-direction: column-reverse;
   }
 }

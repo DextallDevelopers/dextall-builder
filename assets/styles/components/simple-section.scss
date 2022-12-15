@@ -1,0 +1,25 @@
+.simple-section__title {
+  @include h2;
+}
+
+.simple-section__desc {
+  max-width: vw(730);
+  margin-top: vw(40);
+
+  @media (max-width: $br1) {
+    margin-top: 20px;
+    max-width: 75%;
+  }
+
+  @media (max-width: $br3) {
+    max-width: 100%;
+  }
+}
+
+.simple-section__img {
+  margin-top: vw(72);
+
+  @media (max-width: $br1) {
+    margin-top: 36px;
+  }
+}

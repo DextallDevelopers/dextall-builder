@@ -18,9 +18,10 @@ useTransition()
       <ProductSpecifications />
       <AdvantagesList />
       <Pricing />
-      <Notes /> -->
-      <!-- <Numbers /> -->
-      <ImagesList />
+      <Notes />
+      <Numbers />
+      <ImagesList /> -->
+      <SimpleSection />
     </div>
   </NuxtLayout>
 </template>

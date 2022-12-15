@@ -9,22 +9,27 @@ const items = [
   {
     title: 'hello',
     description: 'What can i help you?',
+    number: '80%',
+  },
+  {
+    title: 'hello',
+    description: 'What can i help you?',
     number: '100%',
   },
 ]
 
-interface iItem {
-  _uid: string
-  title: string
-  description: string
-  number: string
-}
+// interface iItem {
+//   _uid: string
+//   title: string
+//   description: string
+//   number: string
+// }
 
-interface iProps {
-  items: iItem[]
-}
+// interface iProps {
+//   items: iItem[]
+// }
 
-defineProps<iProps>()
+// defineProps<iProps>()
 
 const separateTextAndNumber = (string: string) => {
   let newStr = string.trim().split(/(\d+)/).filter(Boolean)

@@ -125,4 +125,9 @@
       }
     }
   }
+
+  &--under-text {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

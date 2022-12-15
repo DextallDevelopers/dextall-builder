@@ -26,7 +26,7 @@
             WINDOWS (FACTORY INSTALLED)
           </td>
           <td>INTUS</td>
-          <td>SUPERA AW SYSTEM</td>
+          <td class="specifications-table--under-text">SUPERA AW SYSTEM</td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">

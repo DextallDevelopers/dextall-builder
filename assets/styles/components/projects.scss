@@ -26,6 +26,7 @@
 .projects__img {
   display: block;
   height: fit-content;
+  object-fit: cover;
   width: 100%;
   border-radius: 10px;
   margin-top: vw(15);

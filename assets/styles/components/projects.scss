@@ -1,0 +1,46 @@
+.projects__title {
+  @include h2;
+  text-align: center;
+}
+
+.projects__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-columns: auto;
+  margin-top: vw(72);
+  column-gap: vw(20);
+  row-gap: vw(60);
+
+  @media (max-width: $br1) {
+    margin-top: 36px;
+    column-gap: 14px;
+    row-gap: 48px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $br3) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.projects__img {
+  display: block;
+  height: fit-content;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: vw(15);
+
+  @media (max-width: $br1) {
+    margin-top: 8px;
+  }
+}
+
+.projects__desc {
+  line-height: 100%;
+  text-transform: uppercase;
+  margin-top: vw(15);
+
+  @media (max-width: $br1) {
+    margin-top: 10px;
+  }
+}

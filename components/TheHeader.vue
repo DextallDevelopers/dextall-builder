@@ -34,6 +34,24 @@ const versions = [
     versionText: 'Version 7',
   },
 ]
+
+const isOpen = ref(false)
+
+const toggleNav = () => {
+  isOpen.value = !isOpen.value
+}
+
+const closeNav = () => {
+  isOpen.value = false
+}
+
+onMounted(async () => {
+  document.body.addEventListener('click', closeNav)
+})
+
+onBeforeUnmount(() => {
+  document.body.removeEventListener('click', closeNav)
+})
 </script>
 
 <template>
@@ -54,6 +72,7 @@ const versions = [
                 v-for="(el, idx) in versions"
                 :key="idx"
                 class="header__dropdown-li"
+                @click="closeNav"
               >
                 <a
                   href="/"
@@ -66,19 +85,58 @@ const versions = [
             </ul>
           </div>
         </div>
-        <div class="header__nav-wrapper">
+        <nav class="header__nav-wrapper" :class="{ open: isOpen }">
           <ul class="header__nav-list">
             <li v-for="(el, idx) in links" :key="idx" class="header__nav-li">
               <button class="header__nav-btn">
                 {{ el.navText }}
               </button>
             </li>
+            <li class="header__nav-li">
+              <button class="header__nav-btn header__nav-btn--download">
+                <span class="header__btn-icon"><IconsDownload /></span>
+                Download PDF
+              </button>
+            </li>
           </ul>
-          <button class="header__nav-btn header__nav-btn--download">
-            <span class="header__btn-icon"><IconsDownload /></span>
-            Download PDF
-          </button>
-        </div>
+        </nav>
+        <button
+          class="header__burger burger"
+          :class="[isOpen && 'burger--open']"
+          aria-label="Navigation button"
+          @click.stop="toggleNav"
+        >
+          <span class="burger__dot burger__dot--1"></span>
+          <span class="burger__dot burger__dot--2">
+            <span class="burger__close-icon">
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="0.934143"
+                  y="0.830566"
+                  width="12"
+                  height="1"
+                  transform="rotate(45 0.934143 0.830566)"
+                  fill="#ffffff"
+                />
+                <rect
+                  x="0.580597"
+                  y="9.31586"
+                  width="12"
+                  height="1"
+                  transform="rotate(-45 0.580597 9.31586)"
+                  fill="#ffffff"
+                />
+              </svg>
+            </span>
+          </span>
+          <span class="burger__dot burger__dot--3"></span>
+        </button>
       </div>
     </div>
   </header>

@@ -21,7 +21,8 @@ useTransition()
       <Notes />
       <Numbers />
       <ImagesList /> -->
-      <SimpleSection />
+      <!-- <SimpleSection /> -->
+      <Products />
     </div>
   </NuxtLayout>
 </template>

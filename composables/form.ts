@@ -1,5 +1,5 @@
 import { iInputData } from '~~/composables/input'
-import { useAppStore } from '~/store/app'
+
 import { ToastColor } from './toasts'
 
 const URL = null
@@ -10,8 +10,10 @@ export const useForm = (
   URLS = []
 ) => {
   const FINAL_URLS = [URL, ...URLS]
-  const appStore = useAppStore()
+
   const { addToast } = useToasts()
+
+  const { isWaiting } = useAppState()
 
   const emmitError = () => {
     $inputs.value.forEach(input => input.throwError())
@@ -33,7 +35,7 @@ export const useForm = (
     formData.inputs[idx].error = data.error
   }
 
-  const onSubmit = async () => {
+  const onSubmit = async cb => {
     return new Promise(async (resolve, reject) => {
       const inputs = formData.inputs
       const isError = inputs.find(el => el.error)
@@ -44,27 +46,28 @@ export const useForm = (
       }
 
       const formSendData = new FormData()
+
       formSendData.append('From:', from)
       inputs.forEach(el => {
         formSendData.append(el.name, el.value)
       })
 
       try {
-        appStore.setLoading(true)
-
-        FINAL_URLS.forEach(async url => {
-          await fetch(url, {
-            method: 'POST',
-            body: formSendData,
-            mode: 'no-cors',
-          })
-        })
-        resolve(inputs)
-        addToast({
-          color: ToastColor.success,
-          id: Date.now().toString(),
-          text: 'Form was successfully submitted',
-        })
+        isWaiting.value = true
+        cb()
+        // FINAL_URLS.forEach(async url => {
+        //   await fetch(url, {
+        //     method: 'POST',
+        //     body: formSendData,
+        //     mode: 'no-cors',
+        //   })
+        // })
+        // resolve(inputs)
+        // addToast({
+        //   color: ToastColor.success,
+        //   id: Date.now().toString(),
+        //   text: 'Form was successfully submitted',
+        // })
         resetForm()
       } catch (error) {
         console.log(error.message)
@@ -77,7 +80,7 @@ export const useForm = (
         })
       } finally {
         setTimeout(() => {
-          appStore.setLoading(false)
+          isWaiting.value = false
         }, 400)
       }
     })

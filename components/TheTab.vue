@@ -70,6 +70,10 @@ watch(
 )
 
 onMounted(() => {
+  if (props.isOpen) {
+      document.body.classList.add('e-fixed')
+    }
+
   onMouseMove = e => {
     let y
     if (e.changedTouches) {
@@ -79,10 +83,16 @@ onMounted(() => {
     }
 
     const height = window.innerHeight - y
-    $content.value.style.height = height + 'px'
-    if ((height / window.innerHeight) * 100 < 50) {
+    const percent = (height / window.innerHeight) * 100 
+
+    if (percent < 30) {
       close(props.id)
     }
+    if (percent >= 93) {
+      return
+    }
+    
+    $content.value.style.height = height + 'px'
   }
 
   onMouseDown = () => {

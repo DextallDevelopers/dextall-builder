@@ -103,9 +103,6 @@ const getBlokName = name => {
     v-for="(blok) in body"
     :key="blok._uid"
   >
-    <component
-      :is="getBlokName(blok.component)"
-      :blok="blok"
-    />
+    <component :is="getBlokName(blok.component)" />
   </div>
 </template>

@@ -82,7 +82,7 @@ import { keysGenerator } from '~/assets/scripts/utils/ea'
         <Model />
       </div>
     </div>
-    <Teleport to="[data-page]">
+    <Teleport to="#app">
       <TheTab
         v-for="tab in tabs"
         :id="tab._uid"

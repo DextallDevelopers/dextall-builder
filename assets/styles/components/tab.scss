@@ -81,8 +81,8 @@
 
 .tab__close-btn {
   display: block;
-  position: absolute;
-  top: 18px;
+  position: fixed;
+  top: 34px;
   right: vw(75);
   background-color: transparent;
   width: vw(48);

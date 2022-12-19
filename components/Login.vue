@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const $inputs = ref([])
+
+const {isAuth} = useAppState()
+
 const formData = reactive({
   hasErrors: true,
   inputs: [
@@ -29,6 +32,11 @@ const formData = reactive({
 })
 
 const { onInputValue, onSubmit } = useForm(formData, $inputs, 'Dextall login')
+
+const onLogin = () => {
+  window.localStorage.setItem('isAuth', 'true')
+  isAuth.value = true
+}
 </script>
 
 <template>
@@ -36,7 +44,11 @@ const { onInputValue, onSubmit } = useForm(formData, $inputs, 'Dextall login')
     <div class="container login__wrapper">
       <div class="login__main-block">
         <h1 class="login__h1">151 Friendship Street</h1>
-        <form class="login__form" novalidate @submit.prevent="onSubmit">
+        <form
+          class="login__form"
+          novalidate
+          @submit.prevent="onSubmit(onLogin)"
+        >
           <legend class="login__title">
             Enter your email address below to access the proposal:
           </legend>

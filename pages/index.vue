@@ -1,30 +1,28 @@
 <script setup lang="ts">
 import { useTransition } from '~/composables/transition'
 useTransition()
+
+const {isAuth} = useAppState()
+
+onMounted(() => {
+  const isAuthData = localStorage.getItem('isAuth')
+
+  if (isAuthData === 'true') {
+    isAuth.value = true
+  }
+})
 </script>
 
 <template>
-  <div data-page>
-    <!-- <Login /> -->
+  <Login v-if="!isAuth" />
+  <div
+    v-else
+    data-page
+  >
     <Main />
     <ImagesList />
     <Projects />
     <News />
     <Contacts />
-    <!-- <Team />
-    <Included />
-    <Drawings />
-    
-    <Benefits1 />
-    <Benefits2 />
-    <ProductSpecifications />
-    <AdvantagesList />
-    <Pricing />
-    <Notes />
-    <Numbers />
-    
-    <SimpleSection />
-    <Products />
-    -->
   </div>
 </template>

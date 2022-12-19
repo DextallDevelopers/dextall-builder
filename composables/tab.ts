@@ -1,5 +1,4 @@
 import { iBlokBody } from '~/types/story'
-import { keysGenerator } from '~/assets/scripts/utils/ea'
 
 export interface iTab {
   _uid?: string
@@ -7,25 +6,29 @@ export interface iTab {
   components: iBlokBody[]
 }
 
+let idx = 0
+
 export const useTab = () => {
   const tabs = useState<iTab[]>('tabs', () => [])
 
+  const router = useRouter()
+
   const addTab = (value: iTab) => {
-    const updatedValue: iTab = { ...value, _uid: keysGenerator(8) }
+    const updatedValue: iTab = { ...value, _uid: idx.toString() }
     tabs.value = [...tabs.value, updatedValue]
+    idx++
   }
 
   const addTabs = (value: iTab[]) => {
-    const updatedTabs: iTab[] = value.map(tab => ({
-      ...tab,
-      _uid: keysGenerator(8),
-    }))
-    tabs.value = [...tabs.value, ...updatedTabs]
+    value.forEach(tab => {
+      addTab(tab)
+    })
   }
 
   const close = (_uid: string) => {
     tabs.value = tabs.value.map(tab => {
       if (tab._uid === _uid) {
+        router.push({ query: null })
         return { ...tab, isOpen: false }
       }
       return tab
@@ -35,6 +38,7 @@ export const useTab = () => {
   const open = (_uid: string) => {
     tabs.value = tabs.value.map(tab => {
       if (tab._uid === _uid) {
+        router.push({ query: { tab: _uid } })
         return { ...tab, isOpen: true }
       }
       return { ...tab, isOpen: false }

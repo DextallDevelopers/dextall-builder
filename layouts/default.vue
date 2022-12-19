@@ -30,6 +30,8 @@ onMounted(async () => {
       >
       </Link>
     </Head>
+    <TheHeader />
+
     <AppGrid />
     <UiLoader />
     <slot />

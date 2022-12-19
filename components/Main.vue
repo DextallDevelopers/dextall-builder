@@ -3,6 +3,8 @@
 import { keysGenerator } from '~/assets/scripts/utils/ea'
 
   const {open, tabs, addTabs} = useTab()
+  const route = useRoute()
+
 
   const mainTabs: iTab[] = [
     {
@@ -34,13 +36,16 @@ import { keysGenerator } from '~/assets/scripts/utils/ea'
 
   onMounted(() => {
     addTabs(mainTabs)
+    route.query.tab && open(route.query.tab as string)
   })
 
 </script>
 
 <template>
-  <TheHeader />
-  <section class="section section--pb main">
+  <section
+    id="main"
+    class="section section--pb main"
+  >
     <div class="container main__wrapper">
       <div class="main__date-wrapper">
         <div class="main__date">

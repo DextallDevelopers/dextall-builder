@@ -2,9 +2,6 @@
 
 const {open: openTab, close: closeTab, tabs} = useTab()
 
-
-
-
 const versions = [
   {
     versionText: 'Version 1',
@@ -52,13 +49,13 @@ onBeforeUnmount(() => {
 <template>
   <header class="header">
     <div class="container header__wrapper">
-      <NuxtLink
-        to="/"
+      <a
+        href="#main"
         class="header__logo"
         aria-label="Logo"
       >
         <IconsLogo class="header__logo" />
-      </NuxtLink>
+      </a>
       <div class="header__content-wrapper">
         <div class="header__dropdown-wrapper">
           <p class="header__quote">
@@ -109,6 +106,7 @@ onBeforeUnmount(() => {
               <a
                 class="header__nav-btn"
                 href="#contacts"
+                @click="tabs.forEach(tab => closeTab(tab._uid))"
               >
                 Contact Us
               </a>

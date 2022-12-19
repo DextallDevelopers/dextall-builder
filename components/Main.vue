@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const isSpecOpen = ref(false)
+  const isIncludedOpen = ref(false)
+  const isScopeOpen = ref(false)
+  const isPricingOpen = ref(false)
+</script>
 
 <template>
   <section class="section section--pb main">
@@ -17,14 +22,50 @@
       <h2 class="main__title">20-STORY RESIDENTIAL TOWER, NEWARK, NJ</h2>
       <p class="main__desc">44 Stelton Rd, Piscataway, NJ 08854, USA</p>
       <div class="main__btns-wrapper">
-        <button class="main__btn">Product summary</button>
-        <button class="main__btn">What's Included</button>
-        <button class="main__btn">Drawings</button>
-        <button class="main__btn">Pricing</button>
+        <button
+          class="main__btn"
+          @click="isSpecOpen = true"
+        >Product summary</button>
+        <button
+          class="main__btn"
+          @click="isIncludedOpen = true"
+        >What's Included</button>
+        <button
+          class="main__btn"
+          @click="isScopeOpen = true"
+        >Drawings</button>
+        <button
+          class="main__btn"
+          @click="isPricingOpen = true"
+        >Pricing</button>
       </div>
       <div class="main__model-wrapper">
         <Model />
       </div>
     </div>
+    <TheTab
+      :is-open="isSpecOpen"
+      @close="isSpecOpen = false"
+    >
+      <ProductSpecifications />
+    </TheTab>
+    <TheTab
+      :is-open="isIncludedOpen"
+      @close="isIncludedOpen = false"
+    >
+      <Included />
+    </TheTab>
+    <TheTab
+      :is-open="isScopeOpen"
+      @close="isScopeOpen = false"
+    >
+      <Drawings />
+    </TheTab>
+    <TheTab
+      :is-open="isPricingOpen"
+      @close="isPricingOpen = false"
+    >
+      <Pricing />
+    </TheTab>
   </section>
 </template>

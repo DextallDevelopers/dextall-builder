@@ -27,6 +27,7 @@
   column-gap: vw(20);
   row-gap: vw(72);
   margin-top: vw(72);
+  user-select: none;
 
   @media (max-width: $br1) {
     column-gap: 20px;

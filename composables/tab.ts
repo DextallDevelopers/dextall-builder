@@ -67,8 +67,5 @@ export const useTab = () => {
     document.removeEventListener('touchmove', onMouseMove)
   })
 
-
-
-
   return { isOpen, close, open }
 }

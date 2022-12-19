@@ -1,8 +1,41 @@
 <script setup lang="ts">
-  const isSpecOpen = ref(false)
-  const isIncludedOpen = ref(false)
-  const isScopeOpen = ref(false)
-  const isPricingOpen = ref(false)
+  import {iTab} from '~/composables/tab'
+import { keysGenerator } from '~/assets/scripts/utils/ea'
+
+  const {open, tabs, addTabs} = useTab()
+
+  const mainTabs: iTab[] = [
+    {
+      isOpen: false,
+      components: [{_uid: keysGenerator(8), component: 'product_specifications'}]
+    },
+    {
+      isOpen: false,
+      components: [{_uid: keysGenerator(8), component: 'included'}]
+    },
+    {
+      isOpen: false,
+      components: [{_uid: keysGenerator(8), component: 'drawings'}]
+    },
+    {
+      isOpen: false,
+      components: [{_uid: keysGenerator(8), component: 'pricing'}]
+    },
+    {
+    isOpen: false,
+    components: [
+      { _uid: keysGenerator(8), component: 'notes' },
+      { _uid: keysGenerator(8), component: 'benefits1' },
+      { _uid: keysGenerator(8), component: 'benefits2' },
+      { _uid: keysGenerator(8), component: 'advantages_list' },
+    ],
+  }
+  ]
+
+  onMounted(() => {
+    addTabs(mainTabs)
+  })
+
 </script>
 
 <template>
@@ -25,48 +58,33 @@
       <div class="main__btns-wrapper">
         <button
           class="main__btn"
-          @click="isSpecOpen = true"
+          @click="open(tabs[0]._uid)"
         >Product summary</button>
         <button
           class="main__btn"
-          @click="isIncludedOpen = true"
+          @click="open(tabs[1]._uid)"
         >What's Included</button>
         <button
           class="main__btn"
-          @click="isScopeOpen = true"
+          @click="open(tabs[2]._uid)"
         >Drawings</button>
         <button
           class="main__btn"
-          @click="isPricingOpen = true"
+          @click="open(tabs[3]._uid)"
         >Pricing</button>
       </div>
       <div class="main__model-wrapper">
         <Model />
       </div>
     </div>
-    <TheTab
-      :is-open="isSpecOpen"
-      :components="[{_uid: Date.now().toString(), component: 'product_specifications'}]"
-      @close="isSpecOpen = false"
-    >
-      <ProductSpecifications />
-    </TheTab>
-    <TheTab
-      :is-open="isIncludedOpen"
-      :components="[{_uid: Date.now().toString(), component: 'included'}]"
-      @close="isIncludedOpen = false"
-    />
-
-    <TheTab
-      :is-open="isScopeOpen"
-      :components="[{_uid: Date.now().toString(), component: 'drawings'}]"
-      @close="isScopeOpen = false"
-    />
-
-    <TheTab
-      :is-open="isPricingOpen"
-      :components="[{_uid: Date.now().toString(), component: 'pricing'}]"
-      @close="isPricingOpen = false"
-    />
+    <Teleport to="[data-page]">
+      <TheTab
+        v-for="tab in tabs"
+        :id="tab._uid"
+        :key="tab._uid"
+        :is-open="tab.isOpen"
+        :components="tab.components"
+      />
+    </Teleport>
   </section>
 </template>

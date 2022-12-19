@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import { iBlokBody } from '~/types/story'
+
 interface iProps {
-  body: any[]
+  body: iBlokBody[]
 }
 
 defineProps<iProps>()

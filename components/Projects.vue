@@ -29,11 +29,18 @@ const images = [
 </script>
 
 <template>
-  <section class="section section--pb projects">
+  <section
+    id="projects"
+    class="section section--pb projects"
+  >
     <div class="container projects__wrapper">
       <h2 class="projects__title">Latest projects</h2>
       <ul class="projects__list">
-        <li v-for="(img, idx) in images" :key="idx" class="projects__li">
+        <li
+          v-for="(img, idx) in images"
+          :key="idx"
+          class="projects__li"
+        >
           <a
             href="https://www.dextall.com/projects/"
             class="projects__link"
@@ -41,7 +48,11 @@ const images = [
             rel="noreferrer noopener"
           >
             <p class="projects__number">{{ img.number }}</p>
-            <img class="projects__img" :src="img.imgSrc" alt="Image" />
+            <img
+              class="projects__img"
+              :src="img.imgSrc"
+              alt="Image"
+            />
             <p class="projects__desc">{{ img.desc }}</p>
           </a>
         </li>

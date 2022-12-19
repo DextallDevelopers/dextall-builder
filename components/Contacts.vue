@@ -47,7 +47,10 @@ const { onInputValue, onSubmit } = useForm(
 </script>
 
 <template>
-  <section class="section section--pb contacts">
+  <section
+    id="contacts"
+    class="section section--pb contacts"
+  >
     <TheTicker
       text="Thank you for your business!"
       class="contacts__ticker"

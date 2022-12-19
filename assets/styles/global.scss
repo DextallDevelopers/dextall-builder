@@ -9,6 +9,7 @@ html {
   height: 100vh;
   height: var(--vh);
   font-size: vw(16);
+  scroll-behavior: smooth;
 }
 
 body {

@@ -6,7 +6,7 @@
   >
     <div
       class="tab__backdrop"
-      @click="close"
+      @click="close(props.id)"
     ></div>
     <div
       ref="$content"
@@ -21,7 +21,7 @@
       <div class="tab__window">
         <button
           class="tab__close-btn"
-          @click="close"
+          @click="close(props.id)"
         >
           <span class="tab__btn-line"></span>
           <span class="tab__btn-line"></span>
@@ -39,12 +39,13 @@ import { iBlokBody } from '~/types/story'
 
 interface iProps {
   isOpen: boolean
+  id: string
   components: iBlokBody[]
 }
 
 const props = defineProps<iProps>()
 
-const emit = defineEmits(['close'])
+const { close } = useTab()
 
 const $tab = ref(null)
 const $content = ref(null)
@@ -53,18 +54,18 @@ let onMouseDown: () => void
 let onMouseMove: (e) => void
 let onMouseUp: () => void
 
-const close = () => {
-  document.body.classList.remove('e-fixed')
-  emit('close')
-  setTimeout(() => {
-    $content.value.style.height = null
-  }, 1000)
-}
 
-watch(() => props.isOpen, () => {
+watch(
+  () => props.isOpen,
+  () => {
     if (props.isOpen) {
       document.body.classList.add('e-fixed')
+      return
     }
+    document.body.classList.remove('e-fixed')
+    setTimeout(() => {
+      $content.value.style.height = null
+    }, 1000)
   }
 )
 
@@ -80,7 +81,7 @@ onMounted(() => {
     const height = window.innerHeight - y
     $content.value.style.height = height + 'px'
     if ((height / window.innerHeight) * 100 < 50) {
-      close()
+      close(props.id)
     }
   }
 
@@ -98,7 +99,6 @@ onMounted(() => {
   document.body.addEventListener('mouseup', onMouseUp)
   $grabBtn.value.addEventListener('touchstart', onMouseDown)
   document.body.addEventListener('touchend', onMouseUp)
-
 })
 
 onBeforeUnmount(() => {

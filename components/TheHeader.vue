@@ -1,15 +1,9 @@
 <script setup lang="ts">
-const links = [
-  {
-    navText: 'About us',
-  },
-  {
-    navText: 'Projects',
-  },
-  {
-    navText: 'Contact us',
-  },
-]
+
+const {open: openTab, close: closeTab, tabs} = useTab()
+
+
+
 
 const versions = [
   {
@@ -47,6 +41,7 @@ const closeNav = () => {
 
 onMounted(async () => {
   document.body.addEventListener('click', closeNav)
+
 })
 
 onBeforeUnmount(() => {
@@ -93,14 +88,30 @@ onBeforeUnmount(() => {
           :class="{ open: isOpen }"
         >
           <ul class="header__nav-list">
-            <li
-              v-for="(el, idx) in links"
-              :key="idx"
-              class="header__nav-li"
-            >
-              <button class="header__nav-btn">
-                {{ el.navText }}
+            <li class="header__nav-li">
+              <button
+                class="header__nav-btn"
+                @click="openTab(tabs[4]._uid)"
+              >
+                About us
               </button>
+            </li>
+            <li class="header__nav-li">
+              <a
+                class="header__nav-btn"
+                href="#projects"
+                @click="tabs.forEach(tab => closeTab(tab._uid))"
+              >
+                Projects
+              </a>
+            </li>
+            <li class="header__nav-li">
+              <a
+                class="header__nav-btn"
+                href="#contacts"
+              >
+                Contact Us
+              </a>
             </li>
             <li class="header__nav-li">
               <button class="header__nav-btn header__nav-btn--download">

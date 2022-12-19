@@ -4,17 +4,18 @@ const items = [
     title: 'TRILLIONS WILL BE SPEND TO DECARBONIZE THE REAL ESTATE',
     description:
       'Trillion will be spent to decarbonize real estate in the next 20 years',
-    number: '0%',
+    number: '$18-36T',
   },
   {
-    title: 'hello',
-    description: 'What can i help you?',
-    number: '80%',
+    title: 'MAJOR CITIES ARE THE MAJOR CONTRIBUTORS TO CARBON EMISSIONS',
+    description:
+      'IN CITIES (LIKE NYC) BUILDINGS CONTRIBUTE NEARLY 70% OF CARBON EMISSIONS',
+    number: '70%',
   },
   {
-    title: 'hello',
-    description: 'What can i help you?',
-    number: '100%',
+    title: 'BUILDINGS ARE 40% OF THE WORLDS CARBON EMISSIONS',
+    description: '40% OF CARBON EMISSIONS ARE CONTRIBUTED TO BUILDINGS',
+    number: '40%',
   },
 ]
 

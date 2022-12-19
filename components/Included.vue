@@ -9,8 +9,23 @@ const included = ref([
   {
     text: 'Breaking ground in late 2023, t',
   },
+  {
+    text: 'Breaking ground in late 2023, t',
+  },
+  {
+    text: 'Breaking ground in late 2023, t',
+  },
+  {
+    text: 'Breaking ground in late 2023, t',
+  },
 ])
 const notIncluded = ref([
+  {
+    text: 'Breaking ground in late 2023, t',
+  },
+  {
+    text: 'Breaking ground in late 2023, t',
+  },
   {
     text: 'Breaking ground in late 2023, t',
   },

@@ -26,6 +26,10 @@
 
 .login__h1 {
   @include h1;
+
+  @media (min-width: $br1) {
+    max-width: vw(1476);
+  }
 }
 
 .login__form {

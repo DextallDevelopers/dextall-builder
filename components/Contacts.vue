@@ -47,14 +47,8 @@ const { onInputValue, onSubmit } = useForm(
 </script>
 
 <template>
-  <section
-    id="contacts"
-    class="section section--pb contacts"
-  >
-    <TheTicker
-      text="Thank you for your business!"
-      class="contacts__ticker"
-    />
+  <section id="contacts" class="section section--pb contacts">
+    <TheTicker text="Thank you for your business!" class="contacts__ticker" />
     <div class="container contacts__wrapper">
       <div class="contacts__block">
         <p class="contacts__comments">
@@ -62,9 +56,7 @@ const { onInputValue, onSubmit } = useForm(
           might have, please feel free to ask at anytime.
         </p>
         <div class="contacts__card-wrapper">
-          <h3 class="contacts__card-title">
-            Contact your personal sales representative:
-          </h3>
+          <h3 class="contacts__card-title">Contact us with any questions</h3>
           <Card
             v-for="(member, idx) in team"
             :key="idx"
@@ -79,12 +71,8 @@ const { onInputValue, onSubmit } = useForm(
         </div>
       </div>
       <div class="contacts__form-wrapper">
-        <form
-          class="contacts__form"
-          novalidate
-          @submit.prevent="onSubmit"
-        >
-          <legend class="contacts__title">Or send to us a message:</legend>
+        <form class="contacts__form" novalidate @submit.prevent="onSubmit">
+          <legend class="contacts__title">Send us a message</legend>
           <div class="contacts__input-wrapper">
             <TheInput
               v-for="input in formData.inputs"

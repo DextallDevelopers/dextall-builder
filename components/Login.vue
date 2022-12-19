@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const $inputs = ref([])
 
-const {isAuth} = useAppState()
+const { isAuth } = useAppState()
 
 const formData = reactive({
   hasErrors: true,
@@ -43,7 +43,7 @@ const onLogin = () => {
   <section class="section section--nm login">
     <div class="container login__wrapper">
       <div class="login__main-block">
-        <h1 class="login__h1">151 Friendship Street</h1>
+        <h1 class="login__h1">20-STORY RESIDENTIAL TOWER, NEWARK, NJ</h1>
         <form
           class="login__form"
           novalidate

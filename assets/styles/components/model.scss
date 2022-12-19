@@ -18,6 +18,12 @@
   line-height: 100%;
   text-transform: uppercase;
 
+  @media (min-width: $br1) {
+    display: flex;
+    align-items: center;
+    column-gap: vw(24);
+  }
+
   @media (max-width: $br1) {
     font-size: 16px;
   }

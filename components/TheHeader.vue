@@ -53,6 +53,7 @@ onBeforeUnmount(() => {
         href="#main"
         class="header__logo"
         aria-label="Logo"
+        @click="tabs.forEach(tab => closeTab(tab._uid))"
       >
         <IconsLogo class="header__logo" />
       </a>

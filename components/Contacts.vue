@@ -48,8 +48,11 @@ const { onInputValue, onSubmit } = useForm(
 
 <template>
   <section class="section section--pb contacts">
+    <TheTicker
+      text="Thank you for your business!"
+      class="contacts__ticker"
+    />
     <div class="container contacts__wrapper">
-      <TheTicker text="Thank you for your business!" class="contacts__ticker" />
       <div class="contacts__block">
         <p class="contacts__comments">
           We would like to hear from you. Any comments or questions that you
@@ -73,7 +76,11 @@ const { onInputValue, onSubmit } = useForm(
         </div>
       </div>
       <div class="contacts__form-wrapper">
-        <form class="contacts__form" novalidate @submit.prevent="onSubmit">
+        <form
+          class="contacts__form"
+          novalidate
+          @submit.prevent="onSubmit"
+        >
           <legend class="contacts__title">Or send to us a message:</legend>
           <div class="contacts__input-wrapper">
             <TheInput

@@ -57,7 +57,11 @@ onBeforeUnmount(() => {
 <template>
   <header class="header">
     <div class="container header__wrapper">
-      <NuxtLink to="/" class="header__logo" aria-label="Logo">
+      <NuxtLink
+        to="/"
+        class="header__logo"
+        aria-label="Logo"
+      >
         <IconsLogo class="header__logo" />
       </NuxtLink>
       <div class="header__content-wrapper">
@@ -79,22 +83,30 @@ onBeforeUnmount(() => {
                   target="_blank"
                   rel="noreferrer noopener"
                   class="header__dropdown-version"
-                  >{{ el.versionText }}</a
-                >
+                >{{ el.versionText }}</a>
               </li>
             </ul>
           </div>
         </div>
-        <nav class="header__nav-wrapper" :class="{ open: isOpen }">
+        <nav
+          class="header__nav-wrapper"
+          :class="{ open: isOpen }"
+        >
           <ul class="header__nav-list">
-            <li v-for="(el, idx) in links" :key="idx" class="header__nav-li">
+            <li
+              v-for="(el, idx) in links"
+              :key="idx"
+              class="header__nav-li"
+            >
               <button class="header__nav-btn">
                 {{ el.navText }}
               </button>
             </li>
             <li class="header__nav-li">
               <button class="header__nav-btn header__nav-btn--download">
-                <span class="header__btn-icon"><IconsDownload /></span>
+                <span class="header__btn-icon">
+                  <IconsDownload />
+                </span>
                 Download PDF
               </button>
             </li>

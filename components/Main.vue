@@ -6,6 +6,7 @@
 </script>
 
 <template>
+  <TheHeader />
   <section class="section section--pb main">
     <div class="container main__wrapper">
       <div class="main__date-wrapper">
@@ -45,27 +46,27 @@
     </div>
     <TheTab
       :is-open="isSpecOpen"
+      :components="[{_uid: Date.now().toString(), component: 'product_specifications'}]"
       @close="isSpecOpen = false"
     >
       <ProductSpecifications />
     </TheTab>
     <TheTab
       :is-open="isIncludedOpen"
+      :components="[{_uid: Date.now().toString(), component: 'included'}]"
       @close="isIncludedOpen = false"
-    >
-      <Included />
-    </TheTab>
+    />
+
     <TheTab
       :is-open="isScopeOpen"
+      :components="[{_uid: Date.now().toString(), component: 'drawings'}]"
       @close="isScopeOpen = false"
-    >
-      <Drawings />
-    </TheTab>
+    />
+
     <TheTab
       :is-open="isPricingOpen"
+      :components="[{_uid: Date.now().toString(), component: 'pricing'}]"
       @close="isPricingOpen = false"
-    >
-      <Pricing />
-    </TheTab>
+    />
   </section>
 </template>

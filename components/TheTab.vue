@@ -27,7 +27,7 @@
           <span class="tab__btn-line"></span>
         </button>
         <div class="tab__top">
-          <slot />
+          <Blok :body="components" />
         </div>
       </div>
     </div>
@@ -35,8 +35,11 @@
 </template>
 
 <script setup lang="ts">
+import { iBlokBody } from '~/types/story'
+
 interface iProps {
   isOpen: boolean
+  components: iBlokBody[]
 }
 
 const props = defineProps<iProps>()

@@ -6,6 +6,10 @@
   background-color: #fff;
   width: vw(80);
   height: vw(80);
+  @media (max-width: $br1) {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .circular {

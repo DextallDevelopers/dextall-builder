@@ -63,6 +63,11 @@
 .header__quote {
   opacity: 0.3;
   transition: opacity 0.3s ease;
+  line-height: 1em;
+  @media (max-width: $br1) {
+    position: relative;
+    top: 2.5px;
+  }
 }
 
 .header__dropdown-content {

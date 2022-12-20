@@ -1,16 +1,17 @@
 <script setup lang="ts">
+const { subtotalPrice, tax, totalPrice } = useComputePrice()
 const li = [
   {
     text: 'SUBTOTAL PRICE',
-    price: '$64.18/SF',
+    price: `$${subtotalPrice}/SF`,
   },
   {
     text: 'TAX',
-    price: '8.875%',
+    price: `${tax}%`,
   },
   {
     text: 'TOTAL PRICE (MATERIAL ONLY)',
-    price: '$1.489.895,54',
+    price: `$${totalPrice}`,
   },
 ]
 </script>
@@ -33,7 +34,7 @@ const li = [
           <div v-if="idx + 1 === li.length" class="pricing__line"></div>
         </li>
       </ul>
-      <CircleButton class="pricing__btn">Call to action</CircleButton>
+      <CircleButton class="pricing__btn">Contact Us</CircleButton>
     </div>
   </section>
 </template>

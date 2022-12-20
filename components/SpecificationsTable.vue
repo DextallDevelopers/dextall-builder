@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { facadeArea, subtotalPrice, tax, totalPrice } = useComputePrice()
+</script>
 
 <template>
   <div class="specifications-table-wrapper">
@@ -45,24 +47,24 @@
         <tr>
           <td class="specifications-table__big-text">FACADE AREA (SF)</td>
           <td></td>
-          <td>21322 SF</td>
+          <td>{{ facadeArea }} SF</td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">SUBTOTAL PRICE</td>
           <td></td>
-          <td>$64.18/SF</td>
+          <td>${{ subtotalPrice }}/SF</td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">TAX</td>
           <td></td>
-          <td>8.875%</td>
+          <td>{{ tax }}%</td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">
             TOTAL PRICE (MATERIAL ONLY)
           </td>
           <td>BRONX</td>
-          <td>$1.489.895,54</td>
+          <td>${{ totalPrice }}</td>
         </tr>
       </tbody>
     </table>

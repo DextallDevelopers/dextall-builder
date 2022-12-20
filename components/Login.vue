@@ -37,6 +37,8 @@ const onLogin = () => {
   window.localStorage.setItem('isAuth', 'true')
   isAuth.value = true
 }
+
+const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate()
 </script>
 
 <template>
@@ -73,11 +75,13 @@ const onLogin = () => {
       <div class="login__date-wrapper">
         <div class="login__date">
           <p class="login__date-text">Date of the quote:</p>
-          <p class="login__date-number">25.10.22</p>
+          <p class="login__date-number">{{ startFormattedDate }}</p>
         </div>
         <div class="login__date">
           <p class="login__date-text">Expiration of the quote:</p>
-          <p class="login__date-number">25.10.22</p>
+          <p class="login__date-number">
+            {{ timeLeft }} ({{ endFormattedDate }})
+          </p>
         </div>
       </div>
     </div>

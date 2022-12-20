@@ -14,6 +14,8 @@ const li = [
     price: `$${totalPrice}`,
   },
 ]
+
+const { close: closeTab, tabs } = useTab()
 </script>
 
 <template>
@@ -34,7 +36,13 @@ const li = [
           <div v-if="idx + 1 === li.length" class="pricing__line"></div>
         </li>
       </ul>
-      <CircleButton class="pricing__btn">Contact Us</CircleButton>
+      <CircleButton
+        href="#contacts"
+        tag="a"
+        class="pricing__btn"
+        @click="tabs.forEach(tab => closeTab(tab._uid))"
+        >Contact Us</CircleButton
+      >
     </div>
   </section>
 </template>

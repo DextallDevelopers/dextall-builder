@@ -2,6 +2,8 @@
 
 const {open: openTab, close: closeTab, tabs} = useTab()
 
+const {isAuth} = useAppState()
+
 const versions = [
   {
     versionText: 'Version 1',
@@ -57,7 +59,10 @@ onBeforeUnmount(() => {
       >
         <IconsLogo class="header__logo" />
       </a>
-      <div class="header__content-wrapper">
+      <div
+        v-if="isAuth"
+        class="header__content-wrapper"
+      >
         <div class="header__dropdown-wrapper">
           <p class="header__quote">
             Quote History:
@@ -82,6 +87,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <nav
+          v-if="isAuth"
           class="header__nav-wrapper"
           :class="{ open: isOpen }"
         >

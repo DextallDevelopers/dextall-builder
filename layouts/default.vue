@@ -11,6 +11,21 @@ onMounted(async () => {
   const { resize } = await import('@emotionagency/utils')
   resize.on(winSizes)
 })
+
+useHead({
+  link: [
+    {
+      rel: 'stylesheet',
+      type: 'text/css',
+      href: 'https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css',
+    },
+  ],
+  script: [
+    {
+      src: 'https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js',
+    },
+  ],
+})
 </script>
 
 <template>

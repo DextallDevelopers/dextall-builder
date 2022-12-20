@@ -2,7 +2,7 @@
 import { useTransition } from '~/composables/transition'
 useTransition()
 
-const {isAuth} = useAppState()
+const {isAuth, isLoaded} = useAppState()
 
 onMounted(() => {
   const isAuthData = localStorage.getItem('isAuth')
@@ -10,13 +10,14 @@ onMounted(() => {
   if (isAuthData === 'true') {
     isAuth.value = true
   }
+  isLoaded.value = true
 })
 </script>
 
 <template>
-  <Login v-if="!isAuth" />
+  <Loader v-if="!isLoaded" />
   <div
-    v-else
+    v-else-if="isAuth && isLoaded"
     data-page
   >
     <Main />
@@ -25,4 +26,5 @@ onMounted(() => {
     <News />
     <Contacts />
   </div>
+  <Login v-else />
 </template>

@@ -18,8 +18,12 @@
 
 .images-list__img {
   display: block;
-  height: fit-content;
   width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  @media (min-width: $br1) {
+    height: fit-content;
+  }
 }
 
 .images-list__desc {

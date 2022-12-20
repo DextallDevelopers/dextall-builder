@@ -31,9 +31,20 @@ const images = [
   <section class="section section--pb images-list">
     <div class="container images-list__wrapper">
       <ul class="images-list__list">
-        <li v-for="(img, idx) in images" :key="idx" class="images-list__li">
-          <img class="images-list__img" :src="img.imgSrc" alt="Image" />
-          <p class="images-list__desc">{{ img.desc }}</p>
+        <li
+          v-for="(img, idx) in images"
+          :key="idx"
+          class="images-list__li"
+        >
+          <img
+            class="images-list__img"
+            :src="img.imgSrc"
+            alt="Image"
+          />
+          <p
+            v-if="img.desc"
+            class="images-list__desc"
+          >{{ img.desc }}</p>
         </li>
       </ul>
     </div>

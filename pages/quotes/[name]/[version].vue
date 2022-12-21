@@ -8,18 +8,14 @@ const { isAuth, isLoaded } = useAppState()
 const route = useRoute()
 
 const { name, version } = route.params
+const { stories, story, listenStory } = await useQoutesStories(
+  name as string,
+  version as string
+)
 
-const getStories = async () => {
-  const { stories } = await useQoutesStories(name as string)
-  return stories
-}
+console.log(stories.value)
 
-getStories().then(data => {
-  console.log(data.value)
-})
-// // listenStory(slug)
-
-// console.log(stories)
+listenStory(version)
 
 onMounted(() => {
   const isAuthData = localStorage.getItem('isAuth')
@@ -34,11 +30,22 @@ onMounted(() => {
 <template>
   <Loader v-if="!isLoaded" />
   <div v-else-if="isAuth && isLoaded" data-page>
-    <Main />
+    <Main
+      :address="story.content.address"
+      :title="story.content.title"
+      :scope="story.content.scope"
+      :start-quote-date="story.content.start_quote_date"
+      :end-quote-date="story.content.end_quote_date"
+    />
     <ImagesList />
     <Projects />
     <News />
     <Contacts />
   </div>
-  <Login v-else />
+  <Login
+    v-else
+    :title="story.content.title"
+    :start-quote-date="story.content.start_quote_date"
+    :end-quote-date="story.content.end_quote_date"
+  />
 </template>

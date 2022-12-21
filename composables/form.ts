@@ -4,8 +4,8 @@ import { ToastColor } from './toasts'
 
 const URL = null
 export const useForm = (
-  formData: { inputs: any[]; hasErrors: boolean },
-  $inputs: { value: any[] },
+  formData,
+  $inputs,
   from = 'Dextall Website',
   URLS = []
 ) => {
@@ -69,10 +69,10 @@ export const useForm = (
         //   text: 'Form was successfully submitted',
         // })
         resetForm()
-      } catch ({ message }) {
-        console.log(message)
+      } catch (error) {
+        console.log(error.message)
         formData.hasErrors = true
-        reject(message)
+        reject(error.message)
         addToast({
           color: ToastColor.danger,
           id: Date.now().toString(),

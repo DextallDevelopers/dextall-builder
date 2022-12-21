@@ -1,32 +1,26 @@
 <script setup lang="ts">
+import { useQoutesStories } from '~~/composables/stories/quotes'
 
-const {open: openTab, close: closeTab, tabs} = useTab()
+const route = useRoute()
 
-const {isAuth} = useAppState()
+const { name, version } = route.params
 
-const versions = [
-  {
-    versionText: 'Version 1',
-  },
-  {
-    versionText: 'Version 2',
-  },
-  {
-    versionText: 'Version 3',
-  },
-  {
-    versionText: 'Version 4',
-  },
-  {
-    versionText: 'Version 5',
-  },
-  {
-    versionText: 'Version 6',
-  },
-  {
-    versionText: 'Version 7',
-  },
-]
+const { stories, story } = await useQoutesStories(
+  name as string,
+  version as string
+)
+
+const { open: openTab, close: closeTab, tabs } = useTab()
+
+const { isAuth } = useAppState()
+
+const versions = computed(() => {
+  return stories.value
+    .map(s => ({ name: s.name, link: s.full_slug }))
+    .sort(function (a, b) {
+      return ('' + a.name).localeCompare(b.name)
+    })
+})
 
 const isOpen = ref(false)
 
@@ -40,7 +34,6 @@ const closeNav = () => {
 
 onMounted(async () => {
   document.body.addEventListener('click', closeNav)
-
 })
 
 onBeforeUnmount(() => {
@@ -59,14 +52,11 @@ onBeforeUnmount(() => {
       >
         <IconsLogo class="header__logo" />
       </a>
-      <div
-        v-if="isAuth"
-        class="header__content-wrapper"
-      >
+      <div v-if="isAuth" class="header__content-wrapper">
         <div class="header__dropdown-wrapper">
           <p class="header__quote">
             Quote History:
-            <span class="header__span-quote">v1</span>
+            <span class="header__span-quote">{{ story.name }}</span>
           </p>
           <div class="header__dropdown-content">
             <ul class="header__dropdown">
@@ -76,12 +66,11 @@ onBeforeUnmount(() => {
                 class="header__dropdown-li"
                 @click="closeNav"
               >
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer noopener"
+                <NuxtLink
+                  :to="'/' + el.link"
                   class="header__dropdown-version"
-                >{{ el.versionText }}</a>
+                  >{{ el.name }}</NuxtLink
+                >
               </li>
             </ul>
           </div>
@@ -93,10 +82,7 @@ onBeforeUnmount(() => {
         >
           <ul class="header__nav-list">
             <li class="header__nav-li">
-              <button
-                class="header__nav-btn"
-                @click="openTab(tabs[4]._uid)"
-              >
+              <button class="header__nav-btn" @click="openTab(tabs[4]._uid)">
                 About us
               </button>
             </li>

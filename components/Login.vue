@@ -1,4 +1,12 @@
 <script setup lang="ts">
+interface iProps {
+  title?: string
+  startQuoteDate?: string
+  endQuoteDate?: string
+}
+
+const props = defineProps<iProps>()
+
 const $inputs = ref([])
 
 const { isAuth } = useAppState()
@@ -38,14 +46,17 @@ const onLogin = () => {
   isAuth.value = true
 }
 
-const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate()
+const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
+  props.startQuoteDate,
+  props.endQuoteDate
+)
 </script>
 
 <template>
   <section class="section section--nm login">
     <div class="container login__wrapper">
       <div class="login__main-block">
-        <h1 class="login__h1">20-STORY RESIDENTIAL TOWER, NEWARK, NJ</h1>
+        <h1 class="login__h1">{{ title }}</h1>
         <form
           class="login__form"
           novalidate

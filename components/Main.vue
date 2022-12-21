@@ -2,6 +2,16 @@
 import { iTab } from '~/composables/tab'
 import { keysGenerator } from '~/assets/scripts/utils/ea'
 
+interface iProps {
+  scope?: string
+  title?: string
+  address?: string
+  startQuoteDate?: string
+  endQuoteDate?: string
+}
+
+const props = defineProps<iProps>()
+
 const { open, tabs, addTabs } = useTab()
 const route = useRoute()
 
@@ -40,7 +50,10 @@ onMounted(() => {
   route.query.tab && open(route.query.tab as string)
 })
 
-const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate()
+const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
+  props.startQuoteDate,
+  props.endQuoteDate
+)
 </script>
 
 <template>
@@ -58,9 +71,9 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate()
           </p>
         </div>
       </div>
-      <p class="main__text">D WALL — NEW CONSTRUCTION</p>
-      <h2 class="main__title">20-STORY RESIDENTIAL TOWER, NEWARK, NJ</h2>
-      <p class="main__desc">44 Stelton Rd, Piscataway, NJ 08854, USA</p>
+      <p class="main__text">{{ scope }}</p>
+      <h2 class="main__title">{{ title }}</h2>
+      <p class="main__desc">{{ address }}</p>
       <div class="main__btns-wrapper">
         <button class="main__btn" @click="open(tabs[0]._uid)">
           Product summary

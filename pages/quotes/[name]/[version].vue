@@ -3,21 +3,31 @@ import { useTransition } from '~/composables/transition'
 import { useQoutesStories } from '~/composables/stories/quotes'
 useTransition()
 
-const { isAuth, isLoaded } = useAppState()
+const { isAuth, isLoaded, isInEditor } = useAppState()
 
 const route = useRoute()
 
 const { name, version } = route.params
-const { stories, story, listenStory } = await useQoutesStories(
+const { story, listenStory } = await useQoutesStories(
   name as string,
   version as string
 )
 
-console.log(stories.value)
-
 listenStory(version)
 
+watch(isInEditor, () => {
+  if (isInEditor.value) {
+    isAuth.value = true
+    isLoaded.value = true
+  }
+})
+
 onMounted(() => {
+  if (isInEditor.value) {
+    isAuth.value = true
+    isLoaded.value = true
+    return
+  }
   const isAuthData = localStorage.getItem('isAuth')
 
   if (isAuthData === 'true') {
@@ -31,6 +41,7 @@ onMounted(() => {
   <Loader v-if="!isLoaded" />
   <div v-else-if="isAuth && isLoaded" data-page>
     <Main
+      v-editable="story.content"
       :address="story.content.address"
       :title="story.content.title"
       :scope="story.content.scope"

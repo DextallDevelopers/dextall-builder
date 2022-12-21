@@ -1,10 +1,34 @@
-import { defineNuxtConfig } from 'nuxt'
+import eslintPlugin from 'vite-plugin-eslint'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   css: ['@/assets/styles/index.scss'],
 
-  modules: ['@pinia/nuxt', '@nuxtjs/eslint-module'],
+  modules: [
+    // '@nuxtjs/eslint-module',
+    [
+      '@storyblok/nuxt',
+      {
+        accessToken: process.env.STORYBLOK_TOKEN,
+        apiOptions: {
+          region: 'us',
+        },
+      },
+    ],
+  ],
+
+  runtimeConfig: {
+    STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
+    ENVIROMENT: process.env.NODE_ENV,
+  },
+
+  typescript: {
+    shim: false,
+  },
+
+  vite: {
+    plugins: [eslintPlugin()],
+  },
 
   // head: {
   //   title: 'emotion',

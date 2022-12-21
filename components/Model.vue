@@ -26,9 +26,9 @@ async function loadViewer() {
   await viewer.start()
 }
 
-onMounted(() => {
-  loadViewer()
-})
+// onMounted(() => {
+//   loadViewer()
+// })
 </script>
 
 <template>
@@ -43,27 +43,17 @@ onMounted(() => {
     </div>
     <div class="grid model__bottom-block">
       <div class="model__3d-wrapper">
-        <div
-          id="ForgeViewer"
-          class="viewer-container"
-        ></div>
+        <div id="ForgeViewer" class="viewer-container"></div>
       </div>
       <div class="model__list-wrapper">
         <ul class="model__list">
-          <li
-            v-for="(item, idx) in li"
-            :key="idx"
-            class="model__li"
-          >
+          <li v-for="(item, idx) in li" :key="idx" class="model__li">
             <div class="model__line"></div>
             <div class="model__text-wrapper">
               <p class="model__text">{{ item.text }}</p>
               <p class="model__number">{{ item.number }}</p>
             </div>
-            <div
-              v-if="idx + 1 === li.length"
-              class="model__line"
-            ></div>
+            <div v-if="idx + 1 === li.length" class="model__line"></div>
           </li>
         </ul>
         <div class="model__btn-wrapper">

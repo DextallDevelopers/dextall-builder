@@ -2,12 +2,18 @@
 import { iTab } from '~/composables/tab'
 import { keysGenerator } from '~/assets/scripts/utils/ea'
 
+interface iModel {
+  id: string
+  type: 'facade' | 'building' | 'aggregated'
+}
+
 interface iProps {
   scope?: string
   title?: string
   address?: string
   startQuoteDate?: string
   endQuoteDate?: string
+  model?: iModel[]
 }
 
 const props = defineProps<iProps>()
@@ -85,7 +91,7 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
         <button class="main__btn" @click="open(tabs[3]._uid)">Pricing</button>
       </div>
       <div class="main__model-wrapper">
-        <Model />
+        <Model :id="model[0].id" :type="model[0].type" />
       </div>
     </div>
     <Teleport to="#app">

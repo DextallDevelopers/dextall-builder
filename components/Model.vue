@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { ForgeViewer } from '~/assets/scripts/viewer'
+import { ForgeViewer, AggregatedForgeViewer } from '~/assets/scripts/viewer'
+
+interface iProps {
+  id: string
+  type: 'facade' | 'building' | 'aggregated'
+}
+
+const props = defineProps<iProps>()
 
 const li = [
   {
@@ -17,18 +24,26 @@ const li = [
 ]
 
 async function loadViewer() {
-  const viewer = new ForgeViewer(
-    'ForgeViewer',
-    '00849274-5e54-4ae4-972b-c61358fc90b4',
-    'facade'
-  )
+  let viewer
+
+  if (props.type === 'facade') {
+    viewer = new ForgeViewer('ForgeViewer', props.id, 'facade')
+  }
+
+  if (props.type === 'aggregated') {
+    viewer = new AggregatedForgeViewer('ForgeViewer', props.id)
+  }
+
+  if (props.type === 'building') {
+    viewer = new ForgeViewer('ForgeViewer', props.id, 'source')
+  }
 
   await viewer.start()
 }
 
-// onMounted(() => {
-//   loadViewer()
-// })
+onMounted(() => {
+  loadViewer()
+})
 </script>
 
 <template>

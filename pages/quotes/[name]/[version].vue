@@ -47,6 +47,7 @@ onMounted(() => {
       :scope="story.content.scope"
       :start-quote-date="story.content.start_quote_date"
       :end-quote-date="story.content.end_quote_date"
+      :model="story.content.model"
     />
     <ImagesList />
     <Projects />

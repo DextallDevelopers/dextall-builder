@@ -1,59 +1,43 @@
 <script setup lang="ts">
-const images = [
-  {
-    number: '01',
-    imgSrc: '/images/projects/1.jpg',
-    desc: '25-STORY RESIDENTIAL TOWER, NEWARK, NJ',
-  },
-  {
-    number: '02',
-    imgSrc: '/images/projects/2.jpg',
-    desc: 'QUEENS BOULEVARD, ELMHURST, NY',
-  },
-  {
-    number: '03',
-    imgSrc: '/images/projects/3.jpg',
-    desc: '30TH STREET, LONG ISLAND CITY, NY',
-  },
-  {
-    number: '04',
-    imgSrc: '/images/projects/4.jpg',
-    desc: '116TH STREET, QUEENS, NY',
-  },
-  {
-    number: '05',
-    imgSrc: '/images/projects/5.jpg',
-    desc: 'THE HERITAGE',
-  },
-]
+import { iStories } from '~/types/story'
+const config = useRuntimeConfig()
+
+const URL = `https://api.storyblok.com/v2/cdn/stories/?by_slugs=projects/*&sort_by=content.order:asc&per_page=5&version=draft&token=${config.DEXTALL_STORYBLOK_TOKEN}&cv=1671800179`
+
+const { data: storiesData } = await useFetch<iStories>(URL)
+
+const projects = computed(() => {
+  return storiesData.value.stories
+})
+
+console.log(projects.value)
 </script>
 
 <template>
-  <section
-    id="projects"
-    class="section section--pb projects"
-  >
+  <section id="projects" class="section section--pb projects">
     <div class="container projects__wrapper">
       <h2 class="projects__title">Latest projects</h2>
       <ul class="projects__list">
         <li
-          v-for="(img, idx) in images"
-          :key="idx"
+          v-for="(project, idx) in projects"
+          :key="project._uid"
           class="projects__li"
         >
           <a
-            href="https://www.dextall.com/projects/"
+            :href="`https://www.dextall.com/${project.full_slug}`"
             class="projects__link"
             target="_blank"
             rel="noreferrer noopener"
           >
-            <p class="projects__number">{{ img.number }}</p>
+            <p class="projects__number">0{{ idx + 1 }}</p>
             <img
               class="projects__img"
-              :src="img.imgSrc"
+              :src="project.content.Screen_1[0].main_image.filename"
               alt="Image"
             />
-            <p class="projects__desc">{{ img.desc }}</p>
+            <p class="projects__desc">
+              {{ project.content.Screen_1[0].project_name }}
+            </p>
           </a>
         </li>
       </ul>

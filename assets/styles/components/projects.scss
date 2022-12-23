@@ -28,6 +28,9 @@
   height: fit-content;
   object-fit: cover;
   width: 100%;
+  // height: vw(576);
+  aspect-ratio: 1;
+  // padding-bottom: 100%;
   border-radius: 10px;
   margin-top: vw(15);
 

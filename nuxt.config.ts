@@ -10,13 +10,19 @@ export default defineNuxtConfig({
     [
       '@storyblok/nuxt',
       {
-        accessToken: 'rf76uwtSIQdFrERrjgyB4Qtt',
+        accessToken: process.env.STORYBLOK_TOKEN,
         apiOptions: {
           region: 'us',
         },
       },
     ],
   ],
+
+  publicRuntimeConfig: {
+    STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
+    DEXTALL_STORYBLOK_TOKEN: process.env.DEXTALL_STORYBLOK_TOKEN,
+    ENVIROMENT: process.env.NODE_ENV,
+  },
 
   // head: {
   //   title: 'emotion',

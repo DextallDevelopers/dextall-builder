@@ -20,6 +20,7 @@
   display: block;
   width: 100%;
   border-radius: 10px;
+  aspect-ratio: 1;
   object-fit: cover;
   @media (min-width: $br1) {
     height: fit-content;

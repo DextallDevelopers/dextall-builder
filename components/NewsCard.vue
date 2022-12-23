@@ -3,8 +3,9 @@ import { useFormattedDate } from '~/composables/computeDate'
 
 interface iProps {
   title: string
-  date: number
+  date: string
   img: string
+  slug: string
 }
 
 const props = defineProps<iProps>()
@@ -31,7 +32,13 @@ onBeforeUnmount(() => {
   <li ref="$el" class="grid cards__li">
     <div class="cards__text-block">
       <h3 class="cards__title">{{ title }}</h3>
-      <CircleButton class="cards__btn" tag="nuxt-link" :is-white="true">
+      <CircleButton
+        class="cards__btn"
+        tag="a"
+        :is-white="true"
+        :is-new-window="true"
+        :href="`https://www.dextall.com/${slug}`"
+      >
         Read more
       </CircleButton>
     </div>

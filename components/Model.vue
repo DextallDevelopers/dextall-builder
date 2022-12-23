@@ -41,9 +41,9 @@ async function loadViewer() {
   await viewer.start()
 }
 
-// onMounted(() => {
-//   loadViewer()
-// })
+onMounted(() => {
+  loadViewer()
+})
 </script>
 
 <template>

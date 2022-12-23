@@ -30,7 +30,7 @@ export interface iStory {
   full_slug: string
   created_at: string
   first_published_at: string
-  published_at: number
+  published_at: string
   name: string
   _uid: string
   id: number

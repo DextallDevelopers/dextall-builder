@@ -80,6 +80,7 @@
   @include default;
   color: var(--bg);
   font-size: vw(40);
+  text-transform: uppercase;
 
   @media (max-width: $br1) {
     font-size: size(40, 20);

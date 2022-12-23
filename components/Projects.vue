@@ -9,12 +9,14 @@ const { data: storiesData } = await useFetch<iStories>(URL)
 const projects = computed(() => {
   return storiesData.value.stories
 })
-
-console.log(projects.value)
 </script>
 
 <template>
-  <section id="projects" class="section section--pb projects">
+  <section
+    v-if="projects.length"
+    id="projects"
+    class="section section--pb projects"
+  >
     <div class="container projects__wrapper">
       <h2 class="projects__title">Latest projects</h2>
       <ul class="projects__list">

@@ -115,7 +115,7 @@ export class Ticker {
   animate() {
     this.top = -window.scrollY
 
-    this.time += this.direction + this.velocity * this.initialDirection
+    this.time += this.direction + (this.velocity / 100) * this.initialDirection
 
     this.calculate()
 

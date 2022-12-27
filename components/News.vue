@@ -9,8 +9,6 @@ const { data: storiesData } = await useFetch<iStories>(URL)
 const news = computed(() => {
   return storiesData.value.stories
 })
-
-console.log(news.value)
 </script>
 
 <template>

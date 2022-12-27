@@ -28,7 +28,6 @@ export const useQoutesStories: tQoutesStories = async (name, version) => {
 
     story.value = data.stories.find(s => s.name === version)
 
-    console.log(story.value)
   } catch (e) {
     console.log(e.message)
   }

@@ -1,9 +1,15 @@
-export const useComputePrice = () => {
-  const facadeArea = 21322
-  const subtotalPrice = 64.18
-  const tax = 8.875
+export const useComputePrice = (facadeArea, subtotalPrice, tax) => {
 
-  const totalPrice = (facadeArea * subtotalPrice + tax).toFixed(2)
+  if (!facadeArea || !subtotalPrice || !tax) {
+    return { totalPrice: 0 }
+  }
 
-  return { facadeArea, subtotalPrice, tax, totalPrice }
+  const computedFacadeArea = +facadeArea.replace(/\D/gm, '')
+  const computedSubtotalPrice = +subtotalPrice.replace(/\D/gm, '')
+  const computedTax = +tax.replace(/\D/gm, '')
+
+    
+  const totalPrice = (computedFacadeArea * computedSubtotalPrice + computedTax).toFixed(2)
+
+  return { totalPrice }
 }

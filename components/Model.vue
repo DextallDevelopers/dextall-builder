@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ForgeViewer, AggregatedForgeViewer } from '~/assets/scripts/viewer'
+import { useQoutesStories } from '~/composables/stories/quotes'
 
 interface iProps {
   id: string
@@ -8,20 +9,30 @@ interface iProps {
 
 const props = defineProps<iProps>()
 
-const li = [
-  {
-    text: 'Total Number of Panels',
-    number: '20',
-  },
-  {
-    text: 'Window to Wall Ratio',
-    number: '2/3',
-  },
-  {
-    text: 'Carbon Footprint Reduction %',
-    number: '40%',
-  },
-]
+const route = useRoute()
+
+const { name, version } = route.params
+const { story, listenStory } = await useQoutesStories(
+  name as string,
+  version as string
+)
+
+const li = computed(() => {
+  return [
+    {
+      text: 'Total Number of Panels',
+      number: story.value.content.total_number_of_panels,
+    },
+    {
+      text: 'Window to Wall Ratio',
+      number: story.value.content.window_to_wall_ratio,
+    },
+    {
+      text: 'Carbon Footprint Reduction %',
+      number: story.value.content.carbon_footprint_reduction,
+    },
+  ]
+})
 
 async function loadViewer() {
   let viewer
@@ -41,9 +52,17 @@ async function loadViewer() {
   await viewer.start()
 }
 
-// onMounted(() => {
-//   loadViewer()
-// })
+const config = useRuntimeConfig()
+
+console.log(config.ENVIROMENT)
+
+onMounted(() => {
+  if (config.ENVIROMENT !== 'development') {
+    loadViewer()
+  }
+})
+
+listenStory(version)
 </script>
 
 <template>

@@ -1,30 +1,15 @@
 <script setup lang="ts">
-const images = [
-  {
-    imgSrc: '/images/images-list/1.jpg',
-    desc: 'image description',
-  },
-  {
-    imgSrc: '/images/images-list/2.jpg',
-    desc: '',
-  },
-  {
-    imgSrc: '/images/images-list/3.jpg',
-    desc: 'image description',
-  },
-  {
-    imgSrc: '/images/images-list/4.jpg',
-    desc: '',
-  },
-  {
-    imgSrc: '/images/images-list/5.jpg',
-    desc: 'image description',
-  },
-  {
-    imgSrc: '/images/images-list/6.jpg',
-    desc: 'image description',
-  },
-]
+import { useQoutesStories } from '~/composables/stories/quotes'
+
+const route = useRoute()
+
+const { name, version } = route.params
+const { story, listenStory } = await useQoutesStories(
+  name as string,
+  version as string
+)
+
+listenStory(version)
 </script>
 
 <template>
@@ -32,19 +17,12 @@ const images = [
     <div class="container images-list__wrapper">
       <ul class="images-list__list">
         <li
-          v-for="(img, idx) in images"
+          v-for="(img, idx) in story.content.images"
           :key="idx"
           class="images-list__li"
         >
-          <img
-            class="images-list__img"
-            :src="img.imgSrc"
-            alt="Image"
-          />
-          <p
-            v-if="img.desc"
-            class="images-list__desc"
-          >{{ img.desc }}</p>
+          <img class="images-list__img" :src="img.filename" alt="Image" />
+          <p v-if="img.name" class="images-list__desc">{{ img.name }}</p>
         </li>
       </ul>
     </div>

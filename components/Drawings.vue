@@ -9,8 +9,6 @@ const { story, listenStory } = await useQoutesStories(
   version as string
 )
 
-console.log(story.value.content.scope_of_work_tab[0])
-
 listenStory(version)
 </script>
 

@@ -10,6 +10,8 @@
   height: vw(40);
   width: vw(130);
   margin-right: vw(35);
+  border-width: 3px;
+  border-style: solid;
 
   @media (max-width: $br1) {
     height: 20px;

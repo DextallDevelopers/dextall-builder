@@ -8,7 +8,6 @@ const { totalPrice } = useComputePrice(
   props.table.subtotal_price[0].info,
   props.table.tax[0].info
 )
-console.log(props.table)
 </script>
 
 <template>

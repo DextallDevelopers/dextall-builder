@@ -23,16 +23,26 @@
   }
 }
 
+.projects__img-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: fit-content;
+  border-radius: 10px;
+  margin-top: vw(15);
+}
+
 .projects__img {
   display: block;
   height: fit-content;
   object-fit: cover;
   width: 100%;
-  // height: vw(576);
   aspect-ratio: 1;
-  // padding-bottom: 100%;
+  transition: transform 0.3s ease;
   border-radius: 10px;
-  margin-top: vw(15);
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   @media (max-width: $br1) {
     margin-top: 8px;

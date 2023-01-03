@@ -32,11 +32,13 @@ const projects = computed(() => {
             rel="noreferrer noopener"
           >
             <p class="projects__number">0{{ idx + 1 }}</p>
-            <img
-              class="projects__img"
-              :src="project.content.Screen_1[0].main_image.filename"
-              alt="Image"
-            />
+            <div class="projects__img-wrapper">
+              <img
+                class="projects__img"
+                :src="project.content.Screen_1[0].main_image.filename"
+                alt="Image"
+              />
+            </div>
             <p class="projects__desc">
               {{ project.content.Screen_1[0].project_name }}
             </p>

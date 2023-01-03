@@ -54,8 +54,6 @@ async function loadViewer() {
 
 const config = useRuntimeConfig()
 
-console.log(config.ENVIROMENT)
-
 onMounted(() => {
   if (config.ENVIROMENT !== 'development') {
     loadViewer()

@@ -33,6 +33,7 @@ export interface iStory {
   published_at: string
   name: string
   _uid: string
+  uuid: string
   id: number
   meta?: iMeta[]
 }

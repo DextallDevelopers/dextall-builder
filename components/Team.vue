@@ -40,7 +40,7 @@ const team = ref([
     <div class="container team__wrapper">
       <h1 class="team__h1">Your Dextall Team Representatives</h1>
       <ul class="team__cards">
-        <Card
+        <!-- <Card
           v-for="(member, idx) in team"
           :key="idx"
           :name="member.name"
@@ -50,7 +50,7 @@ const team = ref([
           :text="member.text"
           :linkedin="member.linkedin"
           class="team__card"
-        />
+        /> -->
       </ul>
     </div>
   </section>

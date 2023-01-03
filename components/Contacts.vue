@@ -1,14 +1,27 @@
 <script setup lang="ts">
-const team = ref([
-  {
-    name: 'Laurynas Skominas',
-    career: 'BID manager',
-    email: 'laurynas@dextall.com',
-    phone: '+370-614-26296',
-    text: 'Aurimas Sabulis is a serial entrepreneur in the construction and technology sectors, committed to creating a high-performing, resilient, and sustainable built environment through industrial transformation',
-    linkedin: 'https://www.linkedin.com/',
-  },
-])
+import { useQoutesStories } from '~/composables/stories/quotes'
+import { useTeamStories } from '~/composables/stories/team'
+
+const route = useRoute()
+
+const { name, version } = route.params
+const { story, listenStory } = await useQoutesStories(
+  name as string,
+  version as string
+)
+listenStory(version)
+
+const { stories: team } = await useTeamStories()
+
+const contacts = computed(() => {
+  return story.value.content.contacts[0]
+})
+
+const members = computed(() => {
+  return team.value.filter(el => contacts.value.team.includes(el.uuid))
+})
+
+console.log(members.value)
 
 const $inputs = ref([])
 const formData = reactive({
@@ -57,17 +70,20 @@ const { onInputValue, onSubmit } = useForm(
         </p>
         <div class="contacts__card-wrapper">
           <h3 class="contacts__card-title">Contact us with any questions</h3>
-          <Card
-            v-for="(member, idx) in team"
-            :key="idx"
-            :name="member.name"
-            :career="member.career"
-            :email="member.email"
-            :phone="member.phone"
-            :text="member.text"
-            :linkedin="member.linkedin"
-            class="contacts__card"
-          />
+          <ul class="contacts__cards">
+            <Card
+              v-for="member in members"
+              :key="member._uid"
+              :avatar="member.content.user_avatar.filename"
+              :name="member.name"
+              :career="member.content.position"
+              :email="member.content.email"
+              :phone="member.content.phone"
+              :text="member.content.description"
+              :linkedin="member.content.linkedin"
+              class="contacts__card"
+            />
+          </ul>
         </div>
       </div>
       <div class="contacts__form-wrapper">

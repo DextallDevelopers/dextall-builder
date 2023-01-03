@@ -33,6 +33,18 @@
   }
 }
 
+.card__profile-image {
+  display: block;
+  width: vw(80);
+  height: vw(80);
+  border-radius: 50%;
+
+  @media (max-width: $br1) {
+    width: 70px;
+    height: 70px;
+  }
+}
+
 .card__link-wrapper {
   display: flex;
   justify-content: center;

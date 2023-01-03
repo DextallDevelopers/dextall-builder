@@ -1,5 +1,6 @@
 <script setup lang="ts">
 interface iProps {
+  avatar: string
   name: string
   career: string
   email: string
@@ -13,11 +14,17 @@ defineProps<iProps>()
 <template>
   <li class="card">
     <div class="card__img-block">
-      <IconsProfile class="card__profile-icon" />
+      <img
+        v-if="avatar"
+        class="card__profile-image"
+        :src="avatar"
+        alt="Avatar"
+      />
+      <IconsProfile v-else class="card__profile-icon" />
       <div class="card__link-wrapper">
         <a
           class="card__link"
-          href="https://www.linkedin.com/"
+          :href="linkedin"
           target="_blank"
           rel="noreferrer noopener"
         >

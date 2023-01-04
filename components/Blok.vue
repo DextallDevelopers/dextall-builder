@@ -41,7 +41,7 @@ const getBlokName = name => {
     case 'notes':
       return defineAsyncComponent(() => import('~/components/Notes.vue'))
 
-    case 'numbers':
+    case 'numbers_section':
       return defineAsyncComponent(() => import('~/components/Numbers.vue'))
 
     case 'pricing':

@@ -6,6 +6,7 @@ export class FactsAnimation {
     this.$el = $el
     this.circle = circle
     this.$scrolling = this.$el.querySelector('[data-fa-scrolling]')
+    this.$scrollingContent = this.$el.querySelector('[data-fa-scrolling]')
     this.$numbers = this.$el.querySelectorAll('[data-fa-number]')
 
     this.init()
@@ -19,7 +20,7 @@ export class FactsAnimation {
   }
 
   get vh() {
-    return window.innerHeight / 100
+    return  this.$el.getBoundingClientRect().height / 100
   }
 
   get scrolled() {

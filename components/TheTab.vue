@@ -3,26 +3,15 @@
     ref="$tab"
     class="tab"
     :class="[isOpen && 'tab--open']"
+    :style="`--th: ${height}px`"
   >
-    <div
-      class="tab__backdrop"
-      @click="close(props.id)"
-    ></div>
-    <div
-      ref="$content"
-      class="tab__content"
-    >
-      <div
-        ref="$grabBtn"
-        class="tab__line-wrapper"
-      >
+    <div class="tab__backdrop" @click="close(props.id)"></div>
+    <div ref="$content" class="tab__content">
+      <div ref="$grabBtn" class="tab__line-wrapper">
         <div class="tab__line"></div>
       </div>
       <div class="tab__window">
-        <button
-          class="tab__close-btn"
-          @click="close(props.id)"
-        >
+        <button class="tab__close-btn" @click="close(props.id)">
           <span class="tab__btn-line"></span>
           <span class="tab__btn-line"></span>
         </button>
@@ -50,10 +39,10 @@ const { close } = useTab()
 const $tab = ref(null)
 const $content = ref(null)
 const $grabBtn = ref(null)
+const height = ref(0)
 let onMouseDown: () => void
 let onMouseMove: (e) => void
 let onMouseUp: () => void
-
 
 watch(
   () => props.isOpen,
@@ -71,8 +60,10 @@ watch(
 
 onMounted(() => {
   if (props.isOpen) {
-      document.body.classList.add('e-fixed')
-    }
+    document.body.classList.add('e-fixed')
+  }
+
+  height.value = $content.value.scrollHeight
 
   onMouseMove = e => {
     let y
@@ -82,8 +73,8 @@ onMounted(() => {
       y = e.clientY
     }
 
-    const height = window.innerHeight - y
-    const percent = (height / window.innerHeight) * 100 
+    const h = window.innerHeight - y
+    const percent = (h / window.innerHeight) * 100
 
     if (percent < 30) {
       close(props.id)
@@ -91,8 +82,9 @@ onMounted(() => {
     if (percent >= 93) {
       return
     }
-    
-    $content.value.style.height = height + 'px'
+
+    height.value = h
+    $content.value.style.height = h + 'px'
   }
 
   onMouseDown = () => {

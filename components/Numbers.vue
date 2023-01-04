@@ -1,65 +1,19 @@
 <script lang="ts" setup>
-const items = [
-  {
-    title: 'TRILLIONS WILL BE SPEND TO DECARBONIZE THE REAL ESTATE',
-    description:
-      'Trillion will be spent to decarbonize real estate in the next 20 years',
-    number: '$18-36T',
-    arrow: 'down',
-  },
-  {
-    title: 'MAJOR CITIES ARE THE MAJOR CONTRIBUTORS TO CARBON EMISSIONS',
-    description:
-      'IN CITIES (LIKE NYC) BUILDINGS CONTRIBUTE NEARLY 70% OF CARBON EMISSIONS',
-    number: '70%',
-    arrow: 'up',
-  },
-  {
-    title: 'BUILDINGS ARE 40% OF THE WORLDS CARBON EMISSIONS',
-    description: '40% OF CARBON EMISSIONS ARE CONTRIBUTED TO BUILDINGS',
-    number: '40%',
-    arrow: 'down',
-  },
-  {
-    title: 'TRILLIONS WILL BE SPEND TO DECARBONIZE THE REAL ESTATE',
-    description:
-      'Trillion will be spent to decarbonize real estate in the next 20 years',
-    number: '$18-36T',
-    arrow: 'down',
-  },
-  {
-    title: 'MAJOR CITIES ARE THE MAJOR CONTRIBUTORS TO CARBON EMISSIONS',
-    description:
-      'IN CITIES (LIKE NYC) BUILDINGS CONTRIBUTE NEARLY 70% OF CARBON EMISSIONS',
-    number: '70%',
-    arrow: 'up',
-  },
-  {
-    title: 'BUILDINGS ARE 40% OF THE WORLDS CARBON EMISSIONS',
-    description: '40% OF CARBON EMISSIONS ARE CONTRIBUTED TO BUILDINGS',
-    number: '40%',
-    arrow: 'down',
-  },
-  {
-    title: 'BUILDINGS ARE 40% OF THE WORLDS CARBON EMISSIONS',
-    description: '40% OF CARBON EMISSIONS ARE CONTRIBUTED TO BUILDINGS',
-    number: '40%',
-    arrow: 'down',
-  },
-]
+interface iProps {
+  body: {
+    content: {
+      items: any[]
+    }
+  }
+}
 
-// interface iItem {
-//   _uid: string
-//   title: string
-//   description: string
-//   number: string
-// }
+const props = defineProps<iProps>()
 
-// interface iProps {
-//   items: iItem[]
-// }
+console.log(props.body)
 
-// defineProps<iProps>()
+const items = computed(() => {
+  return props.body.content.items
+})
 
 const separateTextAndNumber = (string: string) => {
   let newStr = string.trim().split(/(\d+)/).filter(Boolean)
@@ -68,7 +22,7 @@ const separateTextAndNumber = (string: string) => {
     if (str.match(/\d/gm)) {
       return `<span data-type='number'>${str}</span>`
     }
-    return str
+    return str + ' '
   })
   return newStr.join('')
 }
@@ -107,7 +61,7 @@ onBeforeUnmount(() => {
           class="numbers__left-block-content"
         >
           <p class="numbers__desc">
-            {{ fact.description }}
+            {{ fact.subtitle }}
           </p>
           <h2 class="numbers__title">{{ fact.title }}</h2>
         </div>

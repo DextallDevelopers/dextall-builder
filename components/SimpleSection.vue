@@ -4,6 +4,7 @@
   <section class="section section--pb simple-section">
     <div class="container simple-section__wrapper">
       <h2 class="simple-section__title">Title of section</h2>
+      <h4 class="simple-section__subtitle">Title of section</h4>
       <p class="simple-section__desc">
         Breaking ground in late 2023, this 20-story mixed-use residential tower
         is part of a multi-phased masterplan intended to redevelop & revitalize

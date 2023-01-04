@@ -2,6 +2,22 @@
   @include h2;
 }
 
+.simple-section__subtitle {
+  font-weight: 400;
+  font-size: vw(36);
+  line-height: 100%;
+  margin-top: vw(25);
+
+  @media (max-width: $br1) {
+    font-size: size(36, 28);
+    margin-top: 18px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 28px;
+  }
+}
+
 .simple-section__desc {
   max-width: vw(730);
   margin-top: vw(40);

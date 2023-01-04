@@ -42,6 +42,7 @@ onMounted(() => {
   <div v-else-if="isAuth && isLoaded" data-page>
     <Main
       v-editable="story.content"
+      :story="story.content"
       :address="story.content.address"
       :title="story.content.title"
       :scope="story.content.scope"

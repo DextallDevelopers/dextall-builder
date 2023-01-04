@@ -22,6 +22,7 @@ export const useQoutesStories: tQoutesStories = async (name, version) => {
       `cdn/stories/?by_slugs=quotes/${name}/*&`,
       {
         version: 'draft',
+        resolve_relations: ['About tab (optional).body']
       }
     )
     stories.value = data.stories

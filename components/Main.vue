@@ -9,6 +9,7 @@ interface iModel {
 
 interface iProps {
   scope?: string
+  story?: any
   title?: string
   address?: string
   startQuoteDate?: string
@@ -42,12 +43,11 @@ const mainTabs: iTab[] = [
   },
   {
     isOpen: false,
-    components: [
-      { _uid: keysGenerator(8), component: 'notes' },
-      { _uid: keysGenerator(8), component: 'benefits1' },
-      { _uid: keysGenerator(8), component: 'benefits2' },
-      { _uid: keysGenerator(8), component: 'advantages_list' },
-    ],
+    components: props.story.about_tab[0].body.map(cc => ({
+      data: cc,
+      _uid: cc.uuid,
+      component: cc.content.component,
+    })),
   },
 ]
 

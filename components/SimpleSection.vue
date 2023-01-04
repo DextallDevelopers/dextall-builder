@@ -1,20 +1,34 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface iProps {
+  body: {
+    content: {
+      title: string
+      subtitle: string
+      description: string
+      image: {
+        filename: string
+      }
+    }
+  }
+}
+
+const props = defineProps<iProps>()
+</script>
 
 <template>
   <section class="section section--pb simple-section">
     <div class="container simple-section__wrapper">
-      <h2 class="simple-section__title">Title of section</h2>
-      <h4 class="simple-section__subtitle">Title of section</h4>
+      <h2 class="simple-section__title">{{ props.body.content.title }}</h2>
+      <h4 class="simple-section__subtitle">
+        {{ props.body.content.subtitle }}
+      </h4>
       <p class="simple-section__desc">
-        Breaking ground in late 2023, this 20-story mixed-use residential tower
-        is part of a multi-phased masterplan intended to redevelop & revitalize
-        downtown Newark. Spanning over the next decade, this transformative
-        redevelopment masterplan will provide 1,200 residential units of which
-        20% will be designated as affordable.
+        {{ props.body.content.description }}
       </p>
       <img
+        v-if="props.body.content.image.filename"
         class="simple-section__img"
-        src="/images/simple-section/1.jpg"
+        :src="props.body.content.image.filename"
         alt="Image"
       />
     </div>

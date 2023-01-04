@@ -21,8 +21,6 @@ const members = computed(() => {
   return team.value.filter(el => contacts.value.team.includes(el.uuid))
 })
 
-console.log(members.value)
-
 const $inputs = ref([])
 const formData = reactive({
   hasErrors: true,

@@ -77,21 +77,24 @@ onBeforeUnmount(() => {
           :key="idx"
           class="numbers__left-block-content"
         >
-          <h2 class="numbers__title">{{ fact.title }}</h2>
           <p class="numbers__desc">
             {{ fact.description }}
           </p>
+          <h2 class="numbers__title">{{ fact.title }}</h2>
         </div>
       </div>
       <div class="container numbers__right-block">
         <div ref="$progress" data-fa-progress class="numbers__ellipse"></div>
-        <div
-          v-for="(num, idx) in items"
-          :key="idx"
-          data-fa-number
-          class="numbers__number"
-          v-html="separateTextAndNumber(num.number)"
-        ></div>
+        <div class="numbers__content-wrapper">
+          <div
+            v-for="(num, idx) in items"
+            :key="idx"
+            data-fa-number
+            class="numbers__number"
+            v-html="separateTextAndNumber(num.number)"
+          ></div>
+          <IconsGraphArrow class="numbers__arrow" />
+        </div>
       </div>
     </div>
   </section>

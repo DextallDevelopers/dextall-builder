@@ -40,6 +40,7 @@ onMounted(() => {
 <template>
   <Loader v-if="!isLoaded" />
   <div v-else-if="isAuth && isLoaded" data-page>
+    <Numbers />
     <Main
       v-editable="story.content"
       :address="story.content.address"

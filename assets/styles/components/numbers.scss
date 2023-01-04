@@ -34,28 +34,30 @@
   }
 }
 
-.numbers__title {
-  @include default;
-  font-size: vw(60);
-
-  @media (max-width: $br1) {
-    font-size: size(60, 36);
-  }
-
-  @media (max-width: $br4) {
-    font-size: 36px;
-  }
-}
-
 .numbers__desc {
+  text-transform: uppercase;
   font-size: vw(16);
-  margin-top: vw(20);
   max-width: vw(386);
 
   @media (max-width: $br1) {
     font-size: 16px;
-    margin-top: 15px;
     max-width: 100%;
+  }
+}
+
+.numbers__title {
+  @include default;
+  line-height: 110%;
+  font-size: vw(60);
+  margin-top: vw(20);
+
+  @media (max-width: $br1) {
+    font-size: size(60, 36);
+    margin-top: 15px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 36px;
   }
 }
 
@@ -99,6 +101,9 @@
   }
 }
 
+.numbers__content-wrapper {
+}
+
 .numbers__number {
   @include default;
   font-size: vw(100);
@@ -117,4 +122,7 @@
   @media (max-width: $br1) {
     font-size: 55px;
   }
+}
+
+.numbers__arrow {
 }

@@ -47,7 +47,7 @@ export class FactsAnimation {
     if (this.$numbers[this.current]) {
       this.$numbers[this.current].classList.add('active')
 
-      this.counterAnimation(this.$numbers[this.current], 500)
+      this.counterAnimation(this.$numbers[this.current], 500, this.current)
     }
   }
 
@@ -62,12 +62,12 @@ export class FactsAnimation {
     this.current = Math.round(dist / 100)
   }
 
-  counterAnimation(obj, duration) {
+  counterAnimation(obj, duration, index) {
     let startTimestamp = null
     const $numbers = [...obj.querySelectorAll('[data-type="number"]')]
     const endValues = $numbers.map(n => +n.innerHTML)
 
-    const pathValue = endValues.length > 1 ? 1 : endValues[0] / 100
+    const pathValue = (index + 1) / this.$numbers.length
     this.circle.animate(pathValue)
 
     const step = timestamp => {

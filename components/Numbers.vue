@@ -5,17 +5,46 @@ const items = [
     description:
       'Trillion will be spent to decarbonize real estate in the next 20 years',
     number: '$18-36T',
+    arrow: 'down',
   },
   {
     title: 'MAJOR CITIES ARE THE MAJOR CONTRIBUTORS TO CARBON EMISSIONS',
     description:
       'IN CITIES (LIKE NYC) BUILDINGS CONTRIBUTE NEARLY 70% OF CARBON EMISSIONS',
     number: '70%',
+    arrow: 'up',
   },
   {
     title: 'BUILDINGS ARE 40% OF THE WORLDS CARBON EMISSIONS',
     description: '40% OF CARBON EMISSIONS ARE CONTRIBUTED TO BUILDINGS',
     number: '40%',
+    arrow: 'down',
+  },
+  {
+    title: 'TRILLIONS WILL BE SPEND TO DECARBONIZE THE REAL ESTATE',
+    description:
+      'Trillion will be spent to decarbonize real estate in the next 20 years',
+    number: '$18-36T',
+    arrow: 'down',
+  },
+  {
+    title: 'MAJOR CITIES ARE THE MAJOR CONTRIBUTORS TO CARBON EMISSIONS',
+    description:
+      'IN CITIES (LIKE NYC) BUILDINGS CONTRIBUTE NEARLY 70% OF CARBON EMISSIONS',
+    number: '70%',
+    arrow: 'up',
+  },
+  {
+    title: 'BUILDINGS ARE 40% OF THE WORLDS CARBON EMISSIONS',
+    description: '40% OF CARBON EMISSIONS ARE CONTRIBUTED TO BUILDINGS',
+    number: '40%',
+    arrow: 'down',
+  },
+  {
+    title: 'BUILDINGS ARE 40% OF THE WORLDS CARBON EMISSIONS',
+    description: '40% OF CARBON EMISSIONS ARE CONTRIBUTED TO BUILDINGS',
+    number: '40%',
+    arrow: 'down',
   },
 ]
 
@@ -85,15 +114,18 @@ onBeforeUnmount(() => {
       </div>
       <div class="container numbers__right-block">
         <div ref="$progress" data-fa-progress class="numbers__ellipse"></div>
-        <div class="numbers__content-wrapper">
+        <div
+          v-for="(num, idx) in items"
+          :key="idx"
+          class="numbers__content-wrapper"
+          data-fa-number
+        >
           <div
-            v-for="(num, idx) in items"
-            :key="idx"
-            data-fa-number
             class="numbers__number"
             v-html="separateTextAndNumber(num.number)"
           ></div>
-          <IconsGraphArrow class="numbers__arrow" />
+          <IconsGraphArrowUp v-if="num.arrow === 'up'" class="numbers__arrow" />
+          <IconsGraphArrowDown v-else class="numbers__arrow" />
         </div>
       </div>
     </div>

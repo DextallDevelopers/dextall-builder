@@ -102,27 +102,42 @@
 }
 
 .numbers__content-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: vw(40);
+  &.active {
+    opacity: 1;
+  }
+  @media (max-width: $br1) {
+    gap: 20px;
+  }
 }
 
 .numbers__number {
   @include default;
   font-size: vw(100);
   line-height: 110%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   -webkit-text-stroke: 1px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  &.active {
-    opacity: 1;
-  }
-
   @media (max-width: $br1) {
-    font-size: 55px;
+    font-size: 40px;
   }
 }
 
 .numbers__arrow {
+  display: block;
+  max-width: 100%;
+  width: vw(66);
+  height: vw(40);
+  @media (max-width: $br1) {
+    width: 33px;
+    height: 20px;
+  }
 }

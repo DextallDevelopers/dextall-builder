@@ -20,7 +20,8 @@ export class FactsAnimation {
   }
 
   get vh() {
-    return  this.$el.getBoundingClientRect().height / 100
+    return parseInt(getComputedStyle(this.$el)
+    .getPropertyValue('--height')) / 100
   }
 
   get scrolled() {

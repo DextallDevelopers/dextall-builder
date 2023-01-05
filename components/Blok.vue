@@ -20,7 +20,7 @@ const getBlokName = name => {
     case 'benefits':
       return defineAsyncComponent(() => import('~/components/Benefits1.vue'))
 
-    case 'benefits2':
+    case 'benefits_2':
       return defineAsyncComponent(() => import('~/components/Benefits2.vue'))
 
     case 'contacts':

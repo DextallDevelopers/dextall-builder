@@ -1,4 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface iProps {
+  body: {
+    content: {
+      title: string
+      description: string
+      button_link: string
+    }
+  }
+}
+
+defineProps<iProps>()
+</script>
 
 <template>
   <section class="section section--pb notes">
@@ -6,15 +18,14 @@
       <div class="notes__line"></div>
       <div class="notes__main-block">
         <h3 class="notes__title">
-          Dextall wins approved-supplier designation in $30-Million NYSERDA
-          Retrofit Initiative
+          {{ body.content.title }}
         </h3>
         <p class="notes__desc">
-          Dextall named as first qualified and approved prefab wall panel
-          provided in sweeping plan to over-clad existing affordable housing
-          projects for the State of New York
+          {{ body.content.description }}
         </p>
-        <CircleButton class="notes__btn"> Read more </CircleButton>
+        <CircleButton class="notes__btn">
+          {{ body.content.button_link }}
+        </CircleButton>
       </div>
       <div class="notes__line"></div>
     </div>

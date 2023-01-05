@@ -1,168 +1,129 @@
 <script setup lang="ts">
-const benefits1 = [
-  {
-    text: 'DESIGN MATCHING CLIENT EXPECTATIONS',
-  },
-  {
-    text: 'WATERTIGHT',
-  },
-  {
-    text: 'STRUCTURALLY SOUND PANELS',
-  },
-  {
-    text: 'HIGH PERFORMANCE',
-  },
-  {
-    text: 'AIRTIGHT',
-  },
-  {
-    text: 'SOUND-PROOF',
-  },
-  {
-    text: 'FIRE RESISTANT',
-  },
-]
+interface iItems {
+  list_text: string
+}
 
-const benefits2 = [
-  {
-    text: 'Scalable, Cost-Effective',
-  },
-  {
-    text: 'High-Performance, Net Zero or Passive House ready',
-  },
-  {
-    text: 'Low-to-no Maintenance ',
-  },
-  {
-    text: 'Aesthetic excellence ',
-  },
-  {
-    text: 'Proven precision quality',
-  },
-  {
-    text: 'Scaffold-free installation, and minimal tenant disturbance',
-  },
-]
+interface iListItems {
+  title: string
+  subtitle: string
+  text: string
+  image: {
+    filename: string
+  }
+  video_id: string
+  caption: string
+  list_items: iItems[]
+  additional_title: string
+  additional_text: string
+  button_text: string
+  button_link: string
+}
+
+interface iProps {
+  body: {
+    content: {
+      image: {
+        filename: string
+      }
+      title: string
+      items: iListItems[]
+    }
+  }
+}
+
+const props = defineProps<iProps>()
+
+const items = computed(() => {
+  return props.body.content.items
+})
+
+console.log(items.value)
+
+const spliTitle = str => {
+  const strArray = str.split(' ')
+
+  const newStr = strArray.map(el => {
+    return `
+    <span class="products__span-text">${el}</span>`
+  })
+
+  return newStr.join(' ')
+}
 </script>
 
 <template>
   <section class="section section--pb products">
     <div class="container products__bg-wrapper">
-      <img class="products__bg" src="/images/products/1.jpg" alt="Image" />
-      <h2 class="products__big-text">
-        <span class="products__span-text">Our</span>
-        <span class="products__span-text"> products</span>
-      </h2>
+      <img
+        class="products__bg"
+        :src="body.content.image.filename"
+        alt="Image"
+      />
+      <h2 class="products__big-text" v-html="spliTitle(body.content.title)" />
     </div>
     <div id="products" class="container products__wrapper">
       <ul class="products__list">
-        <li class="products__li">
+        <li v-for="(item, idx) in items" :key="idx" class="products__li">
           <div class="products__line"></div>
           <div class="grid products__all-content">
-            <p class="products__number">001</p>
-            <h3 class="products__title">D Wall — New Construction</h3>
+            <p class="products__number">00{{ idx + 1 }}</p>
+            <h3 class="products__title">{{ item.title }}</h3>
             <div class="products__content-list">
-              <h4 class="products__content-title">D Wall 2000</h4>
+              <h4 class="products__content-title">{{ item.subtitle }}</h4>
               <p class="products__content-desc">
-                The Dextall light gauge metal-framed unitized prefab panel
-                system features fully-integrated, factory-installed window and
-                cladding components, including non-combustible core insulation.
-                It is a simple and versatile product that delivers
-                high-performance façades that are both water- and airtight
+                {{ item.text }}
               </p>
               <div class="products__line"></div>
               <div class="products__img-wrapper">
-                <!-- <img
+                <YoutubeVideo v-if="item.video_id" :video-id="item.video_id" />
+                <img
+                  v-else
                   class="products__img"
-                  src="/images/products/2.jpg"
+                  :src="item.image.filename"
                   alt="Building"
-                /> -->
-                <YoutubeVideo video-id="dEXSmgLVaTQ" />
+                />
               </div>
               <p class="products__img-text">
-                The Dextall System adapts to narrow or tight-lot vertical
-                projects
+                {{ item.caption }}
               </p>
               <div class="products__line"></div>
               <h4 class="products__upper-title">Benefits</h4>
               <ul class="products__upper-text-list">
                 <li
-                  v-for="(item, idx) in benefits1"
-                  :key="idx"
+                  v-for="(list_item, id) in item.list_items"
+                  :key="id"
                   class="products__upper-text-li"
                 >
                   <div class="products__line"></div>
                   <p class="products__upper-text">
-                    {{ item.text }}
+                    {{ list_item.list_text }}
                   </p>
                   <div
-                    v-if="idx + 1 === benefits1.length"
+                    v-if="id + 1 === item.list_items.length"
                     class="products__line"
                   ></div>
                 </li>
               </ul>
-              <h4 class="products__content-title products__content-title--1">
-                On site simplicity
+              <h4
+                v-if="item.additional_title"
+                class="products__content-title products__content-title--1"
+              >
+                {{ item.additional_title }}
               </h4>
-              <p class="products__content-desc">
-                We eliminate the need to work outside the building once the
-                panels are in place. Scaffolds or other suspended platforms are
-                unnecessary
+              <p v-if="item.additional_text" class="products__content-desc">
+                {{ item.additional_text }}
               </p>
-              <div class="products__line"></div>
-            </div>
-          </div>
-        </li>
-        <li class="products__li">
-          <div class="products__line"></div>
-          <div class="grid products__all-content">
-            <p class="products__number">002</p>
-            <h3 class="products__title">D Wall — Retrofit</h3>
-            <div class="products__content-list">
-              <h4 class="products__content-title">A NEW PATH TO RETROFIT</h4>
-              <p class="products__content-desc">
-                Dextall wall systems are delivered complete with windows,
-                exterior cladding, and the ability to integrate mechanical
-                systems. Result: reduced on-site labor and construction
-                timelines.
-              </p>
-              <div class="products__line"></div>
-              <div class="products__img-wrapper">
-                <!-- <img
-                  class="products__img"
-                  src="/images/products/3.jpg"
-                  alt="Building"
-                /> -->
-                <YoutubeVideo video-id="dEXSmgLVaTQ" />
-              </div>
-              <div class="products__line"></div>
-              <h4 class="products__upper-title">Benefits</h4>
-              <ul class="products__upper-text-list">
-                <li
-                  v-for="(item, idx) in benefits2"
-                  :key="idx"
-                  class="products__upper-text-li"
-                >
-                  <div class="products__line"></div>
-                  <p class="products__upper-text">
-                    {{ item.text }}
-                  </p>
-                  <div
-                    v-if="idx + 1 === benefits2.length"
-                    class="products__line"
-                  ></div>
-                </li>
-              </ul>
-              <p class="products__text">
-                Dextall team members have decades of extensive knowledge of
-                prefabricated exteriors for new and retrofit applications.
-                Beyond our team of engineers, drafters, and support staff,
-                Dextall works with other engineering and consulting partners
-                specializing in NYC’s rehab work.
-              </p>
-              <div class="products__line"></div>
-              <CircleButton class="products__btn"
-                >Pilot Mock Up Program</CircleButton
+              <div
+                v-if="item.additional_title || item.additional_text"
+                class="products__line"
+              ></div>
+              <CircleButton
+                v-if="item.button_text"
+                :href="item.button_link"
+                :is-new-window="true"
+                tag="a"
+                class="products__btn"
+                >{{ item.button_text }}</CircleButton
               >
             </div>
           </div>

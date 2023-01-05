@@ -19,7 +19,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: -1;
+  z-index: 0;
   height: 100% !important;
   @media (max-width: $br1) {
   }
@@ -29,6 +29,8 @@
   @include default;
   font-size: vw(200);
   color: var(--bg);
+  position: relative;
+  z-index: 1;
 
   @media (max-width: $br1) {
     font-size: size(200, 36);
@@ -78,6 +80,7 @@
 }
 
 .products__all-content {
+  position: relative;
   margin-top: vw(40);
 
   @media (max-width: $br1) {
@@ -96,6 +99,8 @@
     @include italic;
     font-size: vw(25);
     transition: top 0.5s ease;
+    position: sticky;
+    top: 20px;
   }
 
   @media (max-width: $br1) {
@@ -110,6 +115,7 @@
 
 .products__title {
   @include default;
+  text-transform: uppercase;
 
   @media (min-width: $br1) {
     position: sticky;
@@ -119,6 +125,8 @@
     @include col(2, 5);
     font-size: vw(60);
     max-width: vw(568);
+    position: sticky;
+    top: 20px;
   }
 
   @media (max-width: $br1) {

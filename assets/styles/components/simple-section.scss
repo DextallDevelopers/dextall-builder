@@ -1,5 +1,8 @@
 .simple-section__title {
   @include h2;
+  @media (min-width: $br1) {
+    max-width: 60%;
+  }
 }
 
 .simple-section__subtitle {
@@ -9,12 +12,12 @@
   margin-top: vw(25);
 
   @media (max-width: $br1) {
-    font-size: size(36, 28);
+    font-size: size(36, 20);
     margin-top: 18px;
   }
 
   @media (max-width: $br4) {
-    font-size: 28px;
+    font-size: 20px;
   }
 }
 

@@ -45,7 +45,7 @@ const items = computed(() => {
                 :key="id"
                 class="benefits-1__content-li"
               >
-                <div v-if="idx === 0" class="benefits-1__mob-line"></div>
+                <div v-if="id === 0" class="benefits-1__mob-line"></div>
                 <p class="benefits-1__content-text">
                   {{ list_item.text }}
                 </p>

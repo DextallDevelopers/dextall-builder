@@ -14,11 +14,17 @@ listenStory(version)
 const { stories: team } = await useTeamStories()
 
 const contacts = computed(() => {
-  return story.value.content.contacts[0]
+  if (story.value.content?.contacts) {
+    return story.value.content.contacts[0]
+  }
+  return null
 })
 
 const members = computed(() => {
-  return team.value.filter(el => contacts.value.team.includes(el.uuid))
+  if (contacts.value?.team) {
+    return team.value.filter(el => contacts.value.team.includes(el.uuid))
+  }
+  return []
 })
 
 const $inputs = ref([])
@@ -58,7 +64,7 @@ const { onInputValue, onSubmit } = useForm(
 </script>
 
 <template>
-  <section id="contacts" class="section section--pb contacts">
+  <section v-if="contacts" id="contacts" class="section section--pb contacts">
     <TheTicker text="Thank you for your business!" class="contacts__ticker" />
     <div class="container contacts__wrapper">
       <div class="contacts__block">
@@ -68,7 +74,7 @@ const { onInputValue, onSubmit } = useForm(
         </p>
         <div class="contacts__card-wrapper">
           <h3 class="contacts__card-title">Contact us with any questions</h3>
-          <ul class="contacts__cards">
+          <ul v-if="members.length" class="contacts__cards">
             <Card
               v-for="member in members"
               :key="member._uid"

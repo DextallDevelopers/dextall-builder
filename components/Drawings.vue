@@ -10,47 +10,58 @@ const { story, listenStory } = await useQoutesStories(
 )
 
 listenStory(version)
+
+const drawingsTab = computed(() => {
+  if (story.value.content?.scope_of_work_tab) {
+    return story.value.content.scope_of_work_tab[0]
+  }
+  return null
+})
 </script>
 
 <template>
-  <section class="section section--pb drawings">
+  <section v-if="drawingsTab" class="section section--pb drawings">
     <div class="container drawings__wrapper">
       <div class="drawings__img-block">
-        <h2 class="drawings__title">
-          {{ story.content.scope_of_work_tab[0].title }}
+        <h2 v-if="drawingsTab.title" class="drawings__title">
+          {{ drawingsTab.title }}
         </h2>
-        <p class="drawings__desc">
-          {{ story.content.scope_of_work_tab[0].description }}
+        <p v-if="drawingsTab.description" class="drawings__desc">
+          {{ drawingsTab.description }}
         </p>
-        <ul class="grid drawings__img-list">
+        <ul v-if="drawingsTab.images.length" class="grid drawings__img-list">
           <li
-            v-for="(elem, idx) in story.content.scope_of_work_tab[0].images"
+            v-for="(elem, idx) in drawingsTab.images"
             :key="idx"
             class="drawings__img-li"
           >
             <img class="drawings__img" :src="elem.filename" alt="Image" />
-            <p class="drawings__img-desc">{{ elem.name }}</p>
+            <p v-if="elem.name" class="drawings__img-desc">{{ elem.name }}</p>
           </li>
         </ul>
       </div>
       <div class="drawings__elevation">
         <div
           v-if="
-            story.content.scope_of_work_tab[0].drawings.length >= 3 &&
-            story.content.scope_of_work_tab[0].drawings.length < 5
+            drawingsTab.drawings.length >= 3 && drawingsTab.drawings.length < 5
           "
           class="drawings__lines-wrapper"
         >
           <div class="drawings__line"></div>
           <div class="drawings__line"></div>
         </div>
-        <ul class="grid drawings__elevation-list">
+        <ul
+          v-if="drawingsTab.drawings.length"
+          class="grid drawings__elevation-list"
+        >
           <li
-            v-for="(elem, idx) in story.content.scope_of_work_tab[0].drawings"
+            v-for="(elem, idx) in drawingsTab.drawings"
             :key="idx"
             class="drawings__elevation-li"
           >
-            <h3 class="drawings__elevation-title">{{ elem.name }}</h3>
+            <h3 v-if="elem.name" class="drawings__elevation-title">
+              {{ elem.name }}
+            </h3>
             <img
               class="drawings__elevation-img"
               :src="elem.filename"
@@ -59,9 +70,9 @@ listenStory(version)
           </li>
         </ul>
       </div>
-      <ul class="drawings__colors-list">
+      <ul v-if="drawingsTab.legend.length" class="drawings__colors-list">
         <Color
-          v-for="(color, idx) in story.content.scope_of_work_tab[0].legend"
+          v-for="(color, idx) in drawingsTab.legend"
           :key="idx"
           :text="color.text"
           :stroke="color.border.color"

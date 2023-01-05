@@ -10,18 +10,26 @@ const { story, listenStory } = await useQoutesStories(
 )
 
 listenStory(version)
+
+const productSummaryTab = computed(() => {
+  if (story.value.content?.product_summary_tab) {
+    return story.value.content.product_summary_tab[0]
+  }
+  return null
+})
 </script>
 
 <template>
   <section
-    v-editable="story.content.product_summary_tab[0]"
+    v-if="productSummaryTab"
+    v-editable="productSummaryTab"
     class="section specifications-1"
   >
     <div class="container specifications-1__wrapper">
       <div class="specifications-1__top-block">
         <div class="specifications-1__text-wrapper">
           <h2 class="specifications-1__title">Product Summary:</h2>
-          <h3 class="specifications-1__desc">
+          <h3 v-if="story.content.title" class="specifications-1__desc">
             {{ story.content.title }}
           </h3>
         </div>
@@ -33,19 +41,20 @@ listenStory(version)
       </div>
       <div class="specifications-1__bottom-block">
         <div class="specifications-1__line"></div>
-        <p class="specifications-1__small-text">
-          {{ story.content.product_summary_tab[0].id }}
+        <p v-if="productSummaryTab.id" class="specifications-1__small-text">
+          {{ productSummaryTab.id }}
         </p>
       </div>
     </div>
   </section>
-  <section class="section section--pb specifications-2">
+  <section
+    v-if="productSummaryTab?.product_summary_table"
+    class="section section--pb specifications-2"
+  >
     <div class="container specifications-2__wrapper">
       <SpecificationsTable
-        v-editable="
-          story.content.product_summary_tab[0].product_summary_table[0]
-        "
-        :table="story.content.product_summary_tab[0].product_summary_table[0]"
+        v-editable="productSummaryTab.product_summary_table[0]"
+        :table="productSummaryTab.product_summary_table[0]"
       />
     </div>
   </section>

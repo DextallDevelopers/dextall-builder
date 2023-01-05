@@ -37,8 +37,6 @@ const items = computed(() => {
   return props.body.content.items
 })
 
-console.log(items.value)
-
 const spliTitle = str => {
   const strArray = str.split(' ')
 

@@ -22,6 +22,17 @@ const props = defineProps<iProps>()
 const { open, tabs, addTabs } = useTab()
 const route = useRoute()
 
+const aboutTabComponents = computed(() => {
+  if (props.story?.about_tab?.length) {
+    return props.story.about_tab[0]?.body.map(cc => ({
+      data: cc,
+      _uid: cc.uuid,
+      component: cc.content.component,
+    }))
+  }
+  return []
+})
+
 const mainTabs: iTab[] = [
   {
     isOpen: false,
@@ -43,11 +54,7 @@ const mainTabs: iTab[] = [
   },
   {
     isOpen: false,
-    components: props.story.about_tab[0].body.map(cc => ({
-      data: cc,
-      _uid: cc.uuid,
-      component: cc.content.component,
-    })),
+    components: aboutTabComponents.value,
   },
 ]
 
@@ -91,7 +98,7 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
         <button class="main__btn" @click="open(tabs[3]._uid)">Pricing</button>
       </div>
       <div class="main__model-wrapper">
-        <Model :id="model[0].id" :type="model[0].type" />
+        <Model v-if="model" :id="model[0].id" :type="model[0].type" />
       </div>
     </div>
     <Teleport to="#app">

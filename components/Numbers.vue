@@ -20,8 +20,6 @@ const items = computed(() => {
   return props.body.content.items
 })
 
-console.log(items.value)
-
 const separateTextAndNumber = (string: string) => {
   let newStr = string.trim().split(/(\d+)/).filter(Boolean)
 

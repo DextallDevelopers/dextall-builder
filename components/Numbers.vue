@@ -1,8 +1,15 @@
 <script lang="ts" setup>
+interface iItems {
+  arrow: 'down' | 'up'
+  number: string
+  title: string
+  subtitle: string
+}
+
 interface iProps {
   body: {
     content: {
-      items: any[]
+      items: iItems[]
     }
   }
 }
@@ -12,6 +19,8 @@ const props = defineProps<iProps>()
 const items = computed(() => {
   return props.body.content.items
 })
+
+console.log(items.value)
 
 const separateTextAndNumber = (string: string) => {
   let newStr = string.trim().split(/(\d+)/).filter(Boolean)

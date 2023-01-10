@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { ToastColor } from '~/composables/toasts'
+
 import { useTransition } from '~/composables/transition'
 import { useQoutesStories } from '~/composables/stories/quotes'
 useTransition()
 
 const { isAuth, isLoaded, isInEditor } = useAppState()
+const { addToast } = useToasts()
 
 const route = useRoute()
 
@@ -29,9 +32,15 @@ onMounted(() => {
     return
   }
   const isAuthData = localStorage.getItem('isAuth')
+  const userData = JSON.parse(localStorage.getItem('user') || '[]')
 
   if (isAuthData === 'true') {
     isAuth.value = true
+    addToast({
+      color: ToastColor.success,
+      id: Date.now().toString(),
+      text: `Welcome back, ${userData.Name}`,
+    })
   }
   isLoaded.value = true
 })

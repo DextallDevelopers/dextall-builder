@@ -1,8 +1,15 @@
 <script setup lang="ts">
+import { ToastColor } from '~/composables/toasts'
+
 interface iProps {
   title?: string
   startQuoteDate?: string
   endQuoteDate?: string
+}
+
+interface iUser {
+  Name?: string
+  Email?: string
 }
 
 const props = defineProps<iProps>()
@@ -10,6 +17,7 @@ const props = defineProps<iProps>()
 const $inputs = ref([])
 
 const { isAuth } = useAppState()
+const { addToast } = useToasts()
 
 const formData = reactive({
   hasErrors: true,
@@ -39,11 +47,75 @@ const formData = reactive({
   ],
 })
 
-const { onInputValue, onSubmit } = useForm(formData, $inputs, 'Dextall login')
+const { onInputValue, emmitError, resetForm } = useForm(
+  formData,
+  $inputs,
+  'Dextall login'
+)
+const { isWaiting } = useAppState()
 
-const onLogin = () => {
-  window.localStorage.setItem('isAuth', 'true')
-  isAuth.value = true
+const onLogin = async () => {
+  const inputs = formData.inputs
+  const isError = inputs.find(el => el.error)
+
+  if (isError) {
+    emmitError()
+    return
+  }
+
+  try {
+    isWaiting.value = true
+    const { getDataFromTable, postDataToTable } = useAirtable()
+
+    const users = (await getDataFromTable('Users')) as iUser[]
+
+    const newUserData = {
+      Name: formData.inputs[0].value,
+      Email: formData.inputs[1].value,
+    }
+
+    if (!users.length) {
+      return
+    }
+
+    const updatedUsers = users
+      .filter(user => user.Email)
+      .map(user => user.Email)
+
+    if (updatedUsers.includes(formData.inputs[1].value)) {
+      addToast({
+        color: ToastColor.success,
+        id: Date.now().toString(),
+        text: 'User already exists',
+      })
+
+      window.localStorage.setItem('isAuth', 'true')
+      window.localStorage.setItem('user', JSON.stringify(newUserData))
+      isAuth.value = true
+      resetForm()
+      return
+    } else {
+      await postDataToTable('Users', [{ fields: newUserData }])
+
+      addToast({
+        color: ToastColor.success,
+        id: Date.now().toString(),
+        text: `You have successfully logged in, ${newUserData.Name}`,
+      })
+
+      window.localStorage.setItem('user', JSON.stringify(newUserData))
+      window.localStorage.setItem('isAuth', 'true')
+      isAuth.value = true
+      resetForm()
+    }
+  } catch (error) {
+    console.log(error.message)
+    formData.hasErrors = true
+  } finally {
+    setTimeout(() => {
+      isWaiting.value = false
+    }, 400)
+  }
 }
 
 const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
@@ -57,11 +129,7 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
     <div class="container login__wrapper">
       <div class="login__main-block">
         <h1 class="login__h1">{{ title }}</h1>
-        <form
-          class="login__form"
-          novalidate
-          @submit.prevent="onSubmit(onLogin)"
-        >
+        <form class="login__form" novalidate @submit.prevent="onLogin">
           <legend class="login__title">
             Enter your email address below to access the proposal:
           </legend>

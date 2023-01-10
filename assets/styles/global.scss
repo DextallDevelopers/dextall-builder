@@ -70,3 +70,18 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.home-thumb {
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  @include default;
+  font-size: 32px;
+  max-width: 80%;
+  @media (max-width: $br4) {
+    max-width: calc(100% - 40px);
+  }
+}

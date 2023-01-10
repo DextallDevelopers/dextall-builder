@@ -21,6 +21,8 @@ export default defineNuxtConfig({
   publicRuntimeConfig: {
     STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
     DEXTALL_STORYBLOK_TOKEN: process.env.DEXTALL_STORYBLOK_TOKEN,
+    AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
+    AIRTABLE_BASE: process.env.AIRTABLE_BASE,
     ENVIROMENT: process.env.NODE_ENV,
   },
 

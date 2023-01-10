@@ -6,7 +6,7 @@ const URL = null
 export const useForm = (
   formData,
   $inputs,
-  from = 'Dextall Website',
+  from = 'Dextall Builder',
   URLS = []
 ) => {
   const FINAL_URLS = [URL, ...URLS]
@@ -86,5 +86,5 @@ export const useForm = (
     })
   }
 
-  return { onInputValue, onSubmit }
+  return { onInputValue, onSubmit, resetForm, emmitError }
 }

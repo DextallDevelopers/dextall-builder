@@ -150,3 +150,15 @@
     margin-top: 50px;
   }
 }
+
+.pdf__image-list {
+}
+.pdf__product-specifications {
+}
+.pdf__included {
+  @media print {
+    page-break-before: always;
+  }
+}
+.pdf__drawings {
+}

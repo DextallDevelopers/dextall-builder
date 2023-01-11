@@ -40,7 +40,7 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
       </section>
       <!-- <ImagesList /> -->
       <ProductSpecifications />
-      <!-- <Included /> -->
+      <Included />
       <!-- <Drawings /> -->
     </div>
   </div>

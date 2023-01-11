@@ -12,23 +12,30 @@ interface iProps {
   }
 }
 
-const props = defineProps<iProps>()
+defineProps<iProps>()
+
+const getImgSrc = (img: string, size?: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size })
+}
 </script>
 
 <template>
   <section class="section section--pb simple-section">
     <div class="container simple-section__wrapper">
-      <h2 class="simple-section__title">{{ props.body.content.title }}</h2>
+      <h2 class="simple-section__title">{{ body.content.title }}</h2>
       <h4 class="simple-section__subtitle">
-        {{ props.body.content.subtitle }}
+        {{ body.content.subtitle }}
       </h4>
       <p class="simple-section__desc">
-        {{ props.body.content.description }}
+        {{ body.content.description }}
       </p>
       <img
-        v-if="props.body.content.image.filename"
+        v-if="body.content.image.filename"
         class="simple-section__img"
-        :src="props.body.content.image.filename"
+        :src="getImgSrc(body.content.image.filename, '1920x1080')"
         alt="Image"
       />
     </div>

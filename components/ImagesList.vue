@@ -10,6 +10,13 @@ const { story, listenStory } = await useQoutesStories(
 )
 
 listenStory(version)
+
+const getImgSrc = (img: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size: '500x500' })
+}
 </script>
 
 <template>
@@ -21,7 +28,11 @@ listenStory(version)
           :key="idx"
           class="images-list__li"
         >
-          <img class="images-list__img" :src="img.filename" alt="Image" />
+          <img
+            class="images-list__img"
+            :src="getImgSrc(img.filename)"
+            alt="Image"
+          />
           <p v-if="img.name" class="images-list__desc">{{ img.name }}</p>
         </li>
       </ul>

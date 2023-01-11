@@ -17,6 +17,13 @@ const drawingsTab = computed(() => {
   }
   return null
 })
+
+const getImgSrc = (img: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size: '800x800' })
+}
 </script>
 
 <template>
@@ -35,7 +42,11 @@ const drawingsTab = computed(() => {
             :key="idx"
             class="drawings__img-li"
           >
-            <img class="drawings__img" :src="elem.filename" alt="Image" />
+            <img
+              class="drawings__img"
+              :src="getImgSrc(elem.filename)"
+              alt="Image"
+            />
             <p v-if="elem.name" class="drawings__img-desc">{{ elem.name }}</p>
           </li>
         </ul>
@@ -64,7 +75,7 @@ const drawingsTab = computed(() => {
             </h3>
             <img
               class="drawings__elevation-img"
-              :src="elem.filename"
+              :src="getImgSrc(elem.filename)"
               alt="Image"
             />
           </li>

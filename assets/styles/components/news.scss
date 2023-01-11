@@ -1,0 +1,18 @@
+.news__title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.news__title {
+  @include h2;
+  text-align: center;
+}
+
+.news__cards {
+  margin-top: vw(42);
+
+  @media (max-width: $br1) {
+    margin-top: 40px;
+  }
+}

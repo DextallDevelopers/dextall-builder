@@ -28,9 +28,15 @@
   "dependencies": {
     "@emotionagency/smoothscroll": "latest",
     "@emotionagency/utils": "latest",
+    "@nuxtjs/axios": "^5.13.6",
     "@pinia/nuxt": "^0.1.8",
+    "@storyblok/nuxt": "4.3.0",
+    "airtable": "^0.11.6",
     "gsap": "^3.10.3",
+    "html2pdf.js": "0.9.0",
+    "html2pdfmake": "^0.0.10",
     "pinia": "^2.0.13",
+    "progressbar.js": "^1.1.0",
     "supports-webp": "^2.0.1"
   }
 }

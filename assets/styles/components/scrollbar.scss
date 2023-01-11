@@ -3,7 +3,7 @@
   height: var(--vh);
   overflow: hidden;
   will-change: scroll-position;
-  @media (max-width: '960px') {
+  @media (max-width: 1060px) {
     overflow-y: auto;
     overflow-x: hidden;
   }

@@ -6,6 +6,26 @@ export default defineNuxtConfig({
 
   modules: ['@pinia/nuxt', '@nuxtjs/eslint-module'],
 
+  buildModules: [
+    [
+      '@storyblok/nuxt',
+      {
+        accessToken: process.env.STORYBLOK_TOKEN,
+        apiOptions: {
+          region: 'us',
+        },
+      },
+    ],
+  ],
+
+  publicRuntimeConfig: {
+    STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
+    DEXTALL_STORYBLOK_TOKEN: process.env.DEXTALL_STORYBLOK_TOKEN,
+    AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
+    AIRTABLE_BASE: process.env.AIRTABLE_BASE,
+    ENVIROMENT: process.env.NODE_ENV,
+  },
+
   // head: {
   //   title: 'emotion',
   //   meta: [

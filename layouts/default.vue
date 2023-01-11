@@ -41,9 +41,9 @@ useHead({
     {
       src: 'https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js',
     },
-    // {
-    //   src: '/assets/airtable.js',
-    // },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.2/pdfmake.min.js',
+    },
   ],
 })
 </script>

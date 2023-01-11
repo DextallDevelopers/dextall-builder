@@ -39,6 +39,30 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   document.body.removeEventListener('click', closeNav)
 })
+
+const onPdf = () => {
+  console.log(window.location)
+  const siteURL = window.location.href + '/pdf'
+  const url = `https://api.html2pdf.app/v1/generate?html=${siteURL}&landscape=true&apiKey=3wrhnNNhHtKWM5rnLdczVtUGAnONZtOHJd044U3qFG1F7ccu2DYhNBmgdQdfiPrF`
+
+  function download(blob, filename) {
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.style.display = 'none'
+    a.href = url
+    // the filename you want
+    a.download = filename
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    window.URL.revokeObjectURL(url)
+  }
+
+  fetch(url, { method: 'GET' })
+    .then(response => response.blob().then(blob => download(blob, 'filename')))
+    .then(response => console.log(response))
+    .catch(err => console.error(err))
+}
 </script>
 
 <template>
@@ -105,7 +129,10 @@ onBeforeUnmount(() => {
               </a>
             </li>
             <li class="header__nav-li">
-              <button class="header__nav-btn header__nav-btn--download">
+              <button
+                class="header__nav-btn header__nav-btn--download"
+                @click="onPdf"
+              >
                 <span class="header__btn-icon">
                   <IconsDownload />
                 </span>

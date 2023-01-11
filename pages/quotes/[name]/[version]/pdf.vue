@@ -41,7 +41,7 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
       <ImagesList />
       <ProductSpecifications />
       <Included />
-      <!-- <Drawings /> -->
+      <Drawings />
     </div>
   </div>
 </template>

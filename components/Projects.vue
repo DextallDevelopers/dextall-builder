@@ -9,13 +9,6 @@ const { data: storiesData } = await useFetch<iStories>(URL)
 const projects = computed(() => {
   return storiesData.value.stories
 })
-
-const getImgSrc = (img: string, size?: string) => {
-  if (!img) {
-    return null
-  }
-  return useStoryblokImage(img, { size })
-}
 </script>
 
 <template>
@@ -42,12 +35,7 @@ const getImgSrc = (img: string, size?: string) => {
             <div class="projects__img-wrapper">
               <img
                 class="projects__img"
-                :src="
-                  getImgSrc(
-                    project.content.Screen_1[0].main_image.filename,
-                    '600x600'
-                  )
-                "
+                :src="project.content.Screen_1[0].main_image.filename"
                 alt="Image"
               />
             </div>

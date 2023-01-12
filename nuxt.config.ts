@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     DEXTALL_STORYBLOK_TOKEN: process.env.DEXTALL_STORYBLOK_TOKEN,
     AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
     AIRTABLE_BASE: process.env.AIRTABLE_BASE,
+    MONDAY_KEY: process.env.MONDAY_KEY,
     ENVIROMENT: process.env.NODE_ENV,
   },
 

@@ -9,9 +9,11 @@ interface iTableItem {
 type tGetData = (arg0: string) => Promise<iTableItem[]>
 
 export const useAirtable = () => {
-  Airtable.configure({ apiKey: 'keyRNI0YuRgsWpni5' })
+  const config = useRuntimeConfig()
 
-  const base = Airtable.base('appI0otCiP6OAAEMe')
+  Airtable.configure({ apiKey: config.AIRTABLE_API_KEY })
+
+  const base = Airtable.base(config.AIRTABLE_BASE)
 
   const getDataFromTable: tGetData = baseName => {
     const data: iTableItem[] = []

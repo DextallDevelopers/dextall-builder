@@ -65,18 +65,18 @@ const onLogin = async () => {
 
   try {
     isWaiting.value = true
-    const { getDataFromTable, postDataToTable } = useAirtable()
+    // const { getDataFromTable, postDataToTable } = useAirtable()
 
-    const users = (await getDataFromTable('Users')) as iUser[]
+    // const users = (await getDataFromTable('Users')) as iUser[]
 
     const newUserData = {
       Name: formData.inputs[0].value,
       Email: formData.inputs[1].value,
     }
 
-    if (!users.length) {
-      return
-    }
+    const { getDataFromTable, postDataToTable } = useMonday()
+
+    const users = (await getDataFromTable('3789599018')) as iUser[]
 
     const updatedUsers = users
       .filter(user => user.Email)
@@ -95,7 +95,7 @@ const onLogin = async () => {
       resetForm()
       return
     } else {
-      await postDataToTable('Users', [{ fields: newUserData }])
+      await postDataToTable('3789599018', newUserData)
 
       addToast({
         color: ToastColor.success,
@@ -109,6 +109,11 @@ const onLogin = async () => {
       resetForm()
     }
   } catch (error) {
+    addToast({
+      color: ToastColor.danger,
+      id: Date.now().toString(),
+      text: `Some errors was occured, ${error.message}`,
+    })
     console.log(error.message)
     formData.hasErrors = true
   } finally {

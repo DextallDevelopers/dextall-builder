@@ -57,7 +57,7 @@ export const useMonday = () => {
     const graphQLCreateItem = `mutation {
       create_item (
         board_id: ${boardId},
-        item_name: ${name},
+        item_name: ${name.replace(/\s/gm, '_')},
         column_values: ${JSON.stringify(JSON.stringify(columnObj))}
         )
         {

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useQoutesStories } from '~/composables/stories/quotes'
 import { useTeamStories } from '~/composables/stories/team'
+import { ToastColor } from '~/composables/toasts'
 
 const route = useRoute()
 
@@ -56,11 +57,60 @@ const formData = reactive({
   ],
 })
 
-const { onInputValue, onSubmit } = useForm(
+const { onInputValue, emmitError, resetForm } = useForm(
   formData,
   $inputs,
   'Dextall contacts'
 )
+const { isWaiting } = useAppState()
+const { addToast } = useToasts()
+const { postDataToTable } = useMonday()
+
+const onSubmit = async () => {
+  const inputs = formData.inputs
+  const isError = inputs.find(el => el.error)
+
+  if (isError) {
+    emmitError()
+    return
+  }
+
+  try {
+    isWaiting.value = true
+
+    const columnObj = {
+      email: `${inputs[0].value} ${inputs[0].value}`,
+      long_text: inputs[1].value,
+      text: story.value.content.title,
+      text8: story.value.name,
+    }
+
+    const userData = JSON.parse(localStorage.getItem('user') || '{}')
+    const userName = userData?.Name || 'unknown user'
+
+    await postDataToTable('3789633557', userName, columnObj)
+
+    addToast({
+      color: ToastColor.success,
+      id: Date.now().toString(),
+      text: 'Form was successfully submitted',
+    })
+
+    resetForm()
+  } catch (error) {
+    addToast({
+      color: ToastColor.danger,
+      id: Date.now().toString(),
+      text: `Some errors was occured, ${error.message}`,
+    })
+    console.log(error.message)
+    formData.hasErrors = true
+  } finally {
+    setTimeout(() => {
+      isWaiting.value = false
+    }, 400)
+  }
+}
 </script>
 
 <template>

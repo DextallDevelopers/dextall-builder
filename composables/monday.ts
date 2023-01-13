@@ -1,3 +1,7 @@
+interface iColumnObj {
+  [any: string]: string
+}
+
 export const useMonday = () => {
   const config = useRuntimeConfig()
 
@@ -27,8 +31,6 @@ export const useMonday = () => {
       }
       let items = data.items
 
-      console.log(items)
-
       if (items.length) {
         items = items.map(item => {
           const obj = {
@@ -47,15 +49,15 @@ export const useMonday = () => {
     }
   }
 
-  const postDataToTable = async (boardId: string, item: any) => {
-    const columnObj = {
-      email: `${item.Email} ${item.Email}`,
-      text97: 'Our project',
-    }
+  const postDataToTable = async (
+    boardId: string,
+    name: string,
+    columnObj: iColumnObj
+  ) => {
     const graphQLCreateItem = `mutation {
       create_item (
         board_id: ${boardId},
-        item_name: ${item.Name},
+        item_name: ${name},
         column_values: ${JSON.stringify(JSON.stringify(columnObj))}
         )
         {

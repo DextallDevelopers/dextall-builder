@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useQoutesStories } from '~~/composables/stories/quotes'
+import { ToastColor } from '~/composables/toasts'
 
 const route = useRoute()
 
@@ -12,7 +13,7 @@ const { stories, story } = await useQoutesStories(
 
 const { open: openTab, close: closeTab, tabs } = useTab()
 
-const { isAuth } = useAppState()
+const { isAuth, isWaiting } = useAppState()
 
 const versions = computed(() => {
   return stories.value
@@ -40,28 +41,41 @@ onBeforeUnmount(() => {
   document.body.removeEventListener('click', closeNav)
 })
 
-const onPdf = () => {
-  console.log(window.location)
-  const siteURL = window.location.href + '/pdf'
-  const url = `https://api.html2pdf.app/v1/generate?html=${siteURL}&landscape=true&apiKey=3wrhnNNhHtKWM5rnLdczVtUGAnONZtOHJd044U3qFG1F7ccu2DYhNBmgdQdfiPrF`
+const { addToast } = useToasts()
 
-  function download(blob, filename) {
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.style.display = 'none'
-    a.href = url
-    // the filename you want
-    a.download = filename
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    window.URL.revokeObjectURL(url)
+const onPdf = async () => {
+  try {
+    isWaiting.value = true
+    const siteURL = window.location.href + '/pdf'
+    const url = `https://api.html2pdf.app/v1/generate?html=${siteURL}&landscape=true&apiKey=3wrhnNNhHtKWM5rnLdczVtUGAnONZtOHJd044U3qFG1F7ccu2DYhNBmgdQdfiPrF`
+
+    function download(blob, filename) {
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.style.display = 'none'
+      a.href = url
+      // the filename you want
+      a.download = filename
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      window.URL.revokeObjectURL(url)
+    }
+
+    await fetch(url, { method: 'GET' })
+      .then(response => response.blob().then(blob => download(blob, 'quote')))
+      .then(response => console.log(response))
+      .catch(err => console.error(err))
+  } catch (error) {
+    console.log(error)
+    addToast({
+      color: ToastColor.danger,
+      id: Date.now().toString(),
+      text: `Some errors was occured, ${error.message}`,
+    })
+  } finally {
+    isWaiting.value = false
   }
-
-  fetch(url, { method: 'GET' })
-    .then(response => response.blob().then(blob => download(blob, 'filename')))
-    .then(response => console.log(response))
-    .catch(err => console.error(err))
 }
 </script>
 

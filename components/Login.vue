@@ -3,6 +3,7 @@ import { ToastColor } from '~/composables/toasts'
 
 interface iProps {
   title?: string
+  version?: string
   startQuoteDate?: string
   endQuoteDate?: string
 }
@@ -86,16 +87,23 @@ const onLogin = async () => {
       addToast({
         color: ToastColor.success,
         id: Date.now().toString(),
-        text: 'User already exists',
+        text: `Welcome back, ${newUserData.Name}`,
       })
 
       window.localStorage.setItem('isAuth', 'true')
       window.localStorage.setItem('user', JSON.stringify(newUserData))
+      window.localStorage.setItem('authTimestamp', Date.now().toString())
+
       isAuth.value = true
       resetForm()
       return
     } else {
-      await postDataToTable('3789599018', newUserData)
+      const columnObj = {
+        email: `${newUserData.Email} ${newUserData.Email}`,
+        text97: props.title,
+        text7: props.version,
+      }
+      await postDataToTable('3789599018', newUserData.Name, columnObj)
 
       addToast({
         color: ToastColor.success,
@@ -105,6 +113,7 @@ const onLogin = async () => {
 
       window.localStorage.setItem('user', JSON.stringify(newUserData))
       window.localStorage.setItem('isAuth', 'true')
+      window.localStorage.setItem('authTimestamp', Date.now().toString())
       isAuth.value = true
       resetForm()
     }

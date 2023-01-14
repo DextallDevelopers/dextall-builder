@@ -4,9 +4,9 @@ interface iProps {
 }
 const props = defineProps<iProps>()
 const { totalPrice } = useComputePrice(
-  props.table.facade_area_sf[0].info,
-  props.table.subtotal_price[0].info,
-  props.table.tax[0].info
+  props.table.facade_area_sf[0]?.info,
+  props.table.subtotal_price[0]?.info,
+  props.table.tax[0]?.info
 )
 </script>
 
@@ -23,22 +23,37 @@ const { totalPrice } = useComputePrice(
       <tbody>
         <tr>
           <td class="specifications-table__big-text">System</td>
-          <td>{{ table.system[0].manufactuer }}</td>
-          <td>
-            {{ table.system[0].info_other || table.system[0].info_dropdown }}
+          <td v-if="table?.system[0]?.manufactuer">
+            {{ table?.system[0]?.manufactuer }}
+          </td>
+          <td
+            v-if="
+              table?.system[0]?.info_other || table?.system[0]?.info_dropdown
+            "
+          >
+            {{ table.system[0]?.info_other || table.system[0].info_dropdown }}
           </td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">ENERGY PERFORMANCE</td>
           <td></td>
-          <td>{{ table.energy_performance[0].info }}</td>
+          <td v-if="table?.energy_performance[0]?.info">
+            {{ table.energy_performance[0].info }}
+          </td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">
             WINDOWS (FACTORY INSTALLED)
           </td>
-          <td>{{ table.windows[0].manufactuer }}</td>
-          <td class="specifications-table--under-text">
+          <td v-if="table?.windows[0]?.manufactuer">
+            {{ table.windows[0].manufactuer }}
+          </td>
+          <td
+            v-if="
+              table?.windows[0]?.info_other || table?.windows[0]?.info_dropdown
+            "
+            class="specifications-table--under-text"
+          >
             {{ table.windows[0].info_other || table.windows[0].info_dropdown }}
           </td>
         </tr>
@@ -47,7 +62,12 @@ const { totalPrice } = useComputePrice(
             CLADDING (FACTORY APPLIED)
           </td>
           <td></td>
-          <td>
+          <td
+            v-if="
+              table?.cladding[0]?.info_other ||
+              table?.cladding[0]?.info_dropdown
+            "
+          >
             {{
               table.cladding[0].info_other || table.cladding[0].info_dropdown
             }}
@@ -58,29 +78,35 @@ const { totalPrice } = useComputePrice(
             EXTERIOR CLADDING FINISH
           </td>
           <td></td>
-          <td>{{ table.exterior_cladding_finish[0].info }}</td>
+          <td v-if="table?.exterior_cladding_finish[0]?.info">
+            {{ table.exterior_cladding_finish[0].info }}
+          </td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">FACADE AREA (SF)</td>
           <td></td>
-          <td>{{ table.facade_area_sf[0].info }}</td>
+          <td v-if="table?.facade_area_sf[0]?.info">
+            {{ table.facade_area_sf[0].info }}
+          </td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">SUBTOTAL PRICE</td>
           <td></td>
-          <td>{{ table.subtotal_price[0].info }}</td>
+          <td v-if="table?.subtotal_price[0]?.info">
+            {{ table.subtotal_price[0].info }}
+          </td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">TAX</td>
           <td></td>
-          <td>{{ table.tax[0].info }}</td>
+          <td v-if="table?.tax[0]?.info">{{ table.tax[0].info }}</td>
         </tr>
         <tr>
           <td class="specifications-table__big-text">
             TOTAL PRICE (MATERIAL ONLY)
           </td>
           <td>BRONX</td>
-          <td>${{ totalPrice }}</td>
+          <td v-if="totalPrice">${{ totalPrice }}</td>
         </tr>
       </tbody>
     </table>

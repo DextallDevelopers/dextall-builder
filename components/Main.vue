@@ -24,16 +24,24 @@ const route = useRoute()
 
 const aboutTabComponents = computed(() => {
   if (props.story?.about_tab?.length) {
-    return props.story.about_tab[0]?.body.map(cc => ({
+    const prefilledComponents = props.story.about_tab[0]?.body.map(cc => ({
       data: cc,
       _uid: cc.uuid,
       component: cc.content.component,
     }))
+
+    const zeroComponents = props.story.about_tab[0].zero_blocks.map(zb => ({
+      data: { content: zb },
+      _uid: zb._uid,
+      component: zb.component,
+    }))
+
+    return [...prefilledComponents, ...zeroComponents]
   }
   return []
 })
 
-const mainTabs: iTab[] = [
+const mainTabs = computed((): iTab[] => [
   {
     isOpen: false,
     components: [
@@ -52,14 +60,17 @@ const mainTabs: iTab[] = [
     isOpen: false,
     components: [{ _uid: keysGenerator(8), component: 'pricing' }],
   },
-  {
+])
+
+if (aboutTabComponents.value.length) {
+  mainTabs.value.push({
     isOpen: false,
     components: aboutTabComponents.value,
-  },
-]
+  })
+}
 
 onMounted(() => {
-  addTabs(mainTabs)
+  addTabs(mainTabs.value)
   route.query.tab && open(route.query.tab as string)
 })
 

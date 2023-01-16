@@ -119,7 +119,7 @@ const onPdf = async () => {
           :class="{ open: isOpen }"
         >
           <ul class="header__nav-list">
-            <li class="header__nav-li">
+            <li v-if="tabs[4]" class="header__nav-li">
               <button class="header__nav-btn" @click="openTab(tabs[4]._uid)">
                 About us
               </button>

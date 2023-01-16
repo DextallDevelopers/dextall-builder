@@ -8,6 +8,7 @@ interface iProps {
 }
 
 const props = defineProps<iProps>()
+const isModel = ref(false)
 
 const route = useRoute()
 
@@ -50,6 +51,7 @@ async function loadViewer() {
   }
 
   await viewer.start()
+  isModel.value = true
 }
 
 const config = useRuntimeConfig()
@@ -61,6 +63,13 @@ onMounted(() => {
 })
 
 listenStory(version)
+
+const getImgSrc = (img: string, size?: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size })
+}
 </script>
 
 <template>
@@ -74,8 +83,19 @@ listenStory(version)
       </p>
     </div>
     <div class="grid model__bottom-block">
-      <div class="model__3d-wrapper">
-        <div id="ForgeViewer" class="viewer-container"></div>
+      <div
+        v-if="isModel || story.content?.model[0]?.thumbnail?.filename"
+        class="model__3d-wrapper"
+      >
+        <div v-if="isModel" id="ForgeViewer" class="viewer-container"></div>
+        <img
+          v-else
+          class="model__img"
+          :src="
+            getImgSrc(story.content.model[0].thumbnail.filename, '1920x1080')
+          "
+          alt="Image"
+        />
       </div>
       <div class="model__list-wrapper">
         <ul class="model__list">

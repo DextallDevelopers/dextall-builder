@@ -1,3 +1,9 @@
+.drawings__wrapper {
+  @media print {
+    page-break-before: always;
+  }
+}
+
 .drawings__title {
   @include h2;
   max-width: vw(878);

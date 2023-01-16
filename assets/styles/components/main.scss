@@ -79,9 +79,11 @@
 .main__desc {
   line-height: 100%;
   margin-top: vw(30);
+  max-width: 50%;
 
   @media (max-width: $br1) {
     margin-top: 20px;
+    max-width: 100%;
   }
 }
 

@@ -158,6 +158,7 @@
   &:nth-of-type(3),
   &:nth-of-type(4) {
     @media print {
+      margin-top: vw(100);
       page-break-before: always;
     }
   }

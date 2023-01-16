@@ -187,6 +187,29 @@
 }
 
 .pdf__drawings {
+  // .drawings__elevation-list {
+  //   display: block;
+  //   width: 100%;
+  // }
+  // .drawings__elevation-li {
+  //   height: 100vh;
+  //   width: fit-content;
+  //   margin: 0 auto;
+  //   margin-top: 20px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   overflow: hidden;
+  // }
+  // .drawings__elevation-img {
+  //   object-fit: contain;
+  //   flex: 0 1 auto;
+  //   height: 60vh;
+  //   aspect-ratio: 1;
+  // }
+
+  .drawings__lines-wrapper {
+    display: none;
+  }
 }
 
 .pdf__section-content {
@@ -225,9 +248,7 @@
   .specifications-1 {
     height: 100vh;
   }
-  .specifications-1__line {
-    // display: none;
-  }
+
   .specifications-1__line {
     margin-top: 0;
   }

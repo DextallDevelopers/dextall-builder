@@ -54,7 +54,11 @@ const { totalPrice } = useComputePrice(
             "
             class="specifications-table--under-text"
           >
-            <a :href="table?.windows[0]?.link">
+            <a
+              :href="table?.windows[0]?.link"
+              target="_blank"
+              rel="noreferer noopener"
+            >
               {{
                 table.windows[0].info_other || table.windows[0].info_dropdown
               }}

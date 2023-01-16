@@ -38,18 +38,18 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
         <h2 class="pdf__title">{{ story.content.title }}</h2>
         <p class="pdf__desc">{{ story.content.address }}</p>
       </section>
-      <!-- <div class="pdf__image-list">
+      <div class="pdf__image-list">
         <ImagesList />
-      </div> -->
+      </div>
       <div class="pdf__product-specifications">
         <ProductSpecifications />
       </div>
       <div class="pdf__included">
         <Included />
       </div>
-      <!-- <div class="pdf__drawings">
+      <div class="pdf__drawings">
         <Drawings />
-      </div> -->
+      </div>
     </div>
   </div>
 </template>

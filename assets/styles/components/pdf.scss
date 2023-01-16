@@ -152,8 +152,14 @@
 }
 
 .pdf__image-list {
+  @media print {
+    page-break-before: always;
+  }
 }
 .pdf__product-specifications {
+  @media print {
+    page-break-before: always;
+  }
 }
 .pdf__included {
   @media print {
@@ -161,4 +167,7 @@
   }
 }
 .pdf__drawings {
+  @media print {
+    page-break-before: always;
+  }
 }

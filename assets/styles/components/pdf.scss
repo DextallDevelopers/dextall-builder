@@ -190,31 +190,16 @@
   .drawings__elevation {
   }
   .drawings__elevation-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
   }
   .drawings__elevation-li {
-    flex-basis: 350px;
   }
   .drawings__elevation-img {
-    object-fit: cover;
-    max-width: 100%;
-    height: auto;
-    vertical-align: middle;
   }
 
   .drawings__lines-wrapper {
-    display: none;
   }
 
   .drawings__colors-list {
-    height: 20vh;
-    margin-top: 0;
-    justify-content: flex-end;
   }
 }
 

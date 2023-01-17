@@ -20,8 +20,9 @@ export class FactsAnimation {
   }
 
   get vh() {
-    return parseInt(getComputedStyle(this.$el)
-    .getPropertyValue('--height')) / 100
+    return (
+      parseInt(getComputedStyle(this.$el).getPropertyValue('--height')) / 100
+    )
   }
 
   get scrolled() {
@@ -54,6 +55,7 @@ export class FactsAnimation {
   }
 
   onScroll() {
+    console.log(this.vh)
     const dist = -this.scrolled / this.vh
     const height = this.scrollHeight / this.vh
 

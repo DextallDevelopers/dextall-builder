@@ -22,13 +22,12 @@ export const useQoutesStories: tQoutesStories = async (name, version) => {
       `cdn/stories/?by_slugs=quotes/${name}/*&`,
       {
         version: 'draft',
-        resolve_relations: ['About tab (optional).body']
+        resolve_relations: ['About tab (optional).body'],
       }
     )
     stories.value = data.stories
 
     story.value = data.stories.find(s => s.name === version)
-
   } catch (e) {
     console.log(e.message)
   }

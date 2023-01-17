@@ -11,7 +11,7 @@ const { totalPrice } = useComputePrice(
 </script>
 
 <template>
-  <div class="specifications-table-wrapper">
+  <div v-editable="table" class="specifications-table-wrapper">
     <table class="specifications-table">
       <thead>
         <tr>

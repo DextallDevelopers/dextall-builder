@@ -27,7 +27,11 @@ const getImgSrc = (img: string) => {
 </script>
 
 <template>
-  <section v-if="drawingsTab" class="section section--pb drawings">
+  <section
+    v-if="drawingsTab"
+    v-editable="drawingsTab"
+    class="section section--pb drawings"
+  >
     <div class="container drawings__wrapper">
       <div class="drawings__img-block">
         <h2 v-if="drawingsTab.title" class="drawings__title">
@@ -85,6 +89,7 @@ const getImgSrc = (img: string) => {
         <Color
           v-for="(color, idx) in drawingsTab.legend"
           :key="idx"
+          v-editable="color"
           :text="color.text"
           :stroke="color.border.color"
           :background="color.background.color"

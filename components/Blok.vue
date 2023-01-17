@@ -74,6 +74,7 @@ const getBlokName = name => {
     <component
       :is="getBlokName(blok.component)"
       v-if="blok.data"
+      v-editable="blok.data.content"
       :body="blok.data"
     />
     <component :is="getBlokName(blok.component)" v-else />

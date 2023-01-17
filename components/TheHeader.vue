@@ -47,7 +47,8 @@ onBeforeUnmount(() => {
 const { addToast } = useToasts()
 
 const onPdf = async () => {
-  const siteURL = window.location.href + '/pdf'
+  const siteURL = window.location.origin + window.location.pathname + '/pdf'
+
   const body = {
     source: siteURL,
     format: 'Ledger',

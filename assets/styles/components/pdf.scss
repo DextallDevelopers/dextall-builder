@@ -175,9 +175,9 @@
 // }
 
 .pdf__product-specifications {
-  @media print {
-    page-break-before: always;
-  }
+  // @media print {
+  //   page-break-before: always;
+  // }
 }
 
 .pdf__included {

@@ -103,6 +103,7 @@ const onPdf = async () => {
               <li
                 v-for="(el, idx) in versions"
                 :key="idx"
+                v-editable="stories[idx].content"
                 class="header__dropdown-li"
                 @click="closeNav"
               >

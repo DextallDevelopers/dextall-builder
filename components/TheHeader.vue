@@ -47,7 +47,6 @@ const { addToast } = useToasts()
 
 const onPdf = async () => {
   const siteURL = window.location.href + '/pdf'
-  const url = `https://api.html2pdf.app/v1/generate?html=${siteURL}&landscape=true&apiKey=3wrhnNNhHtKWM5rnLdczVtUGAnONZtOHJd044U3qFG1F7ccu2DYhNBmgdQdfiPrF`
   const body = {
     source: siteURL,
     format: 'Ledger',
@@ -57,17 +56,26 @@ const onPdf = async () => {
   try {
     isWaiting.value = true
 
-    function download(url, filename) {
-      const a = document.createElement('a')
-      a.style.display = 'none'
-      a.href = url
-      // the filename you want
-      // a.download = filename + '.pdf'
-      a.target = '_blank'
-      a.rel = 'noreferer noopener'
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
+    async function downloadFile(url: string, fileName: string) {
+      await fetch(url, {
+        method: 'get',
+        referrerPolicy: 'no-referrer',
+      })
+        .then(res => {
+          console.log(res)
+          return res
+        })
+        .then(res => res.blob())
+        .then(res => {
+          const aElement = document.createElement('a')
+          aElement.setAttribute('download', fileName + '.pdf')
+          const href = URL.createObjectURL(res)
+          aElement.href = href
+          // aElement.setAttribute('href', href);
+          aElement.setAttribute('target', '_blank')
+          aElement.click()
+          URL.revokeObjectURL(href)
+        })
     }
 
     const response = await fetch('https://docamatic.com/api/v1/pdf', {
@@ -75,12 +83,12 @@ const onPdf = async () => {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: 'Bearer 4DxJ5Fv6V7Kclmkw2KvmGy6EnEzHNsxdONCj5isv',
+        Authorization: 'Bearer HCWuSMRqpiP2S0aldbke9OfUG4OMgamXZcyh9ZMx',
       },
       body: JSON.stringify(body),
     }).then(res => res.json())
 
-    download(response.document, 'quote')
+    downloadFile(response.document, 'quote')
   } catch (error) {
     console.log(error)
     addToast({

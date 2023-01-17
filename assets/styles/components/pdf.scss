@@ -175,9 +175,9 @@
 // }
 
 .pdf__product-specifications {
-  // @media print {
-  //   page-break-before: always;
-  // }
+  @media print {
+    page-break-before: always;
+  }
 }
 
 .pdf__included {
@@ -226,7 +226,7 @@
 
 .pdf__image-list {
   .images-list__li {
-    height: 40vh;
+    height: 30vh;
     width: 100%;
   }
   .images-list__img {
@@ -237,7 +237,11 @@
 
 .pdf__product-specifications {
   .specifications-1 {
-    height: 100vh;
+    height: fit-content;
+  }
+
+  .specifications-1__desc {
+    display: none;
   }
 
   .specifications-1__line {

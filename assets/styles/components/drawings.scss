@@ -1,4 +1,7 @@
 .drawings__wrapper {
+  @media print {
+    page-break-before: always;
+  }
 }
 
 .drawings__title {

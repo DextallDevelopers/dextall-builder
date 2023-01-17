@@ -168,12 +168,6 @@
   }
 }
 
-// .pdf__image-list {
-//   @media print {
-//     page-break-before: always;
-//   }
-// }
-
 .pdf__product-specifications {
   @media print {
     page-break-before: always;
@@ -183,23 +177,6 @@
 .pdf__included {
   @media print {
     page-break-before: always;
-  }
-}
-
-.pdf__drawings {
-  .drawings__elevation {
-  }
-  .drawings__elevation-list {
-  }
-  .drawings__elevation-li {
-  }
-  .drawings__elevation-img {
-  }
-
-  .drawings__lines-wrapper {
-  }
-
-  .drawings__colors-list {
   }
 }
 

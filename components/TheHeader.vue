@@ -46,28 +46,41 @@ onBeforeUnmount(() => {
 const { addToast } = useToasts()
 
 const onPdf = async () => {
+  const siteURL = window.location.href + '/pdf'
+  const url = `https://api.html2pdf.app/v1/generate?html=${siteURL}&landscape=true&apiKey=3wrhnNNhHtKWM5rnLdczVtUGAnONZtOHJd044U3qFG1F7ccu2DYhNBmgdQdfiPrF`
+  const body = {
+    source: siteURL,
+    format: 'Ledger',
+    media: 'print',
+  }
+
   try {
     isWaiting.value = true
-    const siteURL = window.location.href + '/pdf'
-    const url = `https://api.html2pdf.app/v1/generate?html=${siteURL}&landscape=true&apiKey=3wrhnNNhHtKWM5rnLdczVtUGAnONZtOHJd044U3qFG1F7ccu2DYhNBmgdQdfiPrF`
 
-    function download(blob, filename) {
-      const url = window.URL.createObjectURL(blob)
+    function download(url, filename) {
       const a = document.createElement('a')
       a.style.display = 'none'
       a.href = url
       // the filename you want
-      a.download = filename
+      // a.download = filename + '.pdf'
+      a.target = '_blank'
+      a.rel = 'noreferer noopener'
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
-      window.URL.revokeObjectURL(url)
     }
 
-    await fetch(url, { method: 'GET' })
-      .then(response => response.blob().then(blob => download(blob, 'quote')))
-      .then(response => console.log(response))
-      .catch(err => console.error(err))
+    const response = await fetch('https://docamatic.com/api/v1/pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: 'Bearer 4DxJ5Fv6V7Kclmkw2KvmGy6EnEzHNsxdONCj5isv',
+      },
+      body: JSON.stringify(body),
+    }).then(res => res.json())
+
+    download(response.document, 'quote')
   } catch (error) {
     console.log(error)
     addToast({

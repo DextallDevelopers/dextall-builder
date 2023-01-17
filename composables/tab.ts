@@ -4,6 +4,7 @@ export interface iTab {
   _uid?: string
   isOpen: boolean
   components: iBlokBody[]
+  name?: string
 }
 
 let idx = 0

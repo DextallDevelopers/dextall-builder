@@ -22,15 +22,15 @@ const props = defineProps<iProps>()
 const { open, tabs, addTabs } = useTab()
 const route = useRoute()
 
-const aboutTabComponents = computed(() => {
-  if (props.story?.about_tab?.length) {
-    const prefilledComponents = props.story.about_tab[0]?.body.map(cc => ({
+const getTabComponents = tab => {
+  if (tab) {
+    const prefilledComponents = tab?.body.map(cc => ({
       data: cc,
       _uid: cc.uuid,
       component: cc.content.component,
     }))
 
-    const zeroComponents = props.story.about_tab[0].zero_blocks.map(zb => ({
+    const zeroComponents = tab.zero_blocks.map(zb => ({
       data: { content: zb },
       _uid: zb._uid,
       component: zb.component,
@@ -39,6 +39,14 @@ const aboutTabComponents = computed(() => {
     return [...prefilledComponents, ...zeroComponents]
   }
   return []
+}
+
+const aboutTabComponents = computed(() => {
+  return getTabComponents(props.story.about_tab[0])
+})
+
+const additionalTabs = computed(() => {
+  return props.story?.additional_tabs
 })
 
 const mainTabs = computed((): iTab[] => [
@@ -67,6 +75,20 @@ if (aboutTabComponents.value.length) {
     isOpen: false,
     components: aboutTabComponents.value,
   })
+}
+
+if (additionalTabs.value?.length) {
+  const additionalTabsWithContent = additionalTabs.value.map(tab => ({
+    name: tab.tab_name,
+    components: getTabComponents(tab),
+    isOpen: false,
+  }))
+
+  additionalTabsWithContent.forEach(tab => {
+    mainTabs.value.push(tab)
+  })
+
+  console.log(mainTabs.value)
 }
 
 onMounted(() => {

@@ -13,6 +13,8 @@ const { stories, story } = await useQoutesStories(
 
 const { open: openTab, close: closeTab, tabs } = useTab()
 
+const additionalTabs = computed(() => tabs.value.filter(tab => tab.name))
+
 const { isAuth, isWaiting } = useAppState()
 
 const versions = computed(() => {
@@ -104,11 +106,9 @@ const onPdf = async () => {
                 class="header__dropdown-li"
                 @click="closeNav"
               >
-                <NuxtLink
-                  :to="'/' + el.link"
-                  class="header__dropdown-version"
-                  >{{ el.name }}</NuxtLink
-                >
+                <a :href="'/' + el.link" class="header__dropdown-version">{{
+                  el.name
+                }}</a>
               </li>
             </ul>
           </div>
@@ -119,6 +119,15 @@ const onPdf = async () => {
           :class="{ open: isOpen }"
         >
           <ul class="header__nav-list">
+            <li
+              v-for="tab in additionalTabs"
+              :key="tab._uid"
+              class="header__nav-li"
+            >
+              <button class="header__nav-btn" @click="openTab(tab._uid)">
+                {{ tab.name }}
+              </button>
+            </li>
             <li v-if="tabs[4]" class="header__nav-li">
               <button class="header__nav-btn" @click="openTab(tabs[4]._uid)">
                 About us

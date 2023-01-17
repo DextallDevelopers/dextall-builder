@@ -55,7 +55,6 @@ export class FactsAnimation {
   }
 
   onScroll() {
-    console.log(this.vh)
     const dist = -this.scrolled / this.vh
     const height = this.scrollHeight / this.vh
 

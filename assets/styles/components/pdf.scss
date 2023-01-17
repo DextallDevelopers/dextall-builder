@@ -187,28 +187,29 @@
 }
 
 .pdf__drawings {
-  // .drawings__elevation-list {
-  //   display: block;
-  //   width: 100%;
-  // }
-  // .drawings__elevation-li {
-  //   height: 100vh;
-  //   width: fit-content;
-  //   margin: 0 auto;
-  //   margin-top: 20px;
-  //   display: flex;
-  //   flex-direction: column;
-  //   overflow: hidden;
-  // }
-  // .drawings__elevation-img {
-  //   object-fit: contain;
-  //   flex: 0 1 auto;
-  //   height: 60vh;
-  //   aspect-ratio: 1;
-  // }
+  .drawings__elevation {
+    height: 80vh;
+  }
+  .drawings__elevation-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .drawings__elevation-li {
+  }
+  .drawings__elevation-img {
+    height: 204px;
+    object-fit: contain;
+    aspect-ratio: 1;
+  }
 
   .drawings__lines-wrapper {
     display: none;
+  }
+
+  .drawings__colors-list {
+    height: 20vh;
   }
 }
 

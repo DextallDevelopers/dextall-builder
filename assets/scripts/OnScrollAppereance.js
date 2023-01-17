@@ -15,15 +15,20 @@ export class OnScrollAppereance {
     this.tl = gsap.timeline({
       scrollTrigger: {
         trigger: this.$el,
-        pin: false,
-        end: `+=bottom`,
+        pin: true,
+        start: `top-=200px`,
+        // markers: true,
+        end: '+=bottom',
         scrub: 0.1,
       },
     })
-    this.tl.to(this.$el, {
-      y: 0,
-      ease: 'linear.none',
-    })
+    // this.tl.to(this.$el, {
+    //   // y: '-100%',
+    //   scale: 0.8,
+    //   y: '-10%',
+    //   // y: 0,
+    //   ease: 'linear.none',
+    // })
   }
 
   destroy() {

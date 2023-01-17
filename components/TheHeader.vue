@@ -53,6 +53,9 @@ const onPdf = async () => {
     source: siteURL,
     format: 'Ledger',
     media: 'print',
+    margin_top: 10,
+    margin_unit: 'px',
+    test: true,
   }
 
   try {

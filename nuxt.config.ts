@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
     AIRTABLE_BASE: process.env.AIRTABLE_BASE,
     MONDAY_KEY: process.env.MONDAY_KEY,
+    DOCAMATIC_API_KEY: process.env.DOCAMATIC_API_KEY,
     ENVIROMENT: process.env.NODE_ENV,
   },
 

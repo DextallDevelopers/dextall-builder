@@ -5,6 +5,7 @@ import { ToastColor } from '~/composables/toasts'
 const route = useRoute()
 
 const { name, version } = route.params
+const config = useRuntimeConfig()
 
 const { stories, story } = await useQoutesStories(
   name as string,
@@ -83,7 +84,7 @@ const onPdf = async () => {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: 'Bearer HCWuSMRqpiP2S0aldbke9OfUG4OMgamXZcyh9ZMx',
+        Authorization: `Bearer ${config.DOCAMATIC_API_KEY}`,
       },
       body: JSON.stringify(body),
     }).then(res => res.json())

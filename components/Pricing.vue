@@ -64,7 +64,7 @@ const { close: closeTab, tabs } = useTab()
           <div class="pricing__line"></div>
           <div class="grid pricing__text-wrapper">
             <p class="pricing__text">TOTAL PRICE (MATERIAL ONLY)</p>
-            <p v-if="totalPrice" class="pricing__price">${{ totalPrice }}</p>
+            <p v-if="totalPrice" class="pricing__price">{{ totalPrice }}</p>
           </div>
           <div class="pricing__line"></div>
         </li>

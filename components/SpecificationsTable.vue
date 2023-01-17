@@ -114,7 +114,7 @@ const { totalPrice } = useComputePrice(
             TOTAL PRICE (MATERIAL ONLY)
           </td>
           <td>BRONX</td>
-          <td v-if="totalPrice">${{ totalPrice }}</td>
+          <td v-if="totalPrice">{{ totalPrice }}</td>
         </tr>
       </tbody>
     </table>

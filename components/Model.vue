@@ -108,7 +108,10 @@ const getImgSrc = (img: string, size?: string) => {
             <div v-if="idx + 1 === li.length" class="model__line"></div>
           </li>
         </ul>
-        <div class="model__btn-wrapper">
+        <div
+          v-if="story.content?.sustainability_report?.filename"
+          class="model__btn-wrapper"
+        >
           <a
             :href="story.content.sustainability_report.filename"
             target="_blank"

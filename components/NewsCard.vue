@@ -12,6 +12,19 @@ const props = defineProps<iProps>()
 
 const formattedDate = useFormattedDate(props.date)
 const $el = ref(null)
+
+// let sa
+// onMounted(() => {
+//   setTimeout(async () => {
+//     const { OnScrollAppereance } = await import(
+//       '~/assets/scripts/OnScrollAppereance'
+//     )
+//     sa = new OnScrollAppereance($el.value)
+//   }, 1000)
+// })
+// onBeforeUnmount(() => {
+//   sa && sa.destroy()
+// })
 </script>
 
 <template>

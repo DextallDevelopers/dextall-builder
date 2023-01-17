@@ -109,7 +109,13 @@ const getImgSrc = (img: string, size?: string) => {
           </li>
         </ul>
         <div class="model__btn-wrapper">
-          <button class="model__report-btn">SUSTAINABILITY REPORT</button>
+          <a
+            :href="story.content.sustainability_report.filename"
+            target="_blank"
+            download
+            class="model__report-btn"
+            >SUSTAINABILITY REPORT</a
+          >
         </div>
       </div>
     </div>

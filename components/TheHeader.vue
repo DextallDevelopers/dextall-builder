@@ -93,7 +93,7 @@ const onPdf = async () => {
       body: JSON.stringify(body),
     }).then(res => res.json())
 
-    await downloadFile(response.document, 'quote')
+    await downloadFile(response.document, name as string)
   } catch (error) {
     console.log(error)
     addToast({

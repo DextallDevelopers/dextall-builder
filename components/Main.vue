@@ -87,8 +87,6 @@ if (additionalTabs.value?.length) {
   additionalTabsWithContent.forEach(tab => {
     mainTabs.value.push(tab)
   })
-
-  console.log(mainTabs.value)
 }
 
 onMounted(() => {

@@ -169,7 +169,7 @@ const onPdf = async () => {
                 Projects
               </a>
             </li>
-            <li v-if="story.content.contacts.length" class="header__nav-li">
+            <li v-if="story?.content?.contacts?.length" class="header__nav-li">
               <a
                 class="header__nav-btn"
                 href="#contacts"

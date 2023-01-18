@@ -42,7 +42,10 @@ const getTabComponents = tab => {
 }
 
 const aboutTabComponents = computed(() => {
-  return getTabComponents(props.story.about_tab[0])
+  if (props?.story?.about_tab?.length) {
+    return getTabComponents(props?.story?.about_tab[0])
+  }
+  return null
 })
 
 const additionalTabs = computed(() => {
@@ -70,7 +73,7 @@ const mainTabs = computed((): iTab[] => [
   },
 ])
 
-if (aboutTabComponents.value.length) {
+if (aboutTabComponents.value?.length) {
   mainTabs.value.push({
     isOpen: false,
     components: aboutTabComponents.value,

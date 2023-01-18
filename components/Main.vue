@@ -133,7 +133,11 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
         <button class="main__btn" @click="open(tabs[3]._uid)">Pricing</button>
       </div>
       <div class="main__model-wrapper">
-        <Model v-if="model" :id="model[0].id" :type="model[0].type" />
+        <Model
+          v-if="model && model[0]"
+          :id="model[0]?.id"
+          :type="model[0]?.type"
+        />
       </div>
     </div>
     <Teleport to="#app">

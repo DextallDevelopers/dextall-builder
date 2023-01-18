@@ -19,7 +19,7 @@ interface iProps {
 
 const props = defineProps<iProps>()
 
-const { open, tabs, addTabs } = useTab()
+const { open, tabs, addTabs, addTab } = useTab()
 const route = useRoute()
 
 const getTabComponents = tab => {
@@ -52,7 +52,7 @@ const additionalTabs = computed(() => {
   return props.story?.additional_tabs
 })
 
-const mainTabs = computed((): iTab[] => [
+const mainTabs: iTab[] = [
   {
     isOpen: false,
     components: [
@@ -71,36 +71,40 @@ const mainTabs = computed((): iTab[] => [
     isOpen: false,
     components: [{ _uid: keysGenerator(8), component: 'pricing' }],
   },
-])
+]
 
-if (aboutTabComponents.value?.length) {
-  mainTabs.value.push({
-    isOpen: false,
-    components: aboutTabComponents.value,
-  })
-}
+addTabs(mainTabs)
+
+watch(
+  () => props?.story?.about_tab,
+  () => {
+    if (props?.story?.about_tab?.length) {
+      addTab({
+        isOpen: false,
+        components: aboutTabComponents?.value || [],
+      })
+    }
+  },
+  { immediate: true }
+)
 
 if (additionalTabs.value?.length) {
-  const additionalTabsWithContent = additionalTabs.value.map(tab => ({
+  const additionalTabsWithContent: iTab[] = additionalTabs.value.map(tab => ({
     name: tab.tab_name,
     components: getTabComponents(tab),
     isOpen: false,
   }))
 
-  additionalTabsWithContent.forEach(tab => {
-    mainTabs.value.push(tab)
-  })
+  addTabs(additionalTabsWithContent)
 }
 
 onMounted(() => {
-  addTabs(mainTabs.value)
   route.query.tab && open(route.query.tab as string)
 })
 
-const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
-  props.startQuoteDate,
-  props.endQuoteDate
-)
+const date = computed(() => {
+  return useQuoteDate(props.startQuoteDate, props.endQuoteDate)?.value
+})
 </script>
 
 <template>
@@ -109,17 +113,18 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
       <div class="main__date-wrapper">
         <div class="main__date">
           <p class="main__date-text">Date of the quote:</p>
-          <p v-if="startFormattedDate" class="main__date-number">
-            {{ startFormattedDate }}
+          <p v-if="date.startFormattedDate" class="main__date-number">
+            {{ date.startFormattedDate }}
           </p>
         </div>
         <div class="main__date">
-          <p v-if="endFormattedDate" class="main__date-text">
+          <p v-if="date.endFormattedDate" class="main__date-text">
             Time left before expiration:
           </p>
-          <p class="main__date-number">
-            {{ timeLeft }} ({{ endFormattedDate }})
-          </p>
+          <p
+            class="main__date-number"
+            v-html="`${date.timeLeft} (${date.endFormattedDate})`"
+          />
         </div>
       </div>
       <p v-if="scope" class="main__text">{{ scope }}</p>

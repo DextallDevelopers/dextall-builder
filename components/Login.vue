@@ -133,10 +133,9 @@ const onLogin = async () => {
   }
 }
 
-const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
-  props.startQuoteDate,
-  props.endQuoteDate
-)
+const date = computed(() => {
+  return useQuoteDate(props.startQuoteDate, props.endQuoteDate)?.value
+})
 
 const onChecked = isChecked => {
   isFormActive.value = isChecked.value
@@ -181,12 +180,12 @@ const onChecked = isChecked => {
       <div class="login__date-wrapper">
         <div class="login__date">
           <p class="login__date-text">Date of the quote:</p>
-          <p class="login__date-number">{{ startFormattedDate }}</p>
+          <p class="login__date-number">{{ date.startFormattedDate }}</p>
         </div>
         <div class="login__date">
           <p class="login__date-text">Expiration of the quote:</p>
           <p class="login__date-number">
-            {{ timeLeft }} ({{ endFormattedDate }})
+            {{ date.timeLeft }} ({{ date.endFormattedDate }})
           </p>
         </div>
       </div>

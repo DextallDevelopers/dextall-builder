@@ -8,9 +8,15 @@ export const useQuoteDate = (startDate, endDate) => {
     },
   }
 
-  const startFormattedDate = useFormattedDate(new Date(startDate))
+  const date = useState('date', () => ({
+    startFormattedDate: '0',
+    timeLeft: '0',
+    endFormattedDate: '0',
+  }))
 
-  const endFormattedDate = useFormattedDate(new Date(endDate))
+  date.value.startFormattedDate = useFormattedDate(new Date(startDate))
+
+  date.value.endFormattedDate = useFormattedDate(new Date(endDate))
 
   const todayDate = new Date()
 
@@ -23,5 +29,7 @@ export const useQuoteDate = (startDate, endDate) => {
     return 'Offer has expired'
   })
 
-  return { startFormattedDate, timeLeft, endFormattedDate }
+  date.value.timeLeft = timeLeft.value
+
+  return date
 }

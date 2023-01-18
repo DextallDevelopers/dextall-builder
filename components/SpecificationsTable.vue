@@ -21,7 +21,7 @@ const { totalPrice } = useComputePrice(
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr v-if="table?.system[0]" v-editable="table?.system[0]">
           <td class="specifications-table__big-text">System</td>
           <td v-if="table?.system[0]?.manufactuer">
             {{ table?.system[0]?.manufactuer }}
@@ -34,14 +34,17 @@ const { totalPrice } = useComputePrice(
             {{ table.system[0]?.info_other || table.system[0].info_dropdown }}
           </td>
         </tr>
-        <tr>
+        <tr
+          v-if="table?.energy_performance[0]"
+          v-editable="table?.energy_performance[0]"
+        >
           <td class="specifications-table__big-text">ENERGY PERFORMANCE</td>
           <td></td>
           <td v-if="table?.energy_performance[0]?.info">
             {{ table.energy_performance[0].info }}
           </td>
         </tr>
-        <tr>
+        <tr v-if="table?.windows[0]" v-editable="table?.windows[0]">
           <td class="specifications-table__big-text">
             WINDOWS (FACTORY INSTALLED)
           </td>
@@ -65,7 +68,7 @@ const { totalPrice } = useComputePrice(
             </a>
           </td>
         </tr>
-        <tr>
+        <tr v-if="table?.cladding[0]" v-editable="table?.cladding[0]">
           <td class="specifications-table__big-text">
             CLADDING (FACTORY APPLIED)
           </td>
@@ -81,7 +84,10 @@ const { totalPrice } = useComputePrice(
             }}
           </td>
         </tr>
-        <tr>
+        <tr
+          v-if="table?.exterior_cladding_finish[0]"
+          v-editable="table?.exterior_cladding_finish[0]"
+        >
           <td class="specifications-table__big-text">
             EXTERIOR CLADDING FINISH
           </td>
@@ -90,21 +96,27 @@ const { totalPrice } = useComputePrice(
             {{ table.exterior_cladding_finish[0].info }}
           </td>
         </tr>
-        <tr>
+        <tr
+          v-if="table?.facade_area_sf[0]"
+          v-editable="table?.facade_area_sf[0]"
+        >
           <td class="specifications-table__big-text">FACADE AREA (SF)</td>
           <td></td>
           <td v-if="table?.facade_area_sf[0]?.info">
             {{ table.facade_area_sf[0].info }}
           </td>
         </tr>
-        <tr>
+        <tr
+          v-if="table?.subtotal_price[0]"
+          v-editable="table?.subtotal_price[0]"
+        >
           <td class="specifications-table__big-text">SUBTOTAL PRICE</td>
           <td></td>
           <td v-if="table?.subtotal_price[0]?.info">
             {{ table.subtotal_price[0].info }}
           </td>
         </tr>
-        <tr>
+        <tr v-if="table?.tax[0]" v-editable="table?.tax[0]">
           <td class="specifications-table__big-text">TAX</td>
           <td></td>
           <td v-if="table?.tax[0]?.info">{{ table.tax[0].info }}</td>

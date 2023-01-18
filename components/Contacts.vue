@@ -124,8 +124,7 @@ const onChecked = isChecked => {
     <div class="container contacts__wrapper">
       <div class="contacts__block">
         <p class="contacts__comments">
-          We would like to hear from you. Any comments or questions that you
-          might have, please feel free to ask at anytime.
+          {{ contacts.contacts_text }}
         </p>
         <div class="contacts__card-wrapper">
           <h3 class="contacts__card-title">Contact us with any questions</h3>

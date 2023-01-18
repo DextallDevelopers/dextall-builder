@@ -27,16 +27,16 @@ export const useQoutesStories: tQoutesStories = async (name, version) => {
     )
     stories.value = data.stories
 
-    story.value = data.stories.find(s => s.name === version)
+    story.value = data.stories.find(s => s.slug === version)
   } catch (e) {
     console.log(e.message)
   }
 
   const listenStory = (version: string) => {
-    const currentStory = stories.value.find(story => story.name === version)
+    const currentStory = stories.value.find(story => story.slug === version)
 
     useCustomBridge(currentStory.id, evStory => {
-      stories.value = stories.value.filter(story => story.name !== version)
+      stories.value = stories.value.filter(story => story.slug !== version)
       stories.value = [...stories.value, evStory]
       story.value = evStory
     })

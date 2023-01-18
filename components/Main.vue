@@ -106,18 +106,22 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
       <div class="main__date-wrapper">
         <div class="main__date">
           <p class="main__date-text">Date of the quote:</p>
-          <p class="main__date-number">{{ startFormattedDate }}</p>
+          <p v-if="startFormattedDate" class="main__date-number">
+            {{ startFormattedDate }}
+          </p>
         </div>
         <div class="main__date">
-          <p class="main__date-text">Time left before expiration:</p>
+          <p v-if="endFormattedDate" class="main__date-text">
+            Time left before expiration:
+          </p>
           <p class="main__date-number">
             {{ timeLeft }} ({{ endFormattedDate }})
           </p>
         </div>
       </div>
-      <p class="main__text">{{ scope }}</p>
-      <h2 class="main__title">{{ title }}</h2>
-      <p class="main__desc">{{ address }}</p>
+      <p v-if="scope" class="main__text">{{ scope }}</p>
+      <h2 v-if="title" class="main__title">{{ title }}</h2>
+      <p v-if="address" class="main__desc">{{ address }}</p>
       <div class="main__btns-wrapper">
         <button class="main__btn" @click="open(tabs[0]._uid)">
           Product summary

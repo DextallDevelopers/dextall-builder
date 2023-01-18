@@ -4,9 +4,9 @@ interface iProps {
 }
 const props = defineProps<iProps>()
 const { totalPrice } = useComputePrice(
-  props.table.facade_area_sf[0]?.info,
-  props.table.subtotal_price[0]?.info,
-  props.table.tax[0]?.info
+  props.table?.facade_area_sf[0]?.info,
+  props.table?.subtotal_price[0]?.info,
+  props.table?.tax[0]?.info
 )
 </script>
 

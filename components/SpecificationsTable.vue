@@ -3,11 +3,15 @@ interface iProps {
   table: any
 }
 const props = defineProps<iProps>()
-const { totalPrice } = useComputePrice(
-  props.table?.facade_area_sf[0]?.info,
-  props.table?.subtotal_price[0]?.info,
-  props.table?.tax[0]?.info
-)
+
+const totalPrice = computed(() => {
+  const { totalPrice } = useComputePrice(
+    props.table?.facade_area_sf[0]?.info,
+    props.table?.subtotal_price[0]?.info,
+    props.table?.tax[0]?.info
+  )
+  return totalPrice.value || '0'
+})
 </script>
 
 <template>

@@ -13,6 +13,10 @@
   overflow: hidden;
   isolation: isolate;
   transition: border-color 0.7s $easing;
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.7;
+  }
 
   &--white {
     border: 2px solid #fff;

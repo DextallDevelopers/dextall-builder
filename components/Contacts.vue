@@ -65,6 +65,7 @@ const { onInputValue, emmitError, resetForm } = useForm(
 const { isWaiting } = useAppState()
 const { addToast } = useToasts()
 const { postDataToTable } = useMonday()
+const isFormActive = ref(false)
 
 const onSubmit = async () => {
   const inputs = formData.inputs
@@ -110,6 +111,10 @@ const onSubmit = async () => {
       isWaiting.value = false
     }, 400)
   }
+}
+
+const onChecked = isChecked => {
+  isFormActive.value = isChecked.value
 }
 </script>
 
@@ -158,7 +163,15 @@ const onSubmit = async () => {
               @input-value="onInputValue"
             />
           </div>
-          <CircleButton class="contacts__btn">Send</CircleButton>
+          <Checkbox class="contacts__checkbox" @check="onChecked">
+            <span class="contacts__checkbox-text"
+              >I give my consent to the processing of my personal data.
+              <a href="#">Privacy Policy</a>
+            </span>
+          </Checkbox>
+          <CircleButton :disabled="!isFormActive" class="contacts__btn">
+            Send
+          </CircleButton>
         </form>
       </div>
     </div>

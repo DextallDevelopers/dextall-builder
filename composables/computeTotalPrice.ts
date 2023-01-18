@@ -1,4 +1,5 @@
 export const useComputePrice = (facadeArea, subtotalPrice, tax) => {
+  const totalPrice = useState('totalPrice', () => '0')
   if (!facadeArea || !subtotalPrice || !tax) {
     return { totalPrice: 0 }
   }
@@ -10,12 +11,12 @@ export const useComputePrice = (facadeArea, subtotalPrice, tax) => {
 
   const priceWithoutTax = computedFacadeArea * computedSubtotalPrice
 
-  let totalPrice = String(priceWithoutTax * computedTax + priceWithoutTax)
+  const total = String(priceWithoutTax * computedTax + priceWithoutTax)
 
-  totalPrice = new Intl.NumberFormat('en-US', {
+  totalPrice.value = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-  }).format(+totalPrice)
+  }).format(+total)
 
   return { totalPrice }
 }

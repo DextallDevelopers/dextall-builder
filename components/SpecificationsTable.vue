@@ -23,7 +23,7 @@ const { totalPrice } = useComputePrice(
       <tbody>
         <tr v-if="table?.system[0]" v-editable="table?.system[0]">
           <td class="specifications-table__big-text">System</td>
-          <td v-if="table?.system[0]?.manufactuer">
+          <td>
             {{ table?.system[0]?.manufactuer }}
           </td>
           <td
@@ -48,8 +48,8 @@ const { totalPrice } = useComputePrice(
           <td class="specifications-table__big-text">
             WINDOWS (FACTORY INSTALLED)
           </td>
-          <td v-if="table?.windows[0]?.manufactuer">
-            {{ table.windows[0].manufactuer }}
+          <td>
+            {{ table?.windows[0]?.manufactuer }}
           </td>
           <td
             v-if="

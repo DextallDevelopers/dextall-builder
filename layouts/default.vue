@@ -21,6 +21,10 @@ onMounted(async () => {
       emitter.emit('storyChange', event.story)
     })
 
+    sbBridge.on(['published', 'change'], () => {
+      location.reload()
+    })
+
     sbBridge.pingEditor(() => {
       if (sbBridge.isInEditor()) {
         isInEditor.value = true

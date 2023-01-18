@@ -21,8 +21,6 @@ interface iProps {
 
 const props = defineProps<iProps>()
 
-console.log(props.body)
-
 const li = computed(() => {
   return props.body.content.items
 })

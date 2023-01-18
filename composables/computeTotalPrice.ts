@@ -1,8 +1,9 @@
 export const useComputePrice = (facadeArea, subtotalPrice, tax) => {
   const totalPrice = useState('totalPrice', () => '0')
   if (!facadeArea || !subtotalPrice || !tax) {
-    return { totalPrice: 0 }
+    return { totalPrice }
   }
+
   const regex = /[\d|\.|\,]+/
 
   const computedFacadeArea = +facadeArea.match(regex)

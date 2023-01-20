@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useQoutesStories } from '~/composables/stories/quotes'
-// import { parse } from 'html2pdfmake'
 
 const route = useRoute()
 
@@ -12,10 +11,12 @@ const { story, listenStory } = await useQoutesStories(
 
 listenStory(version)
 
-const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
-  story.value.content.start_quote_date,
-  story.value.content.end_quote_date
-)
+const date = computed(() => {
+  return useQuoteDate(
+    story.value.content.start_quote_date,
+    story.value.content.end_quote_date
+  )?.value
+})
 
 const getImgSrc = (img: string) => {
   if (!img) {
@@ -32,12 +33,12 @@ const getImgSrc = (img: string) => {
         <div class="pdf__date-wrapper">
           <div class="pdf__date">
             <p class="pdf__date-text">Date of the quote:</p>
-            <p class="pdf__date-number">{{ startFormattedDate }}</p>
+            <p class="pdf__date-number">{{ date.startFormattedDate }}</p>
           </div>
           <div class="pdf__date">
             <p class="pdf__date-text">Time left before expiration:</p>
             <p class="pdf__date-number">
-              {{ timeLeft }} ({{ endFormattedDate }})
+              {{ date.timeLeft }} ({{ date.endFormattedDate }})
             </p>
           </div>
         </div>
@@ -55,9 +56,6 @@ const getImgSrc = (img: string) => {
           />
         </div>
       </section>
-      <div class="pdf__image-list">
-        <ImagesList />
-      </div>
       <div class="pdf__product-specifications">
         <ProductSpecifications />
       </div>

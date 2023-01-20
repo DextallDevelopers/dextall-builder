@@ -38,6 +38,10 @@ const li = computed(() => {
 async function loadViewer() {
   let viewer
 
+  if (!props.type || !props.id) {
+    return
+  }
+
   if (props.type === 'facade') {
     viewer = new ForgeViewer('ForgeViewer', props.id, 'facade')
   }

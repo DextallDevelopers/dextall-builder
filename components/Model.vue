@@ -74,7 +74,7 @@ const getImgSrc = (img: string, size?: string) => {
 
 <template>
   <div class="model">
-    <div class="model__about">
+    <div v-if="isModel" class="model__about">
       <p class="model__italic-text">
         Use your mouse or touchbar to spin the building model
         <span>

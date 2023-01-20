@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { iStories } from '~/types/story'
 const config = useRuntimeConfig()
+const storiesData = ref<iStories>(null)
 
 const URL = `https://api.storyblok.com/v2/cdn/stories/?by_slugs=projects/*&sort_by=content.order:asc&per_page=5&version=draft&token=${config.DEXTALL_STORYBLOK_TOKEN}&cv=1671800179`
 
-const { data: storiesData } = await useFetch<iStories>(URL)
+const res = await fetch(URL).then(res => res.json())
+
+storiesData.value = res
 
 const projects = computed(() => {
   return storiesData.value.stories

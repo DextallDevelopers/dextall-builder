@@ -17,6 +17,10 @@
     padding-top: 18px;
     padding-bottom: 18px;
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 .header__wrapper {

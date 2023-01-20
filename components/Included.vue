@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { arch } from 'os'
 import { useQoutesStories } from '~/composables/stories/quotes'
 
 const route = useRoute()
@@ -21,7 +20,11 @@ const includedTab = computed(() => {
 </script>
 
 <template>
-  <section v-if="includedTab" class="section section--pb included">
+  <section
+    v-if="includedTab"
+    v-editable="includedTab"
+    class="section section--pb included"
+  >
     <div class="container grid included__wrapper">
       <div class="included__left-block">
         <h2 class="included__title">included:</h2>

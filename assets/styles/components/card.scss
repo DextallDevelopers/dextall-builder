@@ -58,6 +58,10 @@
   }
 }
 
+.card__img-block {
+  flex: 1 0 auto;
+}
+
 .card__link-icon {
   display: block;
   width: vw(24);

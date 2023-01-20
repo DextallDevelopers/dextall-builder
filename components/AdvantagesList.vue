@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useStoryblokImage } from '~/composables/storyblokImage'
+
 interface iItems {
   title_text: string
   text: string
@@ -22,6 +24,13 @@ const props = defineProps<iProps>()
 const li = computed(() => {
   return props.body.content.items
 })
+
+const getImgSrc = (img: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size: '800x800' })
+}
 </script>
 
 <template>
@@ -50,7 +59,7 @@ const li = computed(() => {
         </div>
         <img
           class="advantages__img"
-          :src="body.content.image.filename"
+          :src="getImgSrc(body.content.image.filename)"
           alt="Image"
         />
       </div>

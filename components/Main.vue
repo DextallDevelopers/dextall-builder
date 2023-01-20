@@ -19,18 +19,37 @@ interface iProps {
 
 const props = defineProps<iProps>()
 
-const { open, tabs, addTabs } = useTab()
+const { open, tabs, addTabs, addTab } = useTab()
 const route = useRoute()
 
-const aboutTabComponents = computed(() => {
-  if (props.story?.about_tab?.length) {
-    return props.story.about_tab[0]?.body.map(cc => ({
+const getTabComponents = tab => {
+  if (tab) {
+    const prefilledComponents = tab?.body.map(cc => ({
       data: cc,
       _uid: cc.uuid,
       component: cc.content.component,
     }))
+
+    const zeroComponents = tab.zero_blocks.map(zb => ({
+      data: { content: zb },
+      _uid: zb._uid,
+      component: zb.component,
+    }))
+
+    return [...prefilledComponents, ...zeroComponents]
   }
   return []
+}
+
+const aboutTabComponents = computed(() => {
+  if (props?.story?.about_tab?.length) {
+    return getTabComponents(props?.story?.about_tab[0])
+  }
+  return null
+})
+
+const additionalTabs = computed(() => {
+  return props.story?.additional_tabs
 })
 
 const mainTabs: iTab[] = [
@@ -52,21 +71,40 @@ const mainTabs: iTab[] = [
     isOpen: false,
     components: [{ _uid: keysGenerator(8), component: 'pricing' }],
   },
-  {
-    isOpen: false,
-    components: aboutTabComponents.value,
-  },
 ]
 
+addTabs(mainTabs)
+
+watch(
+  () => props?.story?.about_tab,
+  () => {
+    if (props?.story?.about_tab?.length) {
+      addTab({
+        isOpen: false,
+        components: aboutTabComponents?.value || [],
+      })
+    }
+  },
+  { immediate: true }
+)
+
+if (additionalTabs.value?.length) {
+  const additionalTabsWithContent: iTab[] = additionalTabs.value.map(tab => ({
+    name: tab.tab_name,
+    components: getTabComponents(tab),
+    isOpen: false,
+  }))
+
+  addTabs(additionalTabsWithContent)
+}
+
 onMounted(() => {
-  addTabs(mainTabs)
   route.query.tab && open(route.query.tab as string)
 })
 
-const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
-  props.startQuoteDate,
-  props.endQuoteDate
-)
+const date = computed(() => {
+  return useQuoteDate(props.startQuoteDate, props.endQuoteDate)?.value
+})
 </script>
 
 <template>
@@ -75,18 +113,23 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
       <div class="main__date-wrapper">
         <div class="main__date">
           <p class="main__date-text">Date of the quote:</p>
-          <p class="main__date-number">{{ startFormattedDate }}</p>
-        </div>
-        <div class="main__date">
-          <p class="main__date-text">Time left before expiration:</p>
-          <p class="main__date-number">
-            {{ timeLeft }} ({{ endFormattedDate }})
+          <p v-if="date.startFormattedDate" class="main__date-number">
+            {{ date.startFormattedDate }}
           </p>
         </div>
+        <div class="main__date">
+          <p v-if="date.endFormattedDate" class="main__date-text">
+            Time left before expiration:
+          </p>
+          <p
+            class="main__date-number"
+            v-html="`${date.timeLeft} (${date.endFormattedDate})`"
+          />
+        </div>
       </div>
-      <p class="main__text">{{ scope }}</p>
-      <h2 class="main__title">{{ title }}</h2>
-      <p class="main__desc">{{ address }}</p>
+      <p v-if="scope" class="main__text">{{ scope }}</p>
+      <h2 v-if="title" class="main__title">{{ title }}</h2>
+      <p v-if="address" class="main__desc">{{ address }}</p>
       <div class="main__btns-wrapper">
         <button class="main__btn" @click="open(tabs[0]._uid)">
           Product summary
@@ -98,7 +141,11 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
         <button class="main__btn" @click="open(tabs[3]._uid)">Pricing</button>
       </div>
       <div class="main__model-wrapper">
-        <Model v-if="model" :id="model[0].id" :type="model[0].type" />
+        <Model
+          v-if="model && model[0]"
+          :id="model[0]?.id"
+          :type="model[0]?.type"
+        />
       </div>
     </div>
     <Teleport to="#app">

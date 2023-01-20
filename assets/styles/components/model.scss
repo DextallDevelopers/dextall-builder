@@ -43,12 +43,22 @@
 
   @media (max-width: $br1) {
     @include col(1, 12);
-    height: 30vh;
+    height: 50vh;
   }
 
   @media (max-width: $br4) {
     @include col(1, 4);
+    height: 30vh;
   }
+}
+
+.model__img {
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .model__list-wrapper {
@@ -113,6 +123,7 @@
   text-transform: uppercase;
   color: var(--bg);
   width: fit-content;
+  margin-top: 20px;
 
   &::after {
     content: '';

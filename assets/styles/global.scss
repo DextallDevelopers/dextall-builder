@@ -21,6 +21,9 @@ body {
   overscroll-behavior-y: none;
   @include smooth-font;
   @include default;
+  @media print {
+    background-color: #fff;
+  }
 }
 
 img {

@@ -29,9 +29,9 @@ const table = computed(() => {
 })
 
 const { totalPrice } = useComputePrice(
-  table.value?.facade_area_sf[0].info,
-  table.value?.subtotal_price[0].info,
-  table.value?.tax[0].info
+  table.value?.facade_area_sf[0]?.info,
+  table.value?.subtotal_price[0]?.info,
+  table.value?.tax[0]?.info
 )
 
 const { close: closeTab, tabs } = useTab()
@@ -46,7 +46,7 @@ const { close: closeTab, tabs } = useTab()
           <div class="pricing__line"></div>
           <div class="grid pricing__text-wrapper">
             <p class="pricing__text">SUBTOTAL PRICE</p>
-            <p v-if="table.subtotal_price[0].info" class="pricing__price">
+            <p v-if="table?.subtotal_price[0]?.info" class="pricing__price">
               {{ table.subtotal_price[0].info }}
             </p>
           </div>
@@ -55,7 +55,7 @@ const { close: closeTab, tabs } = useTab()
           <div class="pricing__line"></div>
           <div class="grid pricing__text-wrapper">
             <p class="pricing__text">Tax</p>
-            <p v-if="table.tax[0].info" class="pricing__price">
+            <p v-if="table?.tax[0]?.info" class="pricing__price">
               {{ table.tax[0].info }}
             </p>
           </div>
@@ -64,7 +64,7 @@ const { close: closeTab, tabs } = useTab()
           <div class="pricing__line"></div>
           <div class="grid pricing__text-wrapper">
             <p class="pricing__text">TOTAL PRICE (MATERIAL ONLY)</p>
-            <p v-if="totalPrice" class="pricing__price">${{ totalPrice }}</p>
+            <p v-if="totalPrice" class="pricing__price">{{ totalPrice }}</p>
           </div>
           <div class="pricing__line"></div>
         </li>

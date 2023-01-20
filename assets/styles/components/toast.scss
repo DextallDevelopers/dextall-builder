@@ -2,6 +2,7 @@
   position: fixed;
   z-index: 10000;
   top: 10%;
+  pointer-events: none;
 }
 
 .toast {
@@ -9,6 +10,7 @@
   overflow: hidden;
   width: fit-content;
   margin-left: auto;
+  pointer-events: auto;
   font-size: 16px;
   background-color: var(--black);
   border-radius: 5px;

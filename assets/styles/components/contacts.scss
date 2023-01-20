@@ -75,9 +75,6 @@
     justify-items: center;
     gap: 20px;
     margin-top: 36px;
-  }
-
-  @media (max-width: $br2) {
     grid-template-columns: 1fr;
   }
 }
@@ -119,10 +116,15 @@
   align-items: center;
   flex-direction: column;
   margin-top: vw(40);
-  width: 100%;
+  width: vw(878);
 
   @media (max-width: $br1) {
     margin-top: 20px;
+    width: 60%;
+  }
+
+  @media (max-width: $br3) {
+    width: 100%;
   }
 }
 
@@ -146,16 +148,39 @@
   flex-direction: column;
   margin-top: vw(100);
   row-gap: vw(60);
-  width: vw(878);
+  width: 100%;
 
   @media (max-width: $br1) {
     margin-top: 80px;
     row-gap: 40px;
-    width: 60%;
   }
+}
 
-  @media (max-width: $br3) {
-    width: 100%;
+.contacts__checkbox {
+  margin-top: vw(40);
+  align-self: flex-start;
+
+  @media (max-width: $br1) {
+    margin-top: 32px;
+  }
+}
+
+.contacts__checkbox-text {
+  @include default;
+  -webkit-user-select: none;
+  user-select: none;
+  text-align: start;
+
+  a {
+    display: inline-block;
+    line-height: 1em;
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: var(--main);
+    }
   }
 }
 

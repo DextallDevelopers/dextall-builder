@@ -1,3 +1,9 @@
+.drawings__wrapper {
+  @media print {
+    page-break-before: always;
+  }
+}
+
 .drawings__title {
   @include h2;
   max-width: vw(878);
@@ -73,6 +79,10 @@
   @media (max-width: $br1) {
     margin-top: 72px;
   }
+
+  @media print {
+    page-break-before: always;
+  }
 }
 
 .drawings__lines-wrapper {
@@ -84,6 +94,10 @@
   transform: translate(-50%, -50%);
 
   @media (max-width: $br1) {
+    display: none;
+  }
+
+  @media print {
     display: none;
   }
 }
@@ -138,6 +152,10 @@
 .drawings__elevation-li {
   display: block;
   height: fit-content;
+
+  @media print {
+    page-break-before: always;
+  }
 }
 
 .drawings__elevation-title {

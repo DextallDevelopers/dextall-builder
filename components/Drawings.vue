@@ -17,10 +17,21 @@ const drawingsTab = computed(() => {
   }
   return null
 })
+
+const getImgSrc = (img: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size: '800x800' })
+}
 </script>
 
 <template>
-  <section v-if="drawingsTab" class="section section--pb drawings">
+  <section
+    v-if="drawingsTab"
+    v-editable="drawingsTab"
+    class="section section--pb drawings"
+  >
     <div class="container drawings__wrapper">
       <div class="drawings__img-block">
         <h2 v-if="drawingsTab.title" class="drawings__title">
@@ -35,7 +46,11 @@ const drawingsTab = computed(() => {
             :key="idx"
             class="drawings__img-li"
           >
-            <img class="drawings__img" :src="elem.filename" alt="Image" />
+            <img
+              class="drawings__img"
+              :src="getImgSrc(elem.filename)"
+              alt="Image"
+            />
             <p v-if="elem.name" class="drawings__img-desc">{{ elem.name }}</p>
           </li>
         </ul>
@@ -64,7 +79,7 @@ const drawingsTab = computed(() => {
             </h3>
             <img
               class="drawings__elevation-img"
-              :src="elem.filename"
+              :src="getImgSrc(elem.filename)"
               alt="Image"
             />
           </li>
@@ -74,6 +89,7 @@ const drawingsTab = computed(() => {
         <Color
           v-for="(color, idx) in drawingsTab.legend"
           :key="idx"
+          v-editable="color"
           :text="color.text"
           :stroke="color.border.color"
           :background="color.background.color"

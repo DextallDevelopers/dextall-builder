@@ -47,6 +47,13 @@ const spliTitle = str => {
 
   return newStr.join(' ')
 }
+
+const getImgSrc = (img: string, size?: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size })
+}
 </script>
 
 <template>
@@ -54,7 +61,7 @@ const spliTitle = str => {
     <div class="container products__bg-wrapper">
       <img
         class="products__bg"
-        :src="body.content.image.filename"
+        :src="getImgSrc(body.content.image.filename, '1920x1080')"
         alt="Image"
       />
       <h2 class="products__big-text" v-html="spliTitle(body.content.title)" />
@@ -77,7 +84,7 @@ const spliTitle = str => {
                 <img
                   v-else
                   class="products__img"
-                  :src="item.image.filename"
+                  :src="getImgSrc(item.image.filename, '720x410')"
                   alt="Building"
                 />
               </div>

@@ -21,6 +21,10 @@ onMounted(async () => {
       emitter.emit('storyChange', event.story)
     })
 
+    sbBridge.on(['published', 'change'], () => {
+      location.reload()
+    })
+
     sbBridge.pingEditor(() => {
       if (sbBridge.isInEditor()) {
         isInEditor.value = true
@@ -40,9 +44,6 @@ useHead({
   script: [
     {
       src: 'https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js',
-    },
-    {
-      src: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.2/pdfmake.min.js',
     },
   ],
 })

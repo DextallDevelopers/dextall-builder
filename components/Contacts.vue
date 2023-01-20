@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useQoutesStories } from '~/composables/stories/quotes'
 import { useTeamStories } from '~/composables/stories/team'
+import { ToastColor } from '~/composables/toasts'
 
 const route = useRoute()
 
@@ -56,11 +57,65 @@ const formData = reactive({
   ],
 })
 
-const { onInputValue, onSubmit } = useForm(
+const { onInputValue, emmitError, resetForm } = useForm(
   formData,
   $inputs,
   'Dextall contacts'
 )
+const { isWaiting } = useAppState()
+const { addToast } = useToasts()
+const { postDataToTable } = useMonday()
+const isFormActive = ref(false)
+
+const onSubmit = async () => {
+  const inputs = formData.inputs
+  const isError = inputs.find(el => el.error)
+
+  if (isError) {
+    emmitError()
+    return
+  }
+
+  try {
+    isWaiting.value = true
+
+    const columnObj = {
+      email: `${inputs[0].value} ${inputs[0].value}`,
+      long_text: inputs[1].value,
+      text: story.value.content.title,
+      text8: story.value.name,
+    }
+
+    const userData = JSON.parse(localStorage.getItem('user') || '{}')
+    const userName = userData?.Name || 'unknown user'
+
+    await postDataToTable('3789633557', userName, columnObj)
+
+    addToast({
+      color: ToastColor.success,
+      id: Date.now().toString(),
+      text: 'Form was successfully submitted',
+    })
+
+    resetForm()
+  } catch (error) {
+    addToast({
+      color: ToastColor.danger,
+      id: Date.now().toString(),
+      text: `Some errors was occured, ${error.message}`,
+    })
+    console.log(error.message)
+    formData.hasErrors = true
+  } finally {
+    setTimeout(() => {
+      isWaiting.value = false
+    }, 400)
+  }
+}
+
+const onChecked = isChecked => {
+  isFormActive.value = isChecked.value
+}
 </script>
 
 <template>
@@ -69,8 +124,7 @@ const { onInputValue, onSubmit } = useForm(
     <div class="container contacts__wrapper">
       <div class="contacts__block">
         <p class="contacts__comments">
-          We would like to hear from you. Any comments or questions that you
-          might have, please feel free to ask at anytime.
+          {{ contacts.contacts_text }}
         </p>
         <div class="contacts__card-wrapper">
           <h3 class="contacts__card-title">Contact us with any questions</h3>
@@ -108,7 +162,15 @@ const { onInputValue, onSubmit } = useForm(
               @input-value="onInputValue"
             />
           </div>
-          <CircleButton class="contacts__btn">Send</CircleButton>
+          <Checkbox class="contacts__checkbox" @check="onChecked">
+            <span class="contacts__checkbox-text"
+              >I give my consent to the processing of my personal data.
+              <a href="#">Privacy Policy</a>
+            </span>
+          </Checkbox>
+          <CircleButton :disabled="!isFormActive" class="contacts__btn">
+            Send
+          </CircleButton>
         </form>
       </div>
     </div>

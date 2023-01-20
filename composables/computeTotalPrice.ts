@@ -1,15 +1,23 @@
 export const useComputePrice = (facadeArea, subtotalPrice, tax) => {
-
+  const totalPrice = useState('totalPrice', () => '0')
   if (!facadeArea || !subtotalPrice || !tax) {
-    return { totalPrice: 0 }
+    return { totalPrice }
   }
 
-  const computedFacadeArea = +facadeArea.replace(/\D/gm, '')
-  const computedSubtotalPrice = +subtotalPrice.replace(/\D/gm, '')
-  const computedTax = +tax.replace(/\D/gm, '')
+  const regex = /[\d|\.|\,]+/
 
-    
-  const totalPrice = (computedFacadeArea * computedSubtotalPrice + computedTax).toFixed(2)
+  const computedFacadeArea = +facadeArea.match(regex)
+  const computedSubtotalPrice = +subtotalPrice.match(regex)
+  const computedTax = +tax.match(regex) / 100
+
+  const priceWithoutTax = computedFacadeArea * computedSubtotalPrice
+
+  const total = String(priceWithoutTax * computedTax + priceWithoutTax)
+
+  totalPrice.value = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(+total)
 
   return { totalPrice }
 }

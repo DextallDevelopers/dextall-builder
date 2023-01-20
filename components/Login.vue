@@ -3,6 +3,7 @@ import { ToastColor } from '~/composables/toasts'
 
 interface iProps {
   title?: string
+  version?: string
   startQuoteDate?: string
   endQuoteDate?: string
 }
@@ -18,6 +19,7 @@ const $inputs = ref([])
 
 const { isAuth } = useAppState()
 const { addToast } = useToasts()
+const isFormActive = ref(false)
 
 const formData = reactive({
   hasErrors: true,
@@ -65,18 +67,18 @@ const onLogin = async () => {
 
   try {
     isWaiting.value = true
-    const { getDataFromTable, postDataToTable } = useAirtable()
+    // const { getDataFromTable, postDataToTable } = useAirtable()
 
-    const users = (await getDataFromTable('Users')) as iUser[]
+    // const users = (await getDataFromTable('Users')) as iUser[]
 
     const newUserData = {
       Name: formData.inputs[0].value,
       Email: formData.inputs[1].value,
     }
 
-    if (!users.length) {
-      return
-    }
+    const { getDataFromTable, postDataToTable } = useMonday()
+
+    const users = (await getDataFromTable('3789599018')) as iUser[]
 
     const updatedUsers = users
       .filter(user => user.Email)
@@ -86,16 +88,23 @@ const onLogin = async () => {
       addToast({
         color: ToastColor.success,
         id: Date.now().toString(),
-        text: 'User already exists',
+        text: `Welcome back, ${newUserData.Name}`,
       })
 
       window.localStorage.setItem('isAuth', 'true')
       window.localStorage.setItem('user', JSON.stringify(newUserData))
+      window.localStorage.setItem('authTimestamp', Date.now().toString())
+
       isAuth.value = true
       resetForm()
       return
     } else {
-      await postDataToTable('Users', [{ fields: newUserData }])
+      const columnObj = {
+        email: `${newUserData.Email} ${newUserData.Email}`,
+        text97: props.title,
+        text7: props.version,
+      }
+      await postDataToTable('3789599018', newUserData.Name, columnObj)
 
       addToast({
         color: ToastColor.success,
@@ -105,10 +114,16 @@ const onLogin = async () => {
 
       window.localStorage.setItem('user', JSON.stringify(newUserData))
       window.localStorage.setItem('isAuth', 'true')
+      window.localStorage.setItem('authTimestamp', Date.now().toString())
       isAuth.value = true
       resetForm()
     }
   } catch (error) {
+    addToast({
+      color: ToastColor.danger,
+      id: Date.now().toString(),
+      text: `Some errors was occured, ${error.message}`,
+    })
     console.log(error.message)
     formData.hasErrors = true
   } finally {
@@ -118,10 +133,13 @@ const onLogin = async () => {
   }
 }
 
-const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
-  props.startQuoteDate,
-  props.endQuoteDate
-)
+const date = computed(() => {
+  return useQuoteDate(props.startQuoteDate, props.endQuoteDate)?.value
+})
+
+const onChecked = isChecked => {
+  isFormActive.value = isChecked.value
+}
 </script>
 
 <template>
@@ -148,18 +166,26 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
               @input-value="onInputValue"
             />
           </div>
-          <CircleButton class="login__btn">Login</CircleButton>
+          <Checkbox class="login__checkbox" @check="onChecked">
+            <span class="login__checkbox-text"
+              >I give my consent to the processing of my personal data.
+              <a href="#">Privacy Policy</a>
+            </span>
+          </Checkbox>
+          <CircleButton :disabled="!isFormActive" class="login__btn">
+            Login
+          </CircleButton>
         </form>
       </div>
       <div class="login__date-wrapper">
         <div class="login__date">
           <p class="login__date-text">Date of the quote:</p>
-          <p class="login__date-number">{{ startFormattedDate }}</p>
+          <p class="login__date-number">{{ date.startFormattedDate }}</p>
         </div>
         <div class="login__date">
           <p class="login__date-text">Expiration of the quote:</p>
           <p class="login__date-number">
-            {{ timeLeft }} ({{ endFormattedDate }})
+            {{ date.timeLeft }} ({{ date.endFormattedDate }})
           </p>
         </div>
       </div>

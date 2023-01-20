@@ -12,24 +12,23 @@ const props = defineProps<iProps>()
 
 const formattedDate = useFormattedDate(props.date)
 const $el = ref(null)
-let sa
 
-onMounted(() => {
-  setTimeout(async () => {
-    const { OnScrollAppereance } = await import(
-      '~/assets/scripts/OnScrollAppereance'
-    )
-    sa = new OnScrollAppereance($el.value)
-  }, 1000)
-})
-
-onBeforeUnmount(() => {
-  sa && sa.destroy()
-})
+// let sa
+// onMounted(() => {
+//   setTimeout(async () => {
+//     const { OnScrollAppereance } = await import(
+//       '~/assets/scripts/OnScrollAppereance'
+//     )
+//     sa = new OnScrollAppereance($el.value)
+//   }, 1000)
+// })
+// onBeforeUnmount(() => {
+//   sa && sa.destroy()
+// })
 </script>
 
 <template>
-  <li ref="$el" class="grid cards__li">
+  <div ref="$el" class="grid cards__li">
     <div class="cards__text-block">
       <h3 class="cards__title">{{ title }}</h3>
       <CircleButton
@@ -50,5 +49,5 @@ onBeforeUnmount(() => {
       class="cards__image-block"
       :style="`background-image: url('${img}')`"
     ></div>
-  </li>
+  </div>
 </template>

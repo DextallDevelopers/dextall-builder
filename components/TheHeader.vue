@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useQoutesStories } from '~~/composables/stories/quotes'
+import { ToastColor } from '~/composables/toasts'
 
 const route = useRoute()
 
 const { name, version } = route.params
+const config = useRuntimeConfig()
 
 const { stories, story } = await useQoutesStories(
   name as string,
@@ -12,7 +14,9 @@ const { stories, story } = await useQoutesStories(
 
 const { open: openTab, close: closeTab, tabs } = useTab()
 
-const { isAuth } = useAppState()
+const additionalTabs = computed(() => tabs.value.filter(tab => tab.name))
+
+const { isAuth, isWaiting } = useAppState()
 
 const versions = computed(() => {
   return stories.value
@@ -40,28 +44,66 @@ onBeforeUnmount(() => {
   document.body.removeEventListener('click', closeNav)
 })
 
-const onPdf = () => {
-  console.log(window.location)
-  const siteURL = window.location.href + '/pdf'
-  const url = `https://api.html2pdf.app/v1/generate?html=${siteURL}&landscape=true&apiKey=3wrhnNNhHtKWM5rnLdczVtUGAnONZtOHJd044U3qFG1F7ccu2DYhNBmgdQdfiPrF`
+const { addToast } = useToasts()
 
-  function download(blob, filename) {
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.style.display = 'none'
-    a.href = url
-    // the filename you want
-    a.download = filename
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    window.URL.revokeObjectURL(url)
+const onPdf = async () => {
+  const siteURL = window.location.origin + window.location.pathname + '/pdf'
+
+  const body = {
+    source: siteURL,
+    format: 'Ledger',
+    media: 'print',
+    margin_top: 10,
+    margin_unit: 'px',
+    test: true,
   }
 
-  fetch(url, { method: 'GET' })
-    .then(response => response.blob().then(blob => download(blob, 'filename')))
-    .then(response => console.log(response))
-    .catch(err => console.error(err))
+  try {
+    isWaiting.value = true
+
+    async function downloadFile(url: string, fileName: string) {
+      await fetch(url, {
+        method: 'get',
+        referrerPolicy: 'no-referrer',
+      })
+        .then(res => {
+          console.log(res)
+          return res
+        })
+        .then(res => res.blob())
+        .then(res => {
+          const aElement = document.createElement('a')
+          aElement.setAttribute('download', fileName + '.pdf')
+          const href = URL.createObjectURL(res)
+          aElement.href = href
+          // aElement.setAttribute('href', href);
+          aElement.setAttribute('target', '_blank')
+          aElement.click()
+          URL.revokeObjectURL(href)
+        })
+    }
+
+    const response = await fetch('https://docamatic.com/api/v1/pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${config.DOCAMATIC_API_KEY}`,
+      },
+      body: JSON.stringify(body),
+    }).then(res => res.json())
+
+    await downloadFile(response.document, name as string)
+  } catch (error) {
+    console.log(error)
+    addToast({
+      color: ToastColor.danger,
+      id: Date.now().toString(),
+      text: `Some errors was occured, ${error.message}`,
+    })
+  } finally {
+    isWaiting.value = false
+  }
 }
 </script>
 
@@ -87,14 +129,13 @@ const onPdf = () => {
               <li
                 v-for="(el, idx) in versions"
                 :key="idx"
+                v-editable="stories[idx].content"
                 class="header__dropdown-li"
                 @click="closeNav"
               >
-                <NuxtLink
-                  :to="'/' + el.link"
-                  class="header__dropdown-version"
-                  >{{ el.name }}</NuxtLink
-                >
+                <a :href="'/' + el.link" class="header__dropdown-version">{{
+                  el.name
+                }}</a>
               </li>
             </ul>
           </div>
@@ -105,12 +146,21 @@ const onPdf = () => {
           :class="{ open: isOpen }"
         >
           <ul class="header__nav-list">
-            <li class="header__nav-li">
+            <li
+              v-for="tab in additionalTabs"
+              :key="tab._uid"
+              class="header__nav-li"
+            >
+              <button class="header__nav-btn" @click="openTab(tab._uid)">
+                {{ tab.name }}
+              </button>
+            </li>
+            <li v-if="tabs[4]" class="header__nav-li">
               <button class="header__nav-btn" @click="openTab(tabs[4]._uid)">
                 About us
               </button>
             </li>
-            <li class="header__nav-li">
+            <li v-if="story.content.show_projects" class="header__nav-li">
               <a
                 class="header__nav-btn"
                 href="#projects"
@@ -119,7 +169,7 @@ const onPdf = () => {
                 Projects
               </a>
             </li>
-            <li class="header__nav-li">
+            <li v-if="story?.content?.contacts?.length" class="header__nav-li">
               <a
                 class="header__nav-btn"
                 href="#contacts"

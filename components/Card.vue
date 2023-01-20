@@ -9,6 +9,13 @@ interface iProps {
   linkedin: string
 }
 defineProps<iProps>()
+
+const getImgSrc = (img: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size: '60x60' })
+}
 </script>
 
 <template>
@@ -17,7 +24,7 @@ defineProps<iProps>()
       <img
         v-if="avatar"
         class="card__profile-image"
-        :src="avatar"
+        :src="getImgSrc(avatar)"
         alt="Avatar"
       />
       <IconsProfile v-else class="card__profile-icon" />

@@ -4,7 +4,6 @@ import { TransitionProps } from 'nuxt/dist/app/compat/capi'
 export const useTransition = () => {
   const route = useRoute()
   const pageTransition: TransitionProps = {
-    duration: 250,
     mode: 'out-in',
     css: false,
     appear: true,

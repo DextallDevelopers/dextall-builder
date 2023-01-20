@@ -3,9 +3,14 @@
   background-color: var(--white);
   border-radius: 20px;
   width: fit-content;
+  min-width: 100%;
 
   @media (max-width: $br1) {
     padding: 40px 20px;
+  }
+
+  @media print {
+    page-break-before: always;
   }
 }
 

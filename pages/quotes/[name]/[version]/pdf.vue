@@ -16,6 +16,13 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
   story.value.content.start_quote_date,
   story.value.content.end_quote_date
 )
+
+const getImgSrc = (img: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size: '1920x1080' })
+}
 </script>
 
 <template>
@@ -34,14 +41,32 @@ const { startFormattedDate, timeLeft, endFormattedDate } = useQuoteDate(
             </p>
           </div>
         </div>
-        <p class="pdf__text">{{ story.content.scope }}</p>
-        <h2 class="pdf__title">{{ story.content.title }}</h2>
-        <p class="pdf__desc">{{ story.content.address }}</p>
+        <div class="pdf__section-content">
+          <p class="pdf__text">{{ story.content.scope }}</p>
+          <h2 class="pdf__title">{{ story.content.title }}</h2>
+          <p class="pdf__desc">{{ story.content.address }}</p>
+        </div>
+        <div class="pdf__image">
+          <img
+            v-if="story?.content?.images[0]?.filename"
+            class="pdf__image-img"
+            :src="getImgSrc(story.content.images[0].filename)"
+            alt="Image"
+          />
+        </div>
       </section>
-      <ImagesList />
-      <ProductSpecifications />
-      <Included />
-      <Drawings />
+      <div class="pdf__image-list">
+        <ImagesList />
+      </div>
+      <div class="pdf__product-specifications">
+        <ProductSpecifications />
+      </div>
+      <div class="pdf__included">
+        <Included />
+      </div>
+      <div class="pdf__drawings">
+        <Drawings />
+      </div>
     </div>
   </div>
 </template>

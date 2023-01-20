@@ -16,12 +16,12 @@ export class OnScrollAppereance {
       scrollTrigger: {
         trigger: this.$el,
         pin: false,
-        end: `+=bottom`,
+        start: `top-=200px`,
         scrub: 0.1,
       },
     })
     this.tl.to(this.$el, {
-      y: 0,
+      scale: 0.9,
       ease: 'linear.none',
     })
   }

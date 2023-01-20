@@ -19,6 +19,7 @@
     "eslint-plugin-nuxt": "^3.2.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.7.1",
+    "esm": "^3.2.25",
     "nuxt": "3.0.0-rc.1",
     "prettier": "^2.6.2",
     "sass": "^1.51.0",
@@ -35,6 +36,7 @@
     "gsap": "^3.10.3",
     "html2pdf.js": "0.9.0",
     "html2pdfmake": "^0.0.10",
+    "monday-sdk-js": "^0.1.6",
     "pinia": "^2.0.13",
     "progressbar.js": "^1.1.0",
     "supports-webp": "^2.0.1"

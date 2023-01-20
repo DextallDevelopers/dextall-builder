@@ -25,7 +25,7 @@ const li = computed(() => {
       number: story.value.content.total_number_of_panels,
     },
     {
-      text: 'Window to Wall Ratio',
+      text: 'Window to Wall Ratio %',
       number: story.value.content.window_to_wall_ratio,
     },
     {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useQoutesStories } from '~/composables/stories/quotes'
+import { useTeamStories } from '~/composables/stories/team'
 
 const route = useRoute()
 
@@ -8,6 +9,22 @@ const { story, listenStory } = await useQoutesStories(
   name as string,
   version as string
 )
+
+const { stories: team } = await useTeamStories()
+
+const contacts = computed(() => {
+  if (story.value.content?.contacts) {
+    return story.value.content.contacts[0]
+  }
+  return null
+})
+
+const members = computed(() => {
+  if (contacts.value?.team) {
+    return team.value.filter(el => contacts.value.team.includes(el.uuid))
+  }
+  return []
+})
 
 listenStory(version)
 
@@ -64,6 +81,40 @@ const getImgSrc = (img: string) => {
       </div>
       <div class="pdf__drawings">
         <Drawings />
+      </div>
+      <div class="pdf__team">
+        <section
+          v-if="contacts"
+          id="contacts"
+          class="section section--pb contacts"
+        >
+          <div class="container contacts__wrapper">
+            <div class="contacts__block">
+              <p class="contacts__comments">
+                {{ contacts.contacts_text }}
+              </p>
+              <div class="contacts__card-wrapper">
+                <h3 class="contacts__card-title">
+                  Contact us with any questions
+                </h3>
+                <ul v-if="members.length" class="contacts__cards">
+                  <Card
+                    v-for="member in members"
+                    :key="member._uid"
+                    :avatar="member.content.user_avatar.filename"
+                    :name="member.name"
+                    :career="member.content.position"
+                    :email="member.content.email"
+                    :phone="member.content.phone"
+                    :text="member.content.description"
+                    :linkedin="member.content.linkedin"
+                    class="contacts__card pdf__contacts-card"
+                  />
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>

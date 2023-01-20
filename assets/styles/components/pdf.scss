@@ -249,3 +249,12 @@
     background-color: transparent;
   }
 }
+
+.pdf__team {
+  @media print {
+    page-break-before: always;
+  }
+  .pdf__contacts-card {
+    background-color: var(--bg);
+  }
+}

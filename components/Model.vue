@@ -74,10 +74,18 @@ const getImgSrc = (img: string, size?: string) => {
   }
   return useStoryblokImage(img, { size })
 }
+
+const isReportPopupOpen = ref(false)
 </script>
 
 <template>
   <div class="model">
+    <Teleport to="#app">
+      <ReportPopup
+        :is-open="isReportPopupOpen"
+        @close="isReportPopupOpen = false"
+      />
+    </Teleport>
     <div v-if="isModel" class="model__about">
       <p class="model__italic-text">
         Use your mouse or touchbar to spin the building model
@@ -121,6 +129,7 @@ const getImgSrc = (img: string, size?: string) => {
             target="_blank"
             download
             class="model__report-btn"
+            @click.prevent="isReportPopupOpen = true"
             >SUSTAINABILITY REPORT</a
           >
         </div>

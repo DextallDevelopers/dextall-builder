@@ -35,12 +35,22 @@ const date = computed(() => {
   )?.value
 })
 
-const getImgSrc = (img: string) => {
-  if (!img) {
-    return null
-  }
-  return useStoryblokImage(img, { size: '1920x1080' })
-}
+const items = computed(() => {
+  return [
+    {
+      text: 'Total Number of Panels',
+      number: story.value.content.total_number_of_panels,
+    },
+    {
+      text: 'Window to Wall Ratio %',
+      number: story.value.content.window_to_wall_ratio,
+    },
+    {
+      text: 'Carbon Footprint Reduction %',
+      number: story.value.content.carbon_footprint_reduction,
+    },
+  ]
+})
 </script>
 
 <template>
@@ -64,13 +74,18 @@ const getImgSrc = (img: string) => {
           <h2 class="pdf__title">{{ story.content.title }}</h2>
           <p class="pdf__desc">{{ story.content.address }}</p>
         </div>
-        <div class="pdf__image">
-          <img
-            v-if="story?.content?.images[0]?.filename"
-            class="pdf__image-img"
-            :src="getImgSrc(story.content.images[0].filename)"
-            alt="Image"
-          />
+
+        <div class="pdf__list-wrapper">
+          <ul class="pdf__list">
+            <li v-for="(item, idx) in items" :key="idx" class="pdf__li">
+              <div class="pdf__line"></div>
+              <div class="pdf__text-wrapper">
+                <p class="pdf__list-text">{{ item.text }}</p>
+                <p class="pdf__number">{{ item.number }}</p>
+              </div>
+              <div v-if="idx + 1 === items.length" class="pdf__line"></div>
+            </li>
+          </ul>
         </div>
       </section>
       <div class="pdf__product-specifications">

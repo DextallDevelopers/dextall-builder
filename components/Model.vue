@@ -18,7 +18,7 @@ const { story, listenStory } = await useQoutesStories(
   version as string
 )
 
-const li = computed(() => {
+const items = computed(() => {
   return [
     {
       text: 'Total Number of Panels',
@@ -74,10 +74,18 @@ const getImgSrc = (img: string, size?: string) => {
   }
   return useStoryblokImage(img, { size })
 }
+
+const isReportPopupOpen = ref(false)
 </script>
 
 <template>
   <div class="model">
+    <Teleport to="#app">
+      <ReportPopup
+        :is-open="isReportPopupOpen"
+        @close="isReportPopupOpen = false"
+      />
+    </Teleport>
     <div v-if="isModel" class="model__about">
       <p class="model__italic-text">
         Use your mouse or touchbar to spin the building model
@@ -103,13 +111,13 @@ const getImgSrc = (img: string, size?: string) => {
       </div>
       <div class="model__list-wrapper">
         <ul class="model__list">
-          <li v-for="(item, idx) in li" :key="idx" class="model__li">
+          <li v-for="(item, idx) in items" :key="idx" class="model__li">
             <div class="model__line"></div>
             <div class="model__text-wrapper">
               <p class="model__text">{{ item.text }}</p>
               <p class="model__number">{{ item.number }}</p>
             </div>
-            <div v-if="idx + 1 === li.length" class="model__line"></div>
+            <div v-if="idx + 1 === items.length" class="model__line"></div>
           </li>
         </ul>
         <div
@@ -121,6 +129,7 @@ const getImgSrc = (img: string, size?: string) => {
             target="_blank"
             download
             class="model__report-btn"
+            @click.prevent="isReportPopupOpen = true"
             >SUSTAINABILITY REPORT</a
           >
         </div>

@@ -19,7 +19,6 @@ const $inputs = ref([])
 
 const { isAuth } = useAppState()
 const { addToast } = useToasts()
-const isFormActive = ref(false)
 
 const formData = reactive({
   hasErrors: true,
@@ -136,10 +135,6 @@ const onLogin = async () => {
 const date = computed(() => {
   return useQuoteDate(props.startQuoteDate, props.endQuoteDate)?.value
 })
-
-const onChecked = isChecked => {
-  isFormActive.value = isChecked.value
-}
 </script>
 
 <template>
@@ -166,15 +161,7 @@ const onChecked = isChecked => {
               @input-value="onInputValue"
             />
           </div>
-          <Checkbox class="login__checkbox" @check="onChecked">
-            <span class="login__checkbox-text"
-              >I give my consent to the processing of my personal data.
-              <a href="#">Privacy Policy</a>
-            </span>
-          </Checkbox>
-          <CircleButton :disabled="!isFormActive" class="login__btn">
-            Login
-          </CircleButton>
+          <CircleButton class="login__btn"> Login </CircleButton>
         </form>
       </div>
       <div class="login__date-wrapper">

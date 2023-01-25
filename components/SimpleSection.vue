@@ -1,13 +1,15 @@
 <script setup lang="ts">
+interface iImage {
+  filename: string
+}
+
 interface iProps {
   body: {
     content: {
       title: string
       subtitle: string
       description: string
-      image: {
-        filename: string
-      }
+      images: iImage[]
     }
   }
 }
@@ -32,12 +34,23 @@ const getImgSrc = (img: string, size?: string) => {
       <p class="simple-section__desc">
         {{ body.content.description }}
       </p>
-      <img
-        v-if="body.content.image.filename"
-        class="simple-section__img"
-        :src="getImgSrc(body.content.image.filename, '1920x1080')"
-        alt="Image"
-      />
+
+      <ul
+        v-if="body.content.images?.length"
+        class="simple-section__images-wrapper"
+      >
+        <li
+          v-for="img in body.content.images"
+          :key="img.filename"
+          class="simple-section__li"
+        >
+          <img
+            class="simple-section__img"
+            :src="getImgSrc(img.filename, '700x700')"
+            alt="Image"
+          />
+        </li>
+      </ul>
     </div>
   </section>
 </template>

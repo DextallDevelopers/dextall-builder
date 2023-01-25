@@ -35,10 +35,32 @@
   }
 }
 
-.simple-section__img {
+.simple-section__images-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: row;
+  gap: vw(20);
   margin-top: vw(72);
 
   @media (max-width: $br1) {
+    gap: 20px;
     margin-top: 36px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $br4) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.simple-section__img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  aspect-ratio: 1/0.8;
+  object-fit: cover;
+
+  @media (min-width: $br1) {
+    height: fit-content;
   }
 }

@@ -55,7 +55,7 @@ const getImgSrc = (img: string) => {
           </li>
         </ul>
       </div>
-      <div class="drawings__elevation">
+      <div v-if="drawingsTab.drawings.length" class="drawings__elevation">
         <div
           v-if="
             drawingsTab.drawings.length >= 3 && drawingsTab.drawings.length < 5
@@ -65,10 +65,7 @@ const getImgSrc = (img: string) => {
           <div class="drawings__line"></div>
           <div class="drawings__line"></div>
         </div>
-        <ul
-          v-if="drawingsTab.drawings.length"
-          class="grid drawings__elevation-list"
-        >
+        <ul class="grid drawings__elevation-list">
           <li
             v-for="(elem, idx) in drawingsTab.drawings"
             :key="idx"

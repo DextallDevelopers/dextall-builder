@@ -16,6 +16,10 @@ const { open: openTab, close: closeTab, tabs } = useTab()
 
 const additionalTabs = computed(() => tabs.value.filter(tab => tab.name))
 
+const isAbout = computed(() => {
+  return story.value?.content?.is_about_active
+})
+
 const { isAuth, isWaiting } = useAppState()
 
 const versions = computed(() => {
@@ -155,7 +159,7 @@ const onPdf = async () => {
                 {{ tab.name }}
               </button>
             </li>
-            <li v-if="tabs[4]" class="header__nav-li">
+            <li v-if="isAbout" class="header__nav-li">
               <button class="header__nav-btn" @click="openTab(tabs[4]._uid)">
                 About us
               </button>

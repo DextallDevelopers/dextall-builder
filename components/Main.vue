@@ -19,7 +19,7 @@ interface iProps {
 
 const props = defineProps<iProps>()
 
-const { open, tabs, addTabs, addTab } = useTab()
+const { open, tabs, addTabs } = useTab()
 const route = useRoute()
 
 const getTabComponents = tab => {
@@ -40,13 +40,6 @@ const getTabComponents = tab => {
   }
   return []
 }
-
-const aboutTabComponents = computed(() => {
-  if (props?.story?.about_tab?.length) {
-    return getTabComponents(props?.story?.about_tab[0])
-  }
-  return null
-})
 
 const additionalTabs = computed(() => {
   return props.story?.additional_tabs
@@ -71,22 +64,13 @@ const mainTabs: iTab[] = [
     isOpen: false,
     components: [{ _uid: keysGenerator(8), component: 'pricing' }],
   },
+  {
+    isOpen: false,
+    components: [{ _uid: keysGenerator(8), component: 'about' }],
+  },
 ]
 
 addTabs(mainTabs)
-
-watch(
-  () => props?.story?.about_tab,
-  () => {
-    if (props?.story?.about_tab?.length) {
-      addTab({
-        isOpen: false,
-        components: aboutTabComponents?.value || [],
-      })
-    }
-  },
-  { immediate: true }
-)
 
 if (additionalTabs.value?.length) {
   const additionalTabsWithContent: iTab[] = additionalTabs.value.map(tab => ({

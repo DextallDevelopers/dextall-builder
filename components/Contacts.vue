@@ -128,7 +128,11 @@ const onChecked = isChecked => {
         </p>
         <div class="contacts__card-wrapper">
           <h3 class="contacts__card-title">Contact us with any questions</h3>
-          <ul v-if="members.length" class="contacts__cards">
+          <ul
+            v-if="members.length"
+            class="contacts__cards"
+            :class="members.length === 1 && 'contacts__cards--only-one'"
+          >
             <Card
               v-for="member in members"
               :key="member._uid"

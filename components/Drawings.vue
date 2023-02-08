@@ -22,7 +22,7 @@ const getImgSrc = (img: string) => {
   if (!img) {
     return null
   }
-  return useStoryblokImage(img, { size: '800x800' })
+  return useStoryblokImage(img, { size: '1920x0' })
 }
 </script>
 
@@ -40,7 +40,7 @@ const getImgSrc = (img: string) => {
         <p v-if="drawingsTab.description" class="drawings__desc">
           {{ drawingsTab.description }}
         </p>
-        <ul v-if="drawingsTab.images.length" class="grid drawings__img-list">
+        <ul v-if="drawingsTab.images.length" class="drawings__img-list">
           <li
             v-for="(elem, idx) in drawingsTab.images"
             :key="idx"

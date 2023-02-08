@@ -15,7 +15,7 @@ const getImgSrc = (img: string) => {
   if (!img) {
     return null
   }
-  return useStoryblokImage(img, { size: '500x500' })
+  return useStoryblokImage(img, { size: '1920x0' })
 }
 </script>
 

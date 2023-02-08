@@ -22,7 +22,7 @@ const getImgSrc = (img: string) => {
   if (!img) {
     return null
   }
-  return useStoryblokImage(img, { size: '800x800' })
+  return useStoryblokImage(img, { size: '1920x0' })
 }
 </script>
 
@@ -40,7 +40,7 @@ const getImgSrc = (img: string) => {
         <p v-if="drawingsTab.description" class="drawings__desc">
           {{ drawingsTab.description }}
         </p>
-        <ul v-if="drawingsTab.images.length" class="grid drawings__img-list">
+        <ul v-if="drawingsTab.images.length" class="drawings__img-list">
           <li
             v-for="(elem, idx) in drawingsTab.images"
             :key="idx"
@@ -55,7 +55,7 @@ const getImgSrc = (img: string) => {
           </li>
         </ul>
       </div>
-      <div class="drawings__elevation">
+      <div v-if="drawingsTab.drawings.length" class="drawings__elevation">
         <div
           v-if="
             drawingsTab.drawings.length >= 3 && drawingsTab.drawings.length < 5
@@ -65,10 +65,7 @@ const getImgSrc = (img: string) => {
           <div class="drawings__line"></div>
           <div class="drawings__line"></div>
         </div>
-        <ul
-          v-if="drawingsTab.drawings.length"
-          class="grid drawings__elevation-list"
-        >
+        <ul class="grid drawings__elevation-list">
           <li
             v-for="(elem, idx) in drawingsTab.drawings"
             :key="idx"

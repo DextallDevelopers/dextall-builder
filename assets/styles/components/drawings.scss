@@ -28,8 +28,9 @@
 }
 
 .drawings__img-list {
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-flow: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
+  width: 100%;
   column-gap: vw(20);
   row-gap: vw(72);
   margin-top: vw(72);
@@ -41,8 +42,8 @@
     margin-top: 36px;
   }
 
-  @media (max-width: $br2) {
-    grid-template-columns: repeat(2, 1fr);
+  @media (max-width: $br3) {
+    grid-template-columns: 1fr;
   }
 
   @media (max-width: $br4) {
@@ -58,6 +59,7 @@
 .drawings__img-li {
   display: block;
   height: fit-content;
+  width: 100%;
 }
 
 .drawings__img-desc {
@@ -176,7 +178,8 @@
 .drawings__img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: fit-content;
+  border-radius: 10px;
 }
 
 .drawings__elevation-img {

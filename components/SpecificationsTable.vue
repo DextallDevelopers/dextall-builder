@@ -62,7 +62,8 @@ const totalPrice = computed(() => {
             class="specifications-table--under-text"
           >
             <a
-              :href="table?.windows[0]?.link"
+              :href="table?.windows[0]?.inline_table.filename"
+              download
               target="_blank"
               rel="noreferer noopener"
             >
@@ -129,7 +130,7 @@ const totalPrice = computed(() => {
           <td class="specifications-table__big-text">
             TOTAL PRICE (MATERIAL ONLY)
           </td>
-          <td>BRONX</td>
+          <td></td>
           <td v-if="totalPrice">{{ totalPrice }}</td>
         </tr>
       </tbody>

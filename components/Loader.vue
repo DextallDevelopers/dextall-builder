@@ -1,5 +1,5 @@
 <template>
-  <div class="loader">
+  <div class="e-loader">
     <Spinner />
   </div>
 </template>

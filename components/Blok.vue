@@ -65,6 +65,8 @@ const getBlokName = name => {
 
     case 'team':
       return defineAsyncComponent(() => import('~/components/Team.vue'))
+    case 'about':
+      return defineAsyncComponent(() => import('~/components/About.vue'))
   }
 }
 </script>

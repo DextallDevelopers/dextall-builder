@@ -32,6 +32,7 @@
   grid-template-columns: repeat(auto-fit, minmax(30vw, 1fr));
   width: 100%;
   column-gap: vw(20);
+  height: fit-content;
   row-gap: vw(72);
   margin-top: vw(72);
   user-select: none;
@@ -178,7 +179,6 @@
 .drawings__img {
   display: block;
   width: 100%;
-  height: fit-content;
   border-radius: 10px;
 }
 

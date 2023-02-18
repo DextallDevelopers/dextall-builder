@@ -56,6 +56,10 @@ useHead({
       <Meta name="viewport" conten="width=device-width, initial-scale=1">
       </Meta>
       <Link rel="icon" type="image/x-icon" href="/favicon.ico"> </Link>
+      <Meta name="twitter:card" content="summary_large_image"> </Meta>
+      <Meta name="twitter:image" content="/twitter.png"> </Meta>
+      <Meta property="og:image" content="/twitter.png"> </Meta>
+      <Meta name="robots" content="noindex"></Meta>
     </Head>
     <TheHeader />
 

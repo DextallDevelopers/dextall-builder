@@ -60,8 +60,12 @@ onMounted(() => {
 
 <template>
   <div>
+    <Head>
+      <Title>{{ story?.content?.title }}</Title>
+      <Meta name="description" :content="story?.content?.scope" />
+    </Head>
     <Loader v-if="!isLoaded" />
-    <div v-else-if="isAuth && isLoaded" data-page>
+    <div v-else-if="!isAuth && isLoaded" data-page>
       <Main
         v-editable="story.content"
         :story="story.content"

@@ -33,6 +33,8 @@ onMounted(async () => {
   }, 200)
 })
 
+const GOOGLE_TM_ID = 'GTM-KRPG7RF'
+
 useHead({
   link: [
     {
@@ -45,6 +47,15 @@ useHead({
     {
       src: 'https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js',
     },
+    {
+      hid: 'gtm',
+      children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','${GOOGLE_TM_ID}');`,
+      type: 'text/javascript',
+    },
   ],
 })
 </script>
@@ -53,7 +64,7 @@ useHead({
   <div id="app">
     <Head>
       <Title>Dextall Builder</Title>
-      <Meta name="viewport" conten="width=device-width, initial-scale=1">
+      <Meta name="viewport" content="width=device-width, initial-scale=1">
       </Meta>
       <Link rel="icon" type="image/x-icon" href="/favicon.ico"> </Link>
       <Meta name="twitter:card" content="summary_large_image"> </Meta>

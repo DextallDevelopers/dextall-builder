@@ -24,11 +24,13 @@ const route = useRoute()
 
 const getTabComponents = tab => {
   if (tab) {
-    const prefilledComponents = tab?.body.map(cc => ({
-      data: cc,
-      _uid: cc.uuid,
-      component: cc.content.component,
-    }))
+    const prefilledComponents = tab?.body
+      .map(cc => ({
+        data: cc,
+        _uid: cc.uuid,
+        component: cc.content.component,
+      }))
+      .filter(pc => pc.component !== 'numbers_section')
 
     const zeroComponents = tab.zero_blocks.map(zb => ({
       data: { content: zb },

@@ -161,7 +161,7 @@ const onPdf = async () => {
             </li>
             <li v-if="isAbout" class="header__nav-li">
               <button class="header__nav-btn" @click="openTab(tabs[4]._uid)">
-                About us
+                Advantages
               </button>
             </li>
             <li v-if="story.content.show_projects" class="header__nav-li">

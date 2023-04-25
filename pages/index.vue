@@ -10,7 +10,6 @@ try {
     version: 'draft',
   })
   stories.value = data.stories
-  console.log(stories.value)
 } catch (e) {
   console.log(e.message)
 }

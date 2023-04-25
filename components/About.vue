@@ -15,13 +15,13 @@ const getComponent = (name: string) => {
   }
 }
 
-const ourMissionComponent = computed(() => {
-  return getComponent('Our Mission')
-})
+// const ourMissionComponent = computed(() => {
+//   return getComponent('Our Mission')
+// })
 
-const approachComponent = computed(() => {
-  return getComponent('Approach')
-})
+// const approachComponent = computed(() => {
+//   return getComponent('Approach')
+// })
 
 const numbersComponent = computed(() => {
   return getComponent('numbers')
@@ -30,6 +30,6 @@ const numbersComponent = computed(() => {
 
 <template>
   <div class="about">
-    <Blok :body="[ourMissionComponent, approachComponent, numbersComponent]" />
+    <Blok :body="[numbersComponent]" />
   </div>
 </template>

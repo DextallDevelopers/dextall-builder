@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ForgeViewer, AggregatedForgeViewer } from '~/assets/scripts/viewer'
 import { useQoutesStories } from '~/composables/stories/quotes'
+import { useReportStory } from '~/composables/stories/report'
 
 interface iProps {
   id: string
@@ -17,6 +18,14 @@ const { story, listenStory } = await useQoutesStories(
   name as string,
   version as string
 )
+
+const { story: reportStory } = await useReportStory()
+
+const report = computed(() => {
+  return reportStory.value?.content?.file?.filename
+})
+
+console.log(report.value)
 
 const items = computed(() => {
   return [
@@ -120,18 +129,19 @@ const isReportPopupOpen = ref(false)
             <div v-if="idx + 1 === items.length" class="model__line"></div>
           </li>
         </ul>
-        <div
-          v-if="story.content?.sustainability_report?.filename"
-          class="model__btn-wrapper"
-        >
+        <div class="model__btn-wrapper">
           <a
-            :href="story.content.sustainability_report.filename"
+            v-if="report"
+            :href="report"
             target="_blank"
             download
             class="model__report-btn"
-            @click.prevent="isReportPopupOpen = true"
-            >SUSTAINABILITY REPORT</a
           >
+            SUSTAINABILITY REPORT
+          </a>
+          <div v-else class="model__report-btn model__report-btn--disabled">
+            SUSTAINABILITY REPORT (SOON)
+          </div>
         </div>
       </div>
     </div>

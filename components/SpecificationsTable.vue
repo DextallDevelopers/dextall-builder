@@ -2,16 +2,16 @@
 interface iProps {
   table: any
 }
-const props = defineProps<iProps>()
+defineProps<iProps>()
 
-const totalPrice = computed(() => {
-  const { totalPrice } = useComputePrice(
-    props.table?.facade_area_sf[0]?.info,
-    props.table?.subtotal_price[0]?.info,
-    props.table?.tax[0]?.info
-  )
-  return totalPrice.value || '0'
-})
+// const totalPrice = computed(() => {
+//   const { totalPrice } = useComputePrice(
+//     props.table?.facade_area_sf[0]?.info,
+//     props.table?.subtotal_price[0]?.info,
+//     props.table?.tax[0]?.info
+//   )
+//   return totalPrice.value || '0'
+// })
 </script>
 
 <template>
@@ -19,9 +19,9 @@ const totalPrice = computed(() => {
     <table class="specifications-table">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Manufacturer</th>
-          <th>Technical details</th>
+          <th>Dextall System</th>
+          <th></th>
+          <th>Performance</th>
         </tr>
       </thead>
       <tbody>
@@ -111,7 +111,7 @@ const totalPrice = computed(() => {
             {{ table.facade_area_sf[0].info }}
           </td>
         </tr>
-        <tr
+        <!-- <tr
           v-if="table?.subtotal_price[0]"
           v-editable="table?.subtotal_price[0]"
         >
@@ -132,7 +132,7 @@ const totalPrice = computed(() => {
           </td>
           <td></td>
           <td v-if="totalPrice">{{ totalPrice }}</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>

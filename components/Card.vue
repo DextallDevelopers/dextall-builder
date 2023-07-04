@@ -7,7 +7,9 @@ interface iProps {
   phone: string
   text: string
   linkedin: string
+  isContacts?: boolean
 }
+
 defineProps<iProps>()
 
 const getImgSrc = (img: string) => {
@@ -56,7 +58,7 @@ const getImgSrc = (img: string) => {
           </a>
         </p>
       </div>
-      <p class="card__about">
+      <p v-if="isContacts" class="card__about">
         {{ text }}
       </p>
     </div>

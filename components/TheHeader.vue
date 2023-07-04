@@ -125,7 +125,7 @@ const onPdf = async () => {
       <div v-if="isAuth" class="header__content-wrapper">
         <div class="header__dropdown-wrapper">
           <p class="header__quote">
-            Quote History:
+            Quote Version:
             <span class="header__span-quote">{{ story.name }}</span>
           </p>
           <div class="header__dropdown-content">

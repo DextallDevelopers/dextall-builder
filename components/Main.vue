@@ -91,6 +91,17 @@ onMounted(() => {
 const date = computed(() => {
   return useQuoteDate(props.startQuoteDate, props.endQuoteDate)?.value
 })
+
+// const calculatedQuoteDate = computed(() => {
+//   const startDate = new Date(date.value.startFormattedDate)
+//   const endDate = new Date(date.value.endFormattedDate)
+
+//   const timeDifference = endDate.getTime() - startDate.getTime()
+
+//   const daysDifference = Math.floor(timeDifference / (24 * 60 * 60 * 1000))
+
+//   return daysDifference
+// })
 </script>
 
 <template>
@@ -104,9 +115,15 @@ const date = computed(() => {
           </p>
         </div>
         <div class="main__date">
+          <p class="main__date-text">The offer is valid till:</p>
+          <p v-if="date.endFormattedDate" class="main__date-number">
+            {{ date.endFormattedDate }}
+          </p>
+        </div>
+        <div class="main__date">
           <p v-if="date.endFormattedDate" class="main__date-text">
             <span v-if="date.timeLeft !== 'Offer has expired'"
-              >Quote is valid for:</span
+              >Time left before:</span
             >
           </p>
           <p class="main__date-number" v-html="`${date.timeLeft}`" />

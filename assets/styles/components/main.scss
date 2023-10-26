@@ -11,13 +11,14 @@
 .main__date {
   line-height: 1em;
   text-align: right;
+  margin-top: vw(20);
 
-  &:last-of-type {
-    margin-top: vw(20);
+  &:first-of-type {
+    margin-top: 0 !important;
+  }
 
-    @media (max-width: $br1) {
-      margin-top: 4px;
-    }
+  @media (max-width: $br1) {
+    margin-top: 4px;
   }
 
   @media (max-width: $br4) {

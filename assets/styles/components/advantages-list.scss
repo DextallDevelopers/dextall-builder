@@ -1,0 +1,122 @@
+.advantages__title {
+  @include h2;
+}
+
+.advantages__content-wrapper {
+  margin-top: vw(40);
+
+  @media (max-width: $br1) {
+    margin-top: 20px;
+  }
+}
+
+.advantages__left-block {
+  @include col(1, 6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: $br1) {
+    @include col(1, 12);
+  }
+
+  @media (max-width: $br4) {
+    @include col(1, 4);
+  }
+}
+
+.advantages__text {
+  font-size: vw(16);
+  line-height: 100%;
+  max-width: vw(340);
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+    max-width: 70%;
+  }
+
+  @media (max-width: $br3) {
+    max-width: 85%;
+  }
+
+  @media (max-width: $br4) {
+    max-width: 100%;
+  }
+}
+
+.advantages__list {
+  @media (max-width: $br1) {
+    margin-top: 40px;
+  }
+}
+
+.advantages__line {
+  height: 2px;
+  width: 100%;
+  background-color: var(--main);
+}
+
+.advantages__text-wrapper {
+  grid-template-columns: repeat(8, 1fr);
+  padding: vw(20) 0;
+  align-items: center;
+
+  @media (max-width: $br1) {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 15px 0;
+  }
+}
+
+.advantages__bold-text {
+  @include col(1, 4);
+  font-size: vw(25);
+  line-height: 110%;
+  text-transform: uppercase;
+  -webkit-text-stroke: 0.4px;
+  font-weight: 500;
+
+  @media (max-width: $br1) {
+    font-size: size(25, 20);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
+  }
+}
+
+.advantages__italic-text {
+  @include col(5, 8);
+  @include italic;
+  text-align: right;
+  font-size: vw(20);
+  line-height: 110%;
+  text-transform: uppercase;
+
+  @media (max-width: $br1) {
+    @include col(1, 4);
+    @include row(2, 2);
+    font-size: size(20, 16);
+    text-align: left;
+    margin-top: 10px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 16px;
+  }
+}
+
+.advantages__img {
+  @include col(7, 12);
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+
+  @media (max-width: $br1) {
+    @include col(1, 12);
+    margin-top: 30px;
+  }
+
+  @media (max-width: $br4) {
+    @include col(1, 4);
+  }
+}

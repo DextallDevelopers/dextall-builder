@@ -1,0 +1,150 @@
+.numbers {
+  --height: var(--th);
+}
+
+.numbers__wrapper {
+  display: flex;
+  position: relative;
+
+  @media (max-width: $br1) {
+    flex-direction: column-reverse;
+  }
+}
+
+.numbers__left-block-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  height: var(--th);
+}
+
+.numbers__left-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+
+  @media (min-width: $br1) {
+    width: 50%;
+  }
+
+  @media (max-width: $br1) {
+    height: 100%;
+  }
+}
+
+.numbers__desc {
+  text-transform: uppercase;
+  font-size: vw(16);
+  max-width: vw(386);
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+    max-width: 100%;
+  }
+}
+
+.numbers__title {
+  @include default;
+  line-height: 110%;
+  font-size: vw(60);
+  margin-top: vw(20);
+  text-transform: uppercase;
+
+  @media (max-width: $br1) {
+    font-size: size(60, 36);
+    margin-top: 15px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 36px;
+  }
+}
+
+.numbers__right-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background-color: #e0e0e0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: var(--th);
+
+  @media (min-width: $br1) {
+    width: 50%;
+  }
+
+  @media (max-width: $br1) {
+    height: 50vh;
+    height: calc(var(--th) / 3);
+  }
+}
+
+.numbers__ellipse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+
+  @media (min-width: $br1) {
+    height: vw(515);
+    width: vw(515);
+  }
+
+  @media (max-width: $br1) {
+    height: 168px;
+    width: 168px;
+  }
+}
+
+.numbers__content-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: vw(40);
+  &.active {
+    opacity: 1;
+  }
+  @media (max-width: $br1) {
+    gap: 20px;
+  }
+}
+
+.numbers__number {
+  @include default;
+  font-size: vw(80);
+  line-height: 110%;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px;
+  @media (max-width: $br1) {
+    font-size: 28px;
+  }
+}
+
+.numbers__arrow {
+  display: block;
+  max-width: 100%;
+  width: vw(66);
+  height: vw(40);
+  @media (max-width: $br1) {
+    width: 28px;
+    height: 16px;
+  }
+}

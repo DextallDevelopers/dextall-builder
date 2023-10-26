@@ -126,7 +126,7 @@ const onPdf = async () => {
         <div class="header__dropdown-wrapper">
           <p class="header__quote">
             Quote Version:
-            <span class="header__span-quote">{{ story.name }}</span>
+            <span class="header__span-quote">{{ story?.name }}</span>
           </p>
           <div class="header__dropdown-content">
             <ul class="header__dropdown">
@@ -138,7 +138,7 @@ const onPdf = async () => {
                 @click="closeNav"
               >
                 <a :href="'/' + el.link" class="header__dropdown-version">{{
-                  el.name
+                  el?.name
                 }}</a>
               </li>
             </ul>
@@ -156,7 +156,7 @@ const onPdf = async () => {
               class="header__nav-li"
             >
               <button class="header__nav-btn" @click="openTab(tab._uid)">
-                {{ tab.name }}
+                {{ tab?.name }}
               </button>
             </li>
             <li v-if="isAbout" class="header__nav-li">
@@ -164,7 +164,7 @@ const onPdf = async () => {
                 Advantages
               </button>
             </li>
-            <li v-if="story.content.show_projects" class="header__nav-li">
+            <li v-if="story?.content?.show_projects" class="header__nav-li">
               <a
                 class="header__nav-btn"
                 href="#projects"

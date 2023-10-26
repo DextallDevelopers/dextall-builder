@@ -14,8 +14,9 @@ export const useComponentsStories: tComponentsStories = async name => {
   const storyapi = useStoryblokApi()
 
   try {
-    const { data } = await storyapi.get(`cdn/stories/?by_slugs=components/*`, {
+    const { data } = await storyapi.get(`cdn/stories`, {
       version: 'draft',
+      by_slugs: `components/*`,
     })
     stories.value = data.stories
 
@@ -27,7 +28,8 @@ export const useComponentsStories: tComponentsStories = async name => {
   const listenStory = (name: string) => {
     const currentStory = stories.value.find(story => story.slug === name)
 
-    useCustomBridge(currentStory.id, evStory => {
+    if (process.client && !currentStory) return
+    useStoryblokBridge(currentStory.id, evStory => {
       stories.value = stories.value.filter(story => story.slug !== name)
       stories.value = [...stories.value, evStory]
       story.value = evStory

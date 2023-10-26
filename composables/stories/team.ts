@@ -11,19 +11,14 @@ export const useTeamStories: tTeamStories = async () => {
   const storyapi = useStoryblokApi()
 
   try {
-    const { data } = await storyapi.get(
-      `cdn/stories/?by_slugs=global/team/*`,
-      {
-        version: 'draft',
-      }
-    )
+    const { data } = await storyapi.get(`cdn/stories`, {
+      version: 'draft',
+      by_slugs: 'global/team/*',
+    })
     stories.value = data.stories
-
-
   } catch (e) {
     console.log(e.message)
   }
 
-
-  return {stories }
+  return { stories }
 }

@@ -6,8 +6,9 @@ const storyapi = useStoryblokApi()
 const stories: Ref<iStory[]> = ref([])
 
 try {
-  const { data } = await storyapi.get(`cdn/stories/?by_slugs=quotes/*`, {
+  const { data } = await storyapi.get(`cdn/stories`, {
     version: 'draft',
+    by_slugs: 'quotes/*',
   })
   stories.value = data.stories
 } catch (e) {

@@ -24,8 +24,8 @@ const { isAuth, isWaiting } = useAppState()
 
 const versions = computed(() => {
   return stories.value
-    .map(s => ({ name: s.name, link: s.full_slug }))
-    .sort(function (a, b) {
+    ?.map(s => ({ name: s.name, link: s.full_slug }))
+    ?.sort(function (a, b) {
       return ('' + a.name).localeCompare(b.name)
     })
 })
@@ -40,7 +40,7 @@ const closeNav = () => {
   isOpen.value = false
 }
 
-onMounted(async () => {
+onMounted(() => {
   document.body.addEventListener('click', closeNav)
 })
 

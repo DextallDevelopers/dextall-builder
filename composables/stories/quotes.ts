@@ -1,6 +1,5 @@
 import { Ref } from 'nuxt/dist/app/compat/capi'
 import { iStory } from '~/types/story'
-import { useCustomBridge } from '../customBridge'
 
 type tQoutesStories = (
   arg0: string,
@@ -18,13 +17,11 @@ export const useQoutesStories: tQoutesStories = async (name, version) => {
   const storyapi = useStoryblokApi()
 
   try {
-    const { data } = await storyapi.get(
-      `cdn/stories/?by_slugs=quotes/${name}/*&`,
-      {
-        version: 'draft',
-        resolve_relations: ['About tab (optional).body', 'Optional_tab.body'],
-      }
-    )
+    const { data } = await storyapi.get(`cdn/stories`, {
+      version: 'draft',
+      resolve_relations: ['About tab (optional).body', 'Optional_tab.body'],
+      by_slugs: `quotes/${name}/*`,
+    })
     stories.value = data.stories
 
     story.value = data.stories.find(s => s.slug === version)
@@ -33,11 +30,13 @@ export const useQoutesStories: tQoutesStories = async (name, version) => {
   }
 
   const listenStory = (version: string) => {
-    useCustomBridge(story.value?.id, evStory => {
-      stories.value = stories.value.filter(story => story.slug !== version)
-      stories.value = [...stories.value, evStory]
-      story.value = evStory
-    })
+    if (process.client) {
+      useStoryblokBridge(story.value?.id, evStory => {
+        stories.value = stories.value.filter(story => story.slug !== version)
+        stories.value = [...stories.value, evStory]
+        story.value = evStory
+      })
+    }
   }
 
   return { story, stories, listenStory }

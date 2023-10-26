@@ -105,12 +105,11 @@ const date = computed(() => {
         </div>
         <div class="main__date">
           <p v-if="date.endFormattedDate" class="main__date-text">
-            Time left before expiration:
+            <span v-if="date.timeLeft !== 'Offer has expired'"
+              >Quote is valid for:</span
+            >
           </p>
-          <p
-            class="main__date-number"
-            v-html="`${date.timeLeft} (${date.endFormattedDate})`"
-          />
+          <p class="main__date-number" v-html="`${date.timeLeft}`" />
         </div>
       </div>
       <p v-if="scope" class="main__text">{{ scope }}</p>
@@ -121,10 +120,14 @@ const date = computed(() => {
           Product summary
         </button>
         <button class="main__btn" @click="open(tabs[1]._uid)">
-          What's Included
+          What's Included & Exclusions
         </button>
-        <button class="main__btn" @click="open(tabs[2]._uid)">Drawings</button>
-        <button class="main__btn" @click="open(tabs[3]._uid)">Pricing</button>
+        <button class="main__btn" @click="open(tabs[2]._uid)">
+          Elevations / Scope
+        </button>
+        <button class="main__btn" @click="open(tabs[3]._uid)">
+          Pricing & Alternates
+        </button>
       </div>
       <div class="main__model-wrapper">
         <Model

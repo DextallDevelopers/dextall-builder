@@ -143,6 +143,7 @@ const onChecked = isChecked => {
               :phone="member.content.phone"
               :text="member.content.description"
               :linkedin="member.content.linkedin"
+              :is-contacts="false"
               class="contacts__card"
             />
           </ul>

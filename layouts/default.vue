@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { useFonts } from '~/composables/fonts'
-import emitter from 'tiny-emitter/instance.js'
 
 useFonts()
-
-const { isInEditor } = useAppState()
 
 onMounted(async () => {
   const { hello } = await import('~/assets/scripts/utils/hello')
@@ -13,24 +10,6 @@ onMounted(async () => {
   const { winSizes } = await import('~/assets/scripts/utils/winSizes')
   const { resize } = await import('@emotionagency/utils')
   resize.on(winSizes)
-
-  setTimeout(() => {
-    const sbBridge = new window.StoryblokBridge()
-
-    sbBridge.on(['input', 'published', 'change'], event => {
-      emitter.emit('storyChange', event.story)
-    })
-
-    sbBridge.on(['published', 'change'], () => {
-      location.reload()
-    })
-
-    sbBridge.pingEditor(() => {
-      if (sbBridge.isInEditor()) {
-        isInEditor.value = true
-      }
-    })
-  }, 200)
 })
 
 const GOOGLE_TM_ID = 'GTM-KRPG7RF'

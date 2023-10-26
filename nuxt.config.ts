@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     strict: false,
   },
 
-  buildModules: [
+  modules: [
     [
       '@storyblok/nuxt',
       {

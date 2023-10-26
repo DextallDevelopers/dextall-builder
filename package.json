@@ -32,7 +32,7 @@
     "@emotionagency/utils": "latest",
     "gsap": "^3.10.3",
     "@nuxtjs/axios": "^5.13.6",
-    "@storyblok/nuxt": "4.3.0",
+    "@storyblok/nuxt": "^5.7.1",
     "airtable": "^0.11.6",
     "monday-sdk-js": "^0.1.6",
     "progressbar.js": "^1.1.0",

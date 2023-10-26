@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { iStory } from '~~/types/story'
 import { Ref } from 'nuxt/dist/app/compat/capi'
+import { iStory } from '~~/types/story'
 
 const storyapi = useStoryblokApi()
 const stories: Ref<iStory[]> = ref([])

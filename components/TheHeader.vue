@@ -124,10 +124,11 @@ const onPdf = async () => {
       </a>
       <div v-if="isAuth" class="header__content-wrapper">
         <div class="header__dropdown-wrapper">
-          <p class="header__quote">
+          <p class="header__quote header__quote--hovered">
             Quote Version:
             <span class="header__span-quote">{{ story?.name }}</span>
           </p>
+          <p class="header__quote">Drawing version: 75% DD</p>
           <div class="header__dropdown-content">
             <ul class="header__dropdown">
               <li

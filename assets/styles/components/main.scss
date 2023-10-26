@@ -42,22 +42,6 @@
   line-height: 100%;
 }
 
-.main__text {
-  font-size: vw(24);
-  line-height: 100%;
-  text-transform: uppercase;
-  padding-top: vw(32);
-
-  @media (max-width: $br1) {
-    font-size: size(24, 16);
-    padding-top: 60px;
-  }
-
-  @media (max-width: $br4) {
-    font-size: 16px;
-  }
-}
-
 .main__title {
   @include h2;
   margin-top: vw(30);

@@ -59,7 +59,9 @@
     }
 
     .header__quote {
-      opacity: 1;
+      &--hovered {
+        opacity: 1;
+      }
     }
   }
 }
@@ -71,6 +73,14 @@
   @media (max-width: $br1) {
     position: relative;
     top: 2.5px;
+  }
+
+  &:last-of-type {
+    margin-top: vw(10);
+
+    @media (max-width: $br1) {
+      margin-top: 6px;
+    }
   }
 }
 

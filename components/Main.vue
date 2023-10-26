@@ -129,7 +129,6 @@ const date = computed(() => {
           <p class="main__date-number" v-html="`${date.timeLeft}`" />
         </div>
       </div>
-      <p v-if="scope" class="main__text">{{ scope }}</p>
       <h2 v-if="title" class="main__title">{{ title }}</h2>
       <p v-if="address" class="main__desc">{{ address }}</p>
       <div class="main__btns-wrapper">

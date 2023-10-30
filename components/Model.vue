@@ -2,13 +2,16 @@
 import { ForgeViewer, AggregatedForgeViewer } from '~/assets/scripts/viewer'
 import { useQoutesStories } from '~/composables/stories/quotes'
 import { useReportStory } from '~/composables/stories/report'
+import { iMember } from '~/types/story'
 
 interface iProps {
   id: string
   type: 'facade' | 'building' | 'aggregated'
+  reducedCard: iMember
 }
 
 const props = defineProps<iProps>()
+const { open, tabs } = useTab()
 const isModel = ref(false)
 
 const route = useRoute()
@@ -24,8 +27,6 @@ const { story: reportStory } = await useReportStory()
 const report = computed(() => {
   return reportStory.value?.content?.file?.filename
 })
-
-console.log(report.value)
 
 const items = computed(() => {
   return [
@@ -118,30 +119,52 @@ const isReportPopupOpen = ref(false)
           alt="Image"
         />
       </div>
-      <div class="model__list-wrapper">
-        <ul class="model__list">
-          <li v-for="(item, idx) in items" :key="idx" class="model__li">
-            <div class="model__line"></div>
-            <div class="model__text-wrapper">
-              <p class="model__text">{{ item.text }}</p>
-              <p class="model__number">{{ item.number }}</p>
+      <div class="model__list-items">
+        <Button @click="open(tabs[3]._uid)">Pricing</Button>
+        <div class="model__main-btns">
+          <Button @click="open(tabs[0]._uid)">Technical details</Button>
+          <Button @click="open(tabs[2]._uid)">Elevations/Scope</Button>
+        </div>
+        <div class="model__list-wrapper">
+          <ul class="model__list">
+            <li v-for="(item, idx) in items" :key="idx" class="model__li">
+              <div class="model__line"></div>
+              <div class="model__text-wrapper">
+                <p class="model__text">{{ item.text }}</p>
+                <p class="model__number">{{ item.number }}</p>
+              </div>
+              <div v-if="idx + 1 === items.length" class="model__line"></div>
+            </li>
+          </ul>
+          <div class="model__btn-wrapper">
+            <a
+              v-if="report"
+              :href="report"
+              target="_blank"
+              download
+              class="model__report-btn"
+            >
+              SUSTAINABILITY REPORT
+            </a>
+            <div v-else class="model__report-btn model__report-btn--disabled">
+              SUSTAINABILITY REPORT (SOON)
             </div>
-            <div v-if="idx + 1 === items.length" class="model__line"></div>
-          </li>
-        </ul>
-        <div class="model__btn-wrapper">
-          <a
-            v-if="report"
-            :href="report"
-            target="_blank"
-            download
-            class="model__report-btn"
-          >
-            SUSTAINABILITY REPORT
-          </a>
-          <div v-else class="model__report-btn model__report-btn--disabled">
-            SUSTAINABILITY REPORT (SOON)
           </div>
+        </div>
+        <div class="model__card-wrapper">
+          <h3 class="model__title">Contact us with any questions</h3>
+          <ReducedCard
+            :avatar="reducedCard.content.user_avatar.filename"
+            :name="reducedCard.name"
+            :career="reducedCard.content.position"
+            :email="reducedCard.content.email"
+            :phone="reducedCard.content.phone"
+            :text="reducedCard.content.description"
+            :linkedin="reducedCard.content.linkedin"
+            :facebook="reducedCard.content.facebook"
+            :is-contacts="false"
+            class="model__card"
+          />
         </div>
       </div>
     </div>

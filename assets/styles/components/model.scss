@@ -29,26 +29,15 @@
   }
 }
 
-.model__bottom-block {
-  margin-top: vw(21);
-
-  @media (max-width: $br1) {
-    margin-top: 16px;
-  }
-}
-
 .model__3d-wrapper {
   @include col(1, 8);
-  height: vw(595);
 
   @media (max-width: $br1) {
     @include col(1, 12);
-    height: 50vh;
   }
 
   @media (max-width: $br4) {
     @include col(1, 4);
-    height: 30vh;
   }
 }
 
@@ -61,8 +50,47 @@
   border-radius: 10px;
 }
 
-.model__list-wrapper {
+.model__list-items {
   @include col(9, 12);
+
+  @media (max-width: $br1) {
+    @include col(1, 12);
+    @include row(2, 2);
+    margin-top: 30px;
+  }
+
+  @media (max-width: $br4) {
+    @include col(1, 4);
+  }
+}
+
+.model__main-btns {
+  display: flex;
+  align-items: center;
+  column-gap: vw(10);
+  margin-top: vw(20);
+
+  @media (max-width: $br1) {
+    column-gap: 6px;
+    margin-top: 12px;
+  }
+
+  button {
+    font-size: vw(24);
+    padding: vw(27) vw(14);
+
+    @media (max-width: $br1) {
+      font-size: size(24, 14);
+      padding: 18px 8px;
+    }
+
+    @media (max-width: $br4) {
+      font-size: 14px;
+    }
+  }
+}
+
+.model__list-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -70,16 +98,11 @@
   color: var(--bg);
   padding: vw(20);
   border-radius: 10px;
+  margin-top: vw(20);
 
   @media (max-width: $br1) {
-    @include col(1, 12);
-    @include row(2, 2);
-    margin-top: 30px;
     padding: 12px;
-  }
-
-  @media (max-width: $br4) {
-    @include col(1, 4);
+    margin-top: 12px;
   }
 }
 
@@ -104,6 +127,27 @@
 
 .model__text {
   padding-right: 20px;
+  font-size: vw(16);
+
+  @media (max-width: $br1) {
+    font-size: size(16, 14);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 14px;
+  }
+}
+
+.model__number {
+  font-size: vw(16);
+
+  @media (max-width: $br1) {
+    font-size: size(16, 14);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 14px;
+  }
 }
 
 .model__btn-wrapper {
@@ -116,6 +160,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: transparent;
   position: relative;
   font-size: vw(28);
@@ -123,7 +168,7 @@
   text-transform: uppercase;
   color: var(--bg);
   width: fit-content;
-  margin-top: 20px;
+  margin-top: vw(40);
   &--disabled {
     opacity: 0.7;
     &:after {
@@ -148,13 +193,29 @@
   }
 
   @media (max-width: $br1) {
-    margin-top: 60px;
+    margin-top: 20px;
     font-size: size(28, 16);
   }
 
   @media (max-width: $br4) {
     font-size: 16px;
   }
+}
+
+.model__card-wrapper {
+  margin-top: vw(30);
+
+  @media (max-width: $br1) {
+    margin-top: 24px;
+  }
+}
+
+.model__title {
+  @include reg;
+  line-height: 1em;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: center;
 }
 
 .viewer-container {

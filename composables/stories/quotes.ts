@@ -19,7 +19,11 @@ export const useQoutesStories: tQoutesStories = async (name, version) => {
   try {
     const { data } = await storyapi.get(`cdn/stories`, {
       version: 'draft',
-      resolve_relations: ['About tab (optional).body', 'Optional_tab.body'],
+      resolve_relations: [
+        'About tab (optional).body',
+        'Optional_tab.body',
+        'quote.reduced_card',
+      ],
       by_slugs: `quotes/${name}/*`,
     })
     stories.value = data.stories

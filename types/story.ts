@@ -36,3 +36,16 @@ export interface iStory {
 export interface iStories {
   stories: iStory[]
 }
+
+export interface iMember {
+  name: string
+  content: {
+    user_avatar: { filename: string }
+    description: string
+    email: string
+    facebook: string
+    linkedin: string
+    phone: string
+    position: string
+  }
+}

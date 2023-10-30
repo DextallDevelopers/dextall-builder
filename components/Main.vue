@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { iTab } from '~/composables/tab'
 import { keysGenerator } from '~/assets/scripts/utils/ea'
+import { iMember } from '~/types/story'
 
 interface iModel {
   id: string
@@ -12,6 +13,7 @@ interface iProps {
   story?: any
   title?: string
   address?: string
+  reducedCard?: iMember
   startQuoteDate?: string
   endQuoteDate?: string
   model?: iModel[]
@@ -91,17 +93,6 @@ onMounted(() => {
 const date = computed(() => {
   return useQuoteDate(props.startQuoteDate, props.endQuoteDate)?.value
 })
-
-// const calculatedQuoteDate = computed(() => {
-//   const startDate = new Date(date.value.startFormattedDate)
-//   const endDate = new Date(date.value.endFormattedDate)
-
-//   const timeDifference = endDate.getTime() - startDate.getTime()
-
-//   const daysDifference = Math.floor(timeDifference / (24 * 60 * 60 * 1000))
-
-//   return daysDifference
-// })
 </script>
 
 <template>
@@ -131,7 +122,7 @@ const date = computed(() => {
       </div>
       <h2 v-if="title" class="main__title">{{ title }}</h2>
       <p v-if="address" class="main__desc">{{ address }}</p>
-      <div class="main__btns-wrapper">
+      <!-- <div class="main__btns-wrapper">
         <button class="main__btn" @click="open(tabs[0]._uid)">
           Product summary
         </button>
@@ -144,12 +135,13 @@ const date = computed(() => {
         <button class="main__btn" @click="open(tabs[3]._uid)">
           Pricing & Alternates
         </button>
-      </div>
+      </div> -->
       <div class="main__model-wrapper">
         <Model
           v-if="model && model[0]"
           :id="model[0]?.id"
           :type="model[0]?.type"
+          :reduced-card="reducedCard"
         />
       </div>
     </div>

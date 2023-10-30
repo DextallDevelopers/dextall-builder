@@ -75,6 +75,7 @@ onMounted(() => {
         :start-quote-date="story.content.start_quote_date"
         :end-quote-date="story.content.end_quote_date"
         :model="story.content.model"
+        :reduced-card="story.content.reduced_card"
       />
       <ImagesList />
       <Projects v-if="story.content.show_projects" />

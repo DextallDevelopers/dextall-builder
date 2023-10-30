@@ -1,3 +1,13 @@
+.main {
+  @media (max-width: $br1) {
+    padding-top: 90px;
+  }
+
+  @media (max-width: $br4) {
+    padding-top: 80px;
+  }
+}
+
 .main__date-wrapper {
   position: absolute;
   right: $g-offset;
@@ -131,7 +141,7 @@
 }
 
 .main__model-wrapper {
-  margin-top: vw(100);
+  margin-top: vw(60);
 
   @media (max-width: $br1) {
     margin-top: 50px;

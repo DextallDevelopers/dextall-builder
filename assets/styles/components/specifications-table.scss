@@ -1,13 +1,6 @@
 .specifications-table-wrapper {
-  padding: vw(60) vw(20);
-  background-color: var(--white);
-  border-radius: 20px;
   width: fit-content;
   min-width: 100%;
-
-  @media (max-width: $br1) {
-    padding: 40px 20px;
-  }
 
   @media print {
     page-break-before: always;
@@ -16,7 +9,6 @@
 
 .specifications-table {
   width: 100%;
-  background-color: var(--white);
   text-transform: uppercase;
 
   @media (max-width: $br1) {
@@ -56,11 +48,11 @@
     }
 
     &.specifications-table__big-text {
-      font-size: vw(36);
+      font-size: vw(32);
       line-height: 100%;
 
       @media (max-width: $br1) {
-        font-size: size(36, 20);
+        font-size: size(32, 20);
       }
 
       @media (max-width: $br4) {
@@ -132,7 +124,33 @@
   }
 
   &--under-text {
-    text-decoration: underline;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100% !important;
+  }
+}
+
+.specifications-table__btn {
+  @include reg;
+  background-color: var(--main);
+  border-radius: 10px;
+  font-size: vw(20);
+  padding: vw(16) vw(20);
+  color: var(--white);
+  text-transform: none;
+  transition: opacity 0.3s ease;
+
+  @media (max-width: $br1) {
+    font-size: size(20, 16);
+    padding: 12px 18px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 16px;
+  }
+
+  &:hover {
+    opacity: 0.9;
   }
 }

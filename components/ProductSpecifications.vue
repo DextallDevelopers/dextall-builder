@@ -26,25 +26,8 @@ const productSummaryTab = computed(() => {
     class="section specifications-1"
   >
     <div class="container specifications-1__wrapper">
-      <div class="specifications-1__top-block">
-        <div class="specifications-1__text-wrapper">
-          <h2 class="specifications-1__title">Product Summary:</h2>
-          <h3 v-if="story.content.title" class="specifications-1__desc">
-            {{ story.content.title }}
-          </h3>
-        </div>
-        <img
-          class="specifications-1__img"
-          src="/images/product-specifications/1.png"
-          alt="Image"
-        />
-      </div>
-      <div class="specifications-1__bottom-block">
-        <div class="specifications-1__line"></div>
-        <p v-if="productSummaryTab.id" class="specifications-1__small-text">
-          {{ productSummaryTab.id }}
-        </p>
-      </div>
+      <h2 class="specifications-1__title">Technical details</h2>
+      <div class="specifications-1__line"></div>
     </div>
   </section>
   <section

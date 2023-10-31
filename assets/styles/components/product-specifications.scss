@@ -20,7 +20,18 @@
 }
 
 .specifications-1__title {
-  @include h2;
+  @include medium;
+  text-transform: uppercase;
+  font-size: vw(48);
+  line-height: 1em;
+
+  @media (max-width: $br1) {
+    font-size: size(48, 28);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 28px;
+  }
 }
 
 .specifications-1__desc {
@@ -67,7 +78,7 @@
   margin-top: vw(20);
 
   @media (max-width: $br1) {
-    margin-top: 0;
+    margin-top: 12px;
   }
 }
 

@@ -11,9 +11,9 @@ const { story, listenStory } = await useQoutesStories(
 
 listenStory(version)
 
-const drawingsTab = computed(() => {
-  if (story.value.content?.scope_of_work_tab) {
-    return story.value.content.scope_of_work_tab[0]
+const elevationsList = computed(() => {
+  if (story.value.content?.elevations) {
+    return story.value.content.elevations[0]
   }
   return null
 })
@@ -24,73 +24,43 @@ const getImgSrc = (img: string) => {
   }
   return useStoryblokImage(img, { size: '1920x0' })
 }
+console.log(elevationsList.value)
 </script>
 
 <template>
   <section
-    v-if="drawingsTab"
-    v-editable="drawingsTab"
+    v-if="elevationsList"
+    v-editable="elevationsList"
     class="section section--pb drawings"
   >
     <div class="container drawings__wrapper">
-      <div class="drawings__img-block">
-        <h2 v-if="drawingsTab.title" class="drawings__title">
-          {{ drawingsTab.title }}
-        </h2>
-        <p v-if="drawingsTab.description" class="drawings__desc">
-          {{ drawingsTab.description }}
-        </p>
-        <ul v-if="drawingsTab.images.length" class="drawings__img-list">
-          <li
-            v-for="(elem, idx) in drawingsTab.images"
-            :key="idx"
-            class="drawings__img-li"
-          >
+      <h2 class="drawings__title">Elevations/scope</h2>
+      <div class="drawings__line" />
+      <ul class="drawings__list">
+        <li
+          v-for="(elem, idx) in elevationsList.item"
+          :key="idx"
+          class="grid drawings__item"
+        >
+          <figure class="drawings__img-wrapper">
             <img
               class="drawings__img"
-              :src="getImgSrc(elem.filename)"
+              :src="getImgSrc(elem.image.filename)"
               alt="Image"
             />
-            <p v-if="elem.name" class="drawings__img-desc">{{ elem.name }}</p>
-          </li>
-        </ul>
-      </div>
-      <div v-if="drawingsTab.drawings.length" class="drawings__elevation">
-        <div
-          v-if="
-            drawingsTab.drawings.length >= 3 && drawingsTab.drawings.length < 5
-          "
-          class="drawings__lines-wrapper"
-        >
-          <div class="drawings__line"></div>
-          <div class="drawings__line"></div>
-        </div>
-        <ul class="grid drawings__elevation-list">
-          <li
-            v-for="(elem, idx) in drawingsTab.drawings"
-            :key="idx"
-            class="drawings__elevation-li"
-          >
-            <h3 v-if="elem.name" class="drawings__elevation-title">
-              {{ elem.name }}
-            </h3>
-            <img
-              class="drawings__elevation-img"
-              :src="getImgSrc(elem.filename)"
-              alt="Image"
+            <figcaption>{{ elem.image.name }}</figcaption>
+          </figure>
+          <div class="drawings__legend">
+            <Color
+              v-for="(color, index) in elem.legend"
+              :key="index"
+              v-editable="color"
+              :text="color.text"
+              :stroke="color.border.color"
+              :background="color.background.color"
             />
-          </li>
-        </ul>
-      </div>
-      <ul v-if="drawingsTab.legend.length" class="drawings__colors-list">
-        <Color
-          v-for="(color, idx) in drawingsTab.legend"
-          :key="idx"
-          v-editable="color"
-          :text="color.text"
-          :stroke="color.border.color"
-          :background="color.background.color"
-        />
+          </div>
+        </li>
       </ul>
     </div>
   </section>

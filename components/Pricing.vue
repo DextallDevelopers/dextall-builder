@@ -34,12 +34,6 @@ const { totalPrice, subtotalPriceUSD, taxUSD } = useComputePrice(
   table.value?.tax[0]?.info
 )
 
-console.log(
-  table.value?.facade_area_sf[0]?.info,
-  table.value?.subtotal_price[0]?.info,
-  table.value?.tax[0]?.info
-)
-
 const { tabs, open } = useTab()
 </script>
 

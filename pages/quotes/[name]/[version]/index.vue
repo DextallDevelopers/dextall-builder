@@ -77,10 +77,10 @@ onMounted(() => {
         :model="story.content.model"
         :reduced-card="story.content.reduced_card"
       />
-      <ImagesList />
+      <!-- <ImagesList />
       <Projects v-if="story.content.show_projects" />
       <News v-if="story.content.show_news" />
-      <Contacts />
+      <Contacts /> -->
     </div>
     <Login
       v-else

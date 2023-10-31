@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const emit = defineEmits(['open'])
 
-const open = () => {
+const onClick = () => {
   emit('open')
 }
 </script>
 
 <template>
-  <button class="button" @click="open">
+  <button class="button" @click="onClick">
     <span>
       <slot />
     </span>

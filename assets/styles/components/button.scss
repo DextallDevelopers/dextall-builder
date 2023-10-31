@@ -4,7 +4,7 @@
   display: block;
   background-color: var(--main);
   border-radius: 20px;
-  padding: vw(40) vw(20);
+  padding: vw(40) 0;
   font-size: vw(28);
   color: var(--white);
   width: 100%;
@@ -16,7 +16,7 @@
 
   @media (max-width: $br1) {
     font-size: size(28, 16);
-    padding: 28px 12px;
+    padding: 28px 0;
   }
 
   @media (max-width: $br4) {

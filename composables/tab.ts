@@ -11,6 +11,7 @@ let idx = 0
 
 export const useTab = () => {
   const tabs = useState<iTab[]>('tabs', () => [])
+  const openedTabs = computed(() => tabs.value.filter(tab => tab.isOpen))
 
   const router = useRouter()
 
@@ -36,15 +37,15 @@ export const useTab = () => {
     })
   }
 
-  const open = (_uid: string) => {
+  const open = (_uid: string, closePrevious = true) => {
     tabs.value = tabs.value.map(tab => {
       if (tab._uid === _uid) {
         router.push({ query: { tab: _uid } })
         return { ...tab, isOpen: true }
       }
-      return { ...tab, isOpen: false }
+      return { ...tab, isOpen: closePrevious ? false : tab.isOpen }
     })
   }
 
-  return { tabs, close, open, addTab, addTabs }
+  return { tabs, close, open, addTab, addTabs, openedTabs }
 }

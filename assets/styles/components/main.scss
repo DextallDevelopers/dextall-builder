@@ -55,11 +55,13 @@
 .main__title {
   @include h2;
   margin-top: vw(30);
-  max-width: vw(1316);
+  max-width: vw(1026);
+  font-size: vw(72);
 
   @media (max-width: $br1) {
     margin-top: 20px;
     max-width: 80%;
+    font-size: size(72, 36);
   }
 
   @media (max-width: $br3) {
@@ -68,6 +70,7 @@
 
   @media (max-width: $br4) {
     max-width: 100%;
+    font-size: 36px;
   }
 }
 

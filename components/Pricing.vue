@@ -71,7 +71,7 @@ const { tabs, open } = useTab()
           <div class="pricing__line"></div>
         </li>
       </ul>
-      <Button class="pricing__btn" @open="open(tabs[1]._uid)">
+      <Button class="pricing__btn" @open="open(tabs[1]._uid, false)">
         Whats included
       </Button>
     </div>

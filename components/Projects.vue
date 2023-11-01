@@ -13,7 +13,12 @@ const projects = computed(() => {
   return storiesData.value.stories
 })
 
-console.log(projects.value)
+const getImgSrc = (img: string) => {
+  if (!img) {
+    return null
+  }
+  return useStoryblokImage(img, { size: '1200x1000', region: 'eu' })
+}
 </script>
 
 <template>
@@ -40,7 +45,9 @@ console.log(projects.value)
             <div class="projects__img-wrapper">
               <img
                 class="projects__img"
-                :src="project.content.Screen_1[0].main_image.filename"
+                :src="
+                  getImgSrc(project.content.Screen_1[0].main_image.filename)
+                "
                 alt="Image"
               />
             </div>

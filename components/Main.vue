@@ -141,11 +141,12 @@ const date = computed(() => {
     </div>
     <Teleport to="#app">
       <TheTab
-        v-for="tab in tabs"
+        v-for="(tab, idx) in tabs"
         :id="tab._uid"
         :key="tab._uid"
         :is-open="tab.isOpen"
         :components="tab.components"
+        :style="{ zIndex: 100 - idx }"
       />
     </Teleport>
   </section>

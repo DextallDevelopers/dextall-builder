@@ -35,12 +35,16 @@ const items = computed(() => {
       number: story.value.content.total_number_of_panels,
     },
     {
-      text: 'Window to Wall Ratio %',
+      text: 'Window to Wall Ratio',
       number: story.value.content.window_to_wall_ratio,
     },
     {
       text: 'Carbon Footprint Reduction %',
       number: story.value.content.carbon_footprint_reduction,
+    },
+    {
+      text: 'Facade area',
+      number: story.value.content.facade_area,
     },
   ]
 })

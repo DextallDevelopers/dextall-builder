@@ -24,7 +24,6 @@ const getImgSrc = (img: string) => {
   }
   return useStoryblokImage(img, { size: '1920x0' })
 }
-console.log(elevationsList.value)
 </script>
 
 <template>

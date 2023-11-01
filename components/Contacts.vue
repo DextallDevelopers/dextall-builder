@@ -120,38 +120,10 @@ const onChecked = isChecked => {
 
 <template>
   <section v-if="contacts" id="contacts" class="section section--pb contacts">
-    <TheTicker text="Thank you for your business!" class="contacts__ticker" />
     <div class="container contacts__wrapper">
-      <div class="contacts__block">
-        <p class="contacts__comments">
-          {{ contacts.contacts_text }}
-        </p>
-        <div class="contacts__card-wrapper">
-          <h3 class="contacts__card-title">Contact us with any questions</h3>
-          <ul
-            v-if="members.length"
-            class="contacts__cards"
-            :class="members.length === 1 && 'contacts__cards--only-one'"
-          >
-            <Card
-              v-for="member in members"
-              :key="member._uid"
-              :avatar="member.content.user_avatar.filename"
-              :name="member.name"
-              :career="member.content.position"
-              :email="member.content.email"
-              :phone="member.content.phone"
-              :text="member.content.description"
-              :linkedin="member.content.linkedin"
-              :is-contacts="false"
-              class="contacts__card"
-            />
-          </ul>
-        </div>
-      </div>
       <div class="contacts__form-wrapper">
         <form class="contacts__form" novalidate @submit.prevent="onSubmit">
-          <legend class="contacts__title">Send us a message</legend>
+          <legend class="contacts__title">send to us a message:</legend>
           <div class="contacts__input-wrapper">
             <TheInput
               v-for="input in formData.inputs"
@@ -173,9 +145,9 @@ const onChecked = isChecked => {
               <a href="#">Privacy Policy</a>
             </span>
           </Checkbox>
-          <CircleButton :disabled="!isFormActive" class="contacts__btn">
+          <Button :disabled="!isFormActive" class="contacts__btn">
             Send
-          </CircleButton>
+          </Button>
         </form>
       </div>
     </div>

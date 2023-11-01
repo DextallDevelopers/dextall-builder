@@ -166,22 +166,14 @@ const onPdf = async () => {
               </button>
             </li>
             <li v-if="story?.content?.show_projects" class="header__nav-li">
-              <a
-                class="header__nav-btn"
-                href="#projects"
-                @click="tabs.forEach(tab => closeTab(tab._uid))"
-              >
+              <button class="header__nav-btn" @click="openTab(tabs[6]._uid)">
                 Projects
-              </a>
+              </button>
             </li>
             <li v-if="story?.content?.contacts?.length" class="header__nav-li">
-              <a
-                class="header__nav-btn"
-                href="#contacts"
-                @click="tabs.forEach(tab => closeTab(tab._uid))"
-              >
-                Contact Us
-              </a>
+              <button class="header__nav-btn" @click="openTab(tabs[5]._uid)">
+                Contact us
+              </button>
             </li>
             <li class="header__nav-li">
               <button

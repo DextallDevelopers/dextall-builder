@@ -106,11 +106,6 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  margin-top: vw(100);
-
-  @media (max-width: $br1) {
-    margin-top: 86px;
-  }
 }
 
 .contacts__form {
@@ -189,8 +184,18 @@
 
 .contacts__btn {
   margin-top: vw(40);
+  max-width: vw(217);
+  padding: vw(30) 0 !important;
+  font-size: vw(24) !important;
 
   @media (max-width: $br1) {
     margin-top: 40px;
+    max-width: 160px;
+    padding: 20px 0 !important;
+    font-size: size(24, 16) !important;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 16px !important;
   }
 }

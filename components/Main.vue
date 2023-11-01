@@ -72,6 +72,14 @@ const mainTabs: iTab[] = [
     isOpen: false,
     components: [{ _uid: keysGenerator(8), component: 'about' }],
   },
+  {
+    isOpen: false,
+    components: [{ _uid: keysGenerator(8), component: 'contacts' }],
+  },
+  {
+    isOpen: false,
+    components: [{ _uid: keysGenerator(8), component: 'projects' }],
+  },
 ]
 
 addTabs(mainTabs)

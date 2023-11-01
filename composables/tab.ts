@@ -11,7 +11,6 @@ let idx = 0
 
 export const useTab = () => {
   const tabs = useState<iTab[]>('tabs', () => [])
-  const openedTabs = computed(() => tabs.value.filter(tab => tab.isOpen))
 
   const router = useRouter()
 
@@ -47,5 +46,5 @@ export const useTab = () => {
     })
   }
 
-  return { tabs, close, open, addTab, addTabs, openedTabs }
+  return { tabs, close, open, addTab, addTabs }
 }

@@ -34,7 +34,7 @@ interface iProps {
 
 const props = defineProps<iProps>()
 
-const { close, openedTabs } = useTab()
+const { close } = useTab()
 
 const $tab = ref(null)
 const $content = ref(null)
@@ -43,10 +43,6 @@ const height = ref(0)
 let onMouseDown: () => void
 let onMouseMove: (e) => void
 let onMouseUp: () => void
-
-watch(openedTabs, () => {
-  console.log(openedTabs.value)
-})
 
 watch(
   () => props.isOpen,

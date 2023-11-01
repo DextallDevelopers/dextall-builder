@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useQoutesStories } from '~/composables/stories/quotes'
-import { useTeamStories } from '~/composables/stories/team'
 import { ToastColor } from '~/composables/toasts'
 
 const route = useRoute()
@@ -12,20 +11,11 @@ const { story, listenStory } = await useQoutesStories(
 )
 listenStory(version)
 
-const { stories: team } = await useTeamStories()
-
 const contacts = computed(() => {
   if (story.value.content?.contacts) {
     return story.value.content.contacts[0]
   }
   return null
-})
-
-const members = computed(() => {
-  if (contacts.value?.team) {
-    return team.value.filter(el => contacts.value.team.includes(el.uuid))
-  }
-  return []
 })
 
 const $inputs = ref([])

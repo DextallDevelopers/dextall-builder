@@ -1,13 +1,34 @@
 .projects__title {
-  @include h2;
-  text-align: center;
+  @include medium;
+  font-size: vw(48);
+  line-height: 1em;
+  text-transform: uppercase;
+
+  @media (max-width: $br1) {
+    font-size: size(48, 24);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 24px;
+  }
+}
+
+.projects__line {
+  height: 2px;
+  width: 100%;
+  background-color: var(--main);
+  margin-top: vw(20);
+
+  @media (max-width: $br1) {
+    margin-top: 16px;
+  }
 }
 
 .projects__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-columns: auto;
-  margin-top: vw(72);
+  margin-top: vw(52);
   column-gap: vw(20);
   row-gap: vw(60);
 
@@ -33,7 +54,7 @@
 
 .projects__img {
   display: block;
-  height: fit-content;
+  height: vw(500);
   object-fit: cover;
   width: 100%;
   aspect-ratio: 1;
@@ -46,15 +67,32 @@
 
   @media (max-width: $br1) {
     margin-top: 8px;
+    height: fit-content;
+  }
+}
+
+.projects__name {
+  @include reg;
+  font-size: vw(35);
+  text-transform: uppercase;
+  line-height: 1.1em;
+  margin-top: vw(20);
+
+  @media (max-width: $br1) {
+    font-size: size(35, 20);
+    margin-top: 16px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
   }
 }
 
 .projects__desc {
-  line-height: 100%;
-  text-transform: uppercase;
-  margin-top: vw(15);
+  line-height: 1.2em;
+  margin-top: vw(16);
 
   @media (max-width: $br1) {
-    margin-top: 10px;
+    margin-top: 12px;
   }
 }

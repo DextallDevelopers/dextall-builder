@@ -12,6 +12,8 @@ storiesData.value = res
 const projects = computed(() => {
   return storiesData.value.stories
 })
+
+console.log(projects.value)
 </script>
 
 <template>
@@ -22,9 +24,10 @@ const projects = computed(() => {
   >
     <div class="container projects__wrapper">
       <h2 class="projects__title">Latest projects</h2>
+      <div class="projects__line" />
       <ul class="projects__list">
         <li
-          v-for="(project, idx) in projects"
+          v-for="project in projects"
           :key="project._uid"
           class="projects__li"
         >
@@ -34,7 +37,6 @@ const projects = computed(() => {
             target="_blank"
             rel="noreferrer noopener"
           >
-            <p class="projects__number">0{{ idx + 1 }}</p>
             <div class="projects__img-wrapper">
               <img
                 class="projects__img"
@@ -42,8 +44,11 @@ const projects = computed(() => {
                 alt="Image"
               />
             </div>
-            <p class="projects__desc">
+            <p class="projects__name">
               {{ project.content.Screen_1[0].project_name }}
+            </p>
+            <p class="projects__desc">
+              {{ project.content.Screen_1[0].project_description }}
             </p>
           </a>
         </li>

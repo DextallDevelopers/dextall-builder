@@ -130,20 +130,6 @@ const date = computed(() => {
       </div>
       <h2 v-if="title" class="main__title">{{ title }}</h2>
       <p v-if="address" class="main__desc">{{ address }}</p>
-      <!-- <div class="main__btns-wrapper">
-        <button class="main__btn" @click="open(tabs[0]._uid)">
-          Product summary
-        </button>
-        <button class="main__btn" @click="open(tabs[1]._uid)">
-          What's Included & Exclusions
-        </button>
-        <button class="main__btn" @click="open(tabs[2]._uid)">
-          Elevations / Scope
-        </button>
-        <button class="main__btn" @click="open(tabs[3]._uid)">
-          Pricing & Alternates
-        </button>
-      </div> -->
       <div class="main__model-wrapper">
         <Model
           v-if="model && model[0]"

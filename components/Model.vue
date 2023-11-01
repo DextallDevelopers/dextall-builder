@@ -151,11 +151,11 @@ const isReportPopupOpen = ref(false)
             </div>
           </div>
         </div>
-        <div class="model__card-wrapper">
+        <div v-if="reducedCard?.content" class="model__card-wrapper">
           <h3 class="model__title">Contact us with any questions</h3>
           <ReducedCard
-            :avatar="reducedCard.content.user_avatar.filename"
-            :name="reducedCard.name"
+            :avatar="reducedCard.content?.user_avatar?.filename"
+            :name="reducedCard?.name"
             :career="reducedCard.content.position"
             :email="reducedCard.content.email"
             :phone="reducedCard.content.phone"

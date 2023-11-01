@@ -13,7 +13,7 @@
   }
 }
 
-.projects__line {
+.projects__main-line {
   height: 2px;
   width: 100%;
   background-color: var(--main);
@@ -39,60 +39,123 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: $br4) {
+  @media (max-width: $br3) {
     grid-template-columns: 1fr;
   }
 }
 
-.projects__img-wrapper {
-  overflow: hidden;
+.projects__li {
+  position: relative;
   width: 100%;
-  height: fit-content;
-  border-radius: 10px;
-  margin-top: vw(15);
+  height: 100%;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.projects__link {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+  row-gap: vw(40);
+
+  @media (max-width: $br1) {
+    row-gap: 32px;
+  }
 }
 
 .projects__img {
   display: block;
-  height: vw(500);
-  object-fit: cover;
   width: 100%;
-  aspect-ratio: 1;
-  transition: transform 0.3s ease;
+  height: 100%;
   border-radius: 10px;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-
-  @media (max-width: $br1) {
-    margin-top: 8px;
-    height: fit-content;
-  }
 }
 
-.projects__name {
+.projects__title {
   @include reg;
   font-size: vw(35);
+  line-height: 110%;
   text-transform: uppercase;
-  line-height: 1.1em;
   margin-top: vw(20);
 
   @media (max-width: $br1) {
-    font-size: size(35, 20);
-    margin-top: 16px;
+    font-size: size(35, 24);
+    margin-top: 12px;
   }
 
   @media (max-width: $br4) {
-    font-size: 20px;
+    font-size: 24px;
   }
 }
 
 .projects__desc {
-  line-height: 1.2em;
   margin-top: vw(16);
 
   @media (max-width: $br1) {
     margin-top: 12px;
+  }
+}
+
+.projects__line {
+  height: 1px;
+  width: 100%;
+  background-color: var(--main);
+}
+
+.projects__date {
+  display: inline-block;
+  padding: vw(14) 0;
+
+  @media (max-width: $br1) {
+    padding: 7px;
+  }
+}
+
+.projects__info-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: vw(14) 0;
+  gap: 10px;
+
+  @media (max-width: $br1) {
+    padding: 7px;
+  }
+}
+
+.projects__text {
+  @include reg;
+  font-size: vw(20);
+  line-height: 110%;
+  text-transform: uppercase;
+  text-shadow: 0 0 vw(0.5) var(--main);
+
+  @media (max-width: $br1) {
+    text-shadow: 0 0 0.5px var(--main);
+    font-size: size(20, 16);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 16px;
+  }
+}
+
+.projects__quantity {
+  @include reg;
+  font-size: vw(16);
+  line-height: 110%;
+  text-align: right;
+  align-self: flex-end;
+  flex: 0 1 auto;
+
+  @media (max-width: $br1) {
+    font-size: size(16, 14);
+  }
+
+  @media (max-width: $br4) {
+    font-size: 14px;
   }
 }

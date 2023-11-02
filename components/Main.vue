@@ -17,6 +17,7 @@ interface iProps {
   startQuoteDate?: string
   endQuoteDate?: string
   model?: iModel[]
+  drawingVersion?: string
 }
 
 const props = defineProps<iProps>()
@@ -126,6 +127,12 @@ const date = computed(() => {
             >
           </p>
           <p class="main__date-number" v-html="`${date.timeLeft}`" />
+        </div>
+        <div class="main__date">
+          <p class="main__date-text">Drawing version:</p>
+          <p v-if="drawingVersion" class="main__date-number">
+            {{ drawingVersion }}
+          </p>
         </div>
       </div>
       <h2 v-if="title" class="main__title">{{ title }}</h2>

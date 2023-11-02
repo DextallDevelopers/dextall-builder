@@ -83,11 +83,7 @@
     margin-top: vw(10);
 
     @media (max-width: $br1) {
-      margin-top: 6px;
-    }
-
-    @media (max-width: $br4) {
-      margin-top: 4px;
+      display: none;
     }
   }
 }

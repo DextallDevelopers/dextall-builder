@@ -128,7 +128,9 @@ const onPdf = async () => {
             Quote Version:
             <span class="header__span-quote">{{ story?.name }}</span>
           </p>
-          <p class="header__quote">Drawing version: 75% DD</p>
+          <p class="header__quote">
+            Drawing version: {{ story?.content.drawing_version }}
+          </p>
           <div class="header__dropdown-content">
             <ul class="header__dropdown">
               <li

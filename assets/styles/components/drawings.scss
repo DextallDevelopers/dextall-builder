@@ -52,7 +52,7 @@
 .drawings__img-wrapper {
   @media (min-width: $br1) {
     @include col(1, 9);
-    max-height: vw(650);
+    max-height: vh(650);
   }
 
   figcaption {

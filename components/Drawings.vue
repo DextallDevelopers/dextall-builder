@@ -63,4 +63,16 @@ const getImgSrc = (img: string) => {
       </ul>
     </div>
   </section>
+  <div
+    v-else
+    style="
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    Soon
+  </div>
 </template>

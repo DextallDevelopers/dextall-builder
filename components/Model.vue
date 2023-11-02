@@ -44,7 +44,7 @@ const items = computed(() => {
     },
     {
       text: 'Facade area',
-      number: story.value.content.facade_area,
+      number: story.value.content.facade_area || 'Soon',
     },
   ]
 })

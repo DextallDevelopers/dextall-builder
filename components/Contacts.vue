@@ -11,13 +11,6 @@ const { story, listenStory } = await useQoutesStories(
 )
 listenStory(version)
 
-const contacts = computed(() => {
-  if (story.value.content?.contacts) {
-    return story.value.content.contacts[0]
-  }
-  return null
-})
-
 const $inputs = ref([])
 const formData = reactive({
   hasErrors: true,
@@ -109,7 +102,7 @@ const onChecked = isChecked => {
 </script>
 
 <template>
-  <section v-if="contacts" id="contacts" class="section section--pb contacts">
+  <section id="contacts" class="section section--pb contacts">
     <div class="container contacts__wrapper">
       <div class="contacts__form-wrapper">
         <form class="contacts__form" novalidate @submit.prevent="onSubmit">

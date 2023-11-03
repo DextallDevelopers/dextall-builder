@@ -26,6 +26,13 @@ const productSummaryTab = computed(() => {
   return null
 })
 
+const pricingTab = computed(() => {
+  if (story.value?.content?.pricing_tab) {
+    return story.value.content.pricing_tab[0]
+  }
+  return null
+})
+
 const table = computed(() => {
   if (
     productSummaryTab.value &&
@@ -37,9 +44,9 @@ const table = computed(() => {
 })
 
 const { totalPrice, subtotalPriceUSD, taxUSD } = useComputePrice(
-  table.value?.facade_area_sf[0]?.info,
-  table.value?.subtotal_price[0]?.info,
-  table.value?.tax[0]?.info
+  pricingTab.value.facade_area_sf || table.value?.facade_area_sf[0]?.info,
+  pricingTab.value.price_per_sf || table.value?.subtotal_price[0]?.info,
+  pricingTab.value.tax || table.value?.tax[0]?.info
 )
 
 const { tabs, open } = useTab()
@@ -55,7 +62,7 @@ const { tabs, open } = useTab()
           <div class="grid pricing__text-wrapper">
             <p class="pricing__text">SUBTOTAL PRICE</p>
             <p v-if="table?.subtotal_price[0]?.info" class="pricing__value">
-              {{ table.subtotal_price[0].info }}
+              {{ pricingTab.facade_area_sf || table.subtotal_price[0].info }}
             </p>
             <p class="pricing__price">{{ subtotalPriceUSD }}</p>
           </div>
@@ -65,7 +72,7 @@ const { tabs, open } = useTab()
           <div class="grid pricing__text-wrapper">
             <p class="pricing__text">Tax</p>
             <p v-if="table?.tax[0]?.info" class="pricing__value">
-              {{ table.tax[0].info }}
+              {{ pricingTab.tax || table.tax[0].info }}
             </p>
             <p class="pricing__price">{{ taxUSD }}</p>
           </div>

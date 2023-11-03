@@ -65,6 +65,27 @@ defineProps<iProps>()
             </a>
           </td>
         </tr>
+        <tr v-if="table?.windows[0]" v-editable="table?.windows[0]">
+          <td class="specifications-table__big-text">DOORS</td>
+          <td
+            v-if="
+              table?.windows[0]?.info_other || table?.windows[0]?.info_dropdown
+            "
+            class="specifications-table--under-text"
+          >
+            {{ table.windows[0].info_other || table.windows[0].info_dropdown }}
+            <a
+              v-if="table?.windows[0]?.inline_table?.filename"
+              :href="table?.windows[0]?.inline_table.filename"
+              download
+              target="_blank"
+              rel="noreferer noopener"
+              class="specifications-table__btn"
+            >
+              Show more
+            </a>
+          </td>
+        </tr>
         <tr v-if="table?.cladding[0]" v-editable="table?.cladding[0]">
           <td class="specifications-table__big-text">CLADDING</td>
           <td
@@ -87,27 +108,6 @@ defineProps<iProps>()
           </td>
           <td v-if="table?.exterior_cladding_finish[0]?.info">
             {{ table.exterior_cladding_finish[0].info }}
-          </td>
-        </tr>
-        <tr v-if="table?.windows[0]" v-editable="table?.windows[0]">
-          <td class="specifications-table__big-text">DOORS</td>
-          <td
-            v-if="
-              table?.windows[0]?.info_other || table?.windows[0]?.info_dropdown
-            "
-            class="specifications-table--under-text"
-          >
-            {{ table.windows[0].info_other || table.windows[0].info_dropdown }}
-            <a
-              v-if="table?.windows[0]?.inline_table"
-              :href="table?.windows[0]?.inline_table.filename"
-              download
-              target="_blank"
-              rel="noreferer noopener"
-              class="specifications-table__btn"
-            >
-              Show more
-            </a>
           </td>
         </tr>
         <!-- <tr

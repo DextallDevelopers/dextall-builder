@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { useQoutesStories } from '~/composables/stories/quotes'
 
+interface IProps {
+  withBtn?: boolean
+}
+
+withDefaults(defineProps<IProps>(), {
+  withBtn: true,
+})
+
 const route = useRoute()
 
 const { name, version } = route.params
@@ -71,7 +79,11 @@ const { tabs, open } = useTab()
           <div class="pricing__line"></div>
         </li>
       </ul>
-      <Button class="pricing__btn" @open="open(tabs[1]._uid, false)">
+      <Button
+        v-if="withBtn"
+        class="pricing__btn"
+        @open="open(tabs[1]._uid, false)"
+      >
         Whats included
       </Button>
     </div>

@@ -219,6 +219,12 @@
   }
 }
 
+.pdf__price {
+  @media print {
+    page-break-before: always;
+  }
+}
+
 .pdf__included {
   @media print {
     page-break-before: always;

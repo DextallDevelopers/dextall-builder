@@ -88,6 +88,9 @@ const items = computed(() => {
           </ul>
         </div>
       </section>
+      <div class="pdf__price">
+        <Pricing :with-btn="false" />
+      </div>
       <div class="pdf__product-specifications">
         <ProductSpecifications />
       </div>

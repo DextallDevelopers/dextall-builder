@@ -65,18 +65,16 @@ defineProps<iProps>()
             </a>
           </td>
         </tr>
-        <tr v-if="table?.windows[0]" v-editable="table?.windows[0]">
+        <tr v-if="table?.doors[0]" v-editable="table?.doors[0]">
           <td class="specifications-table__big-text">DOORS</td>
           <td
-            v-if="
-              table?.windows[0]?.info_other || table?.windows[0]?.info_dropdown
-            "
+            v-if="table?.doors[0]?.info_other || table?.doors[0]?.info_dropdown"
             class="specifications-table--under-text"
           >
-            {{ table.windows[0].info_other || table.windows[0].info_dropdown }}
+            {{ table.doors[0].info_other || table.doors[0].info_dropdown }}
             <a
-              v-if="table?.windows[0]?.inline_table?.filename"
-              :href="table?.windows[0]?.inline_table.filename"
+              v-if="table?.doors[0]?.inline_table?.filename"
+              :href="table?.doors[0]?.inline_table.filename"
               download
               target="_blank"
               rel="noreferer noopener"

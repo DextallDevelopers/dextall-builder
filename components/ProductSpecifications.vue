@@ -17,8 +17,6 @@ const productSummaryTab = computed(() => {
   }
   return null
 })
-
-console.log(productSummaryTab.value)
 </script>
 
 <template>

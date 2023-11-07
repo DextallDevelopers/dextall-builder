@@ -61,7 +61,12 @@ const { tabs, open } = useTab()
           <div class="pricing__line"></div>
           <div class="grid pricing__text-wrapper">
             <p class="pricing__text">SUBTOTAL PRICE</p>
-            <p v-if="table?.subtotal_price[0]?.info" class="pricing__value">
+            <p
+              v-if="
+                pricingTab?.facade_area_sf || table?.subtotal_price[0]?.info
+              "
+              class="pricing__value"
+            >
               {{ pricingTab?.facade_area_sf || table.subtotal_price[0].info }}
             </p>
             <p class="pricing__price">{{ subtotalPriceUSD }}</p>
@@ -71,7 +76,10 @@ const { tabs, open } = useTab()
           <div class="pricing__line"></div>
           <div class="grid pricing__text-wrapper">
             <p class="pricing__text">Tax</p>
-            <p v-if="table?.tax[0]?.info" class="pricing__value">
+            <p
+              v-if="pricingTab?.tax || table?.tax[0]?.info"
+              class="pricing__value"
+            >
               {{ pricingTab?.tax || table.tax[0].info }}
             </p>
             <p class="pricing__price">{{ taxUSD }}</p>

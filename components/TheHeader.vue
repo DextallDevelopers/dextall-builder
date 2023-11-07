@@ -172,7 +172,7 @@ const onPdf = async () => {
                 Projects
               </button>
             </li>
-            <li v-if="story?.content?.contacts?.length" class="header__nav-li">
+            <li class="header__nav-li">
               <button class="header__nav-btn" @click="openTab(tabs[5]._uid)">
                 Contact us
               </button>

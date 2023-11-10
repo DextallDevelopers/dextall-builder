@@ -1,3 +1,7 @@
+.model {
+  position: relative;
+}
+
 .model__icon {
   width: vw(20);
   height: vw(20);
@@ -9,6 +13,14 @@
 
   @media (max-width: $br4) {
     display: inline-block;
+  }
+}
+
+.model__about {
+  @media (min-width: $br1) {
+    position: absolute;
+    top: vw(20);
+    left: vw(13);
   }
 }
 
@@ -26,6 +38,12 @@
 
   @media (max-width: $br1) {
     font-size: 16px;
+  }
+}
+
+.model__bottom-block {
+  @media (max-width: $br1) {
+    margin-top: 10px;
   }
 }
 

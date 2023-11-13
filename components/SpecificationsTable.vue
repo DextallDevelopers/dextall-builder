@@ -3,7 +3,7 @@ interface iProps {
   table: any
 }
 
-defineProps<iProps>()
+const props = defineProps<iProps>()
 
 // const totalPrice = computed(() => {
 //   const { totalPrice } = useComputePrice(
@@ -65,16 +65,16 @@ defineProps<iProps>()
             </a>
           </td>
         </tr>
-        <tr v-if="table?.doors[0]" v-editable="table?.doors[0]">
+        <tr v-if="table?.doors" v-editable="table?.doors[0]">
           <td class="specifications-table__big-text">DOORS</td>
           <td
             v-if="table?.doors[0]?.info_other || table?.doors[0]?.info_dropdown"
             class="specifications-table--under-text"
           >
-            {{ table.doors[0].info_other || table.doors[0].info_dropdown }}
+            {{ table?.doors[0]?.info_other || table?.doors[0]?.info_dropdown }}
             <a
               v-if="table?.doors[0]?.inline_table?.filename"
-              :href="table?.doors[0]?.inline_table.filename"
+              :href="table?.doors[0]?.inline_table?.filename"
               download
               target="_blank"
               rel="noreferer noopener"

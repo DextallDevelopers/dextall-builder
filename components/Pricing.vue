@@ -44,7 +44,7 @@ const table = computed(() => {
 })
 
 const { totalPrice, subtotalPriceUSD, taxUSD } = useComputePrice(
-  pricingTab.value?.facade_area_sf || table.value?.facade_area_sf[0]?.info,
+  story.value?.content?.facade_area || table.value?.facade_area_sf[0]?.info,
   pricingTab.value?.price_per_sf || table.value?.subtotal_price[0]?.info,
   pricingTab.value?.tax || table.value?.tax[0]?.info
 )
@@ -63,11 +63,11 @@ const { tabs, open } = useTab()
             <p class="pricing__text">SUBTOTAL PRICE</p>
             <p
               v-if="
-                pricingTab?.facade_area_sf || table?.subtotal_price[0]?.info
+                story.content?.facade_area || table?.subtotal_price[0]?.info
               "
               class="pricing__value"
             >
-              {{ pricingTab?.facade_area_sf || table.subtotal_price[0].info }}
+              {{ story.content?.facade_area || table.subtotal_price[0].info }}
             </p>
             <p class="pricing__price">{{ subtotalPriceUSD }}</p>
           </div>

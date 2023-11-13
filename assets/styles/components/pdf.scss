@@ -24,6 +24,12 @@
   }
 }
 
+.pdf__drawings {
+  .drawings__legend {
+    background-color: var(--bg) !important;
+  }
+}
+
 .pdf__date-wrapper {
   position: absolute;
   right: $g-offset;

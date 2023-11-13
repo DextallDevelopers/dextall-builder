@@ -3,7 +3,7 @@ interface iProps {
   table: any
 }
 
-const props = defineProps<iProps>()
+defineProps<iProps>()
 
 // const totalPrice = computed(() => {
 //   const { totalPrice } = useComputePrice(

@@ -28,6 +28,14 @@
   .drawings__legend {
     background-color: var(--bg) !important;
   }
+
+  .drawings__item {
+    &:not(:first-child) {
+      @media print {
+        page-break-before: always;
+      }
+    }
+  }
 }
 
 .pdf__date-wrapper {

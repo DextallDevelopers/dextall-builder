@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useQoutesStories } from '~/composables/stories/quotes'
-import { useTeamStories } from '~/composables/stories/team'
 
 const route = useRoute()
 

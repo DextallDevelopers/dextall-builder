@@ -65,7 +65,7 @@ const props = defineProps<iProps>()
             </a>
           </td>
         </tr>
-        <tr v-if="table?.doors" v-editable="table?.doors[0]">
+        <tr v-if="table?.doors && table?.doors[0]" v-editable="table?.doors[0]">
           <td class="specifications-table__big-text">DOORS</td>
           <td
             v-if="table?.doors[0]?.info_other || table?.doors[0]?.info_dropdown"

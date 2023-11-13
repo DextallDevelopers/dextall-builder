@@ -139,6 +139,9 @@ const getImgSrc = (img: string, size?: string) => {
       <div class="pdf__included">
         <Included />
       </div>
+      <div class="pdf__drawings">
+        <Drawings />
+      </div>
     </div>
   </div>
 </template>

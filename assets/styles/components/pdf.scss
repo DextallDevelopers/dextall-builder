@@ -42,18 +42,18 @@
   .drawings__item {
     @media print {
       position: relative;
+      page-break-after: always;
+      // &:first-child {
+      //   height: 960px;
+      // }
 
-      &:first-child {
-        height: 960px;
-      }
+      // &:nth-child(n + 2) {
+      //   height: 1056px;
+      // }
 
-      &:nth-child(n + 2) {
-        height: 1056px;
-      }
-
-      &:last-child {
-        height: auto !important;
-      }
+      // &:last-child {
+      //   height: auto !important;
+      // }
 
       &::after {
         content: '';

@@ -121,10 +121,11 @@ const date = computed(() => {
           </p>
         </div>
         <div class="main__date">
-          <p v-if="date.endFormattedDate" class="main__date-text">
-            <span v-if="date.timeLeft !== 'Offer has expired'"
-              >Time left before:</span
-            >
+          <p
+            v-if="date.timeLeft !== 'Offer has expired'"
+            class="main__date-text"
+          >
+            <span>Time left before:</span>
           </p>
           <p class="main__date-number" v-html="`${date.timeLeft}`" />
         </div>

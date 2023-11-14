@@ -35,8 +35,8 @@ const getImgSrc = (img: string) => {
     <div class="container drawings__wrapper">
       <h2 class="drawings__title">Elevations/scope</h2>
       <div class="drawings__line" />
-      <div class="drawings__list">
-        <div
+      <ul class="drawings__list">
+        <li
           v-for="(elem, idx) in elevationsList.item"
           :key="idx"
           class="grid drawings__item"
@@ -59,8 +59,8 @@ const getImgSrc = (img: string) => {
               :background="color.background.color"
             />
           </div>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </section>
   <div

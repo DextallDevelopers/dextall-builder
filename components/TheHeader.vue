@@ -59,8 +59,7 @@ const onPdf = async () => {
     media: 'print',
     margin_top: 10,
     margin_unit: 'px',
-    // test: config.ENVIROMENT !== 'production',4
-    test: true,
+    test: config.ENVIROMENT !== 'production',
   }
 
   try {

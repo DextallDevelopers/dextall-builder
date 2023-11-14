@@ -25,6 +25,10 @@
 }
 
 .pdf__drawings {
+  .drawings {
+    padding-bottom: 0 !important;
+  }
+
   .drawings__legend {
     background-color: var(--bg) !important;
   }
@@ -45,6 +49,10 @@
 
       &:nth-child(n + 2) {
         height: 1056px;
+      }
+
+      &:last-child {
+        height: auto !important;
       }
 
       &::after {

@@ -34,8 +34,12 @@
   }
 
   .drawings__item {
-    clear: both;
-    page-break-after: always;
+    &::before {
+      content: '';
+      position: relative;
+      clear: both;
+      page-break-after: always;
+    }
 
     // &:first-child {
     //   height: 83vh;

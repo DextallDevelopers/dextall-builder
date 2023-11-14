@@ -39,12 +39,12 @@
     @media print {
       position: relative;
 
-      &:nth-child(2) {
-        margin-top: vw(300);
+      &:first-child {
+        height: 960px;
       }
 
-      &:nth-child(n + 3) {
-        margin-top: vw(550);
+      &:nth-child(n + 2) {
+        height: 1056px;
       }
 
       &::after {

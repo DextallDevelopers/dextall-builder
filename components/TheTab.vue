@@ -24,6 +24,7 @@
 </template>
 
 <script setup lang="ts">
+import { raf } from '@emotionagency/utils'
 import { iBlokBody } from '~/types/story'
 
 interface iProps {
@@ -58,12 +59,18 @@ watch(
   }
 )
 
+const checkContentHeight = () => {
+  if ($content.value.scrollHeight !== height.value) {
+    height.value = $content.value.scrollHeight
+  }
+}
+
 onMounted(() => {
   if (props.isOpen) {
     document.body.classList.add('e-fixed')
   }
 
-  height.value = $content.value.scrollHeight
+  raf.on(checkContentHeight)
 
   onMouseMove = e => {
     let y
@@ -110,5 +117,7 @@ onBeforeUnmount(() => {
   document.body.removeEventListener('touchend', onMouseUp)
   document.removeEventListener('mousemove', onMouseMove)
   document.removeEventListener('touchmove', onMouseMove)
+
+  raf.off(checkContentHeight)
 })
 </script>

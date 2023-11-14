@@ -30,12 +30,10 @@
   }
 
   .drawings__item {
-    page-break-after: always;
-    // &:not(:first-child) {
-    //   @media print {
-    //     height: 100vh;
-    //   }
-    // }
+    // page-break-after: always;
+    &:not(:first-child) {
+      height: 100vh;
+    }
   }
 }
 

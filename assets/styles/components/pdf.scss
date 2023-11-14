@@ -29,6 +29,10 @@
     background-color: var(--bg) !important;
   }
 
+  .drawings__list {
+    row-gap: 0;
+  }
+
   .drawings__item {
     // page-break-after: always;
     &:not(:first-child) {

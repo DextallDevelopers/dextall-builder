@@ -34,15 +34,16 @@
   }
 
   .drawings__item {
+    clear: both;
     page-break-after: always;
 
-    &:first-child {
-      height: 83vh;
-    }
+    // &:first-child {
+    //   height: 83vh;
+    // }
 
-    &:not(:first-child) {
-      height: 100vh;
-    }
+    // &:not(:first-child) {
+    //   height: 100vh;
+    // }
   }
 }
 

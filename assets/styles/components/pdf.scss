@@ -30,6 +30,8 @@
   }
 
   .drawings__item {
+    height: 100vh;
+
     &:not(:first-child) {
       @media print {
         page-break-after: always;

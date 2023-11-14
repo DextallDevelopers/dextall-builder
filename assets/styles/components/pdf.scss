@@ -34,22 +34,13 @@
   }
 
   .drawings__item {
-    position: relative;
-    clear: both;
-    break-after: always;
-
-    @media print {
-      clear: both;
-      break-after: always;
+    &:first-child {
+      height: 82vh;
     }
 
-    // &:first-child {
-    //   height: 83vh;
-    // }
-
-    // &:not(:first-child) {
-    //   height: 100vh;
-    // }
+    &:not(:first-child) {
+      height: 100vh;
+    }
   }
 }
 

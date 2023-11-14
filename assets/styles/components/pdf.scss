@@ -36,11 +36,11 @@
   .drawings__item {
     position: relative;
     clear: both;
-    page-break-after: always;
+    break-after: always;
 
     @media print {
       clear: both;
-      page-break-before: always;
+      break-after: always;
     }
 
     // &:first-child {

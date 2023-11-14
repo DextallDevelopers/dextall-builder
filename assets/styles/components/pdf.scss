@@ -34,11 +34,15 @@
   }
 
   .drawings__item {
-    height: 100vh;
-    // page-break-after: always;
-    // &:not(:first-child) {
-    //   height: 100vh;
-    // }
+    page-break-after: always;
+
+    &:first-child {
+      height: 90vh;
+    }
+
+    &:not(:first-child) {
+      height: 100vh;
+    }
   }
 }
 

@@ -34,11 +34,13 @@
   }
 
   .drawings__item {
-    &::before {
-      content: '';
-      position: relative;
+    position: relative;
+    clear: both;
+    page-break-after: always;
+
+    @media print {
       clear: both;
-      page-break-after: always;
+      page-break-before: always;
     }
 
     // &:first-child {

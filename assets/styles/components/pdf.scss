@@ -38,10 +38,14 @@
   .drawings__item {
     @media print {
       position: relative;
-      height: 99vh;
+      margin-top: vw(120);
 
       &:first-child {
-        height: 84vh;
+        margin-top: 0;
+      }
+
+      &:nth-child(2) {
+        margin-top: vw(100);
       }
 
       &::after {

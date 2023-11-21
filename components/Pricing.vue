@@ -63,11 +63,11 @@ const { tabs, open } = useTab()
             <p class="pricing__text">SUBTOTAL PRICE</p>
             <p
               v-if="
-                story.content?.facade_area || table?.subtotal_price[0]?.info
+                story.content?.price_per_sf || table?.subtotal_price[0]?.info
               "
               class="pricing__value"
             >
-              {{ story.content?.facade_area || table.subtotal_price[0].info }}
+              {{ story.content?.price_per_sf || table.subtotal_price[0].info }}
             </p>
             <p class="pricing__price">{{ subtotalPriceUSD }}</p>
           </div>

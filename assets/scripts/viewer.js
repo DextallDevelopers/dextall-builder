@@ -103,11 +103,17 @@ export class AggregatedForgeViewer {
 
     const viewer = new Autodesk.Viewing.AggregatedView()
 
-    viewer.init(document.getElementById(this.containerId), {
+    await viewer.init(document.getElementById(this.containerId), {
       viewerConfig: {
         theme: 'light-theme',
       },
       unloadUnfinishedModels: true,
+      getCustomLoadOptions: () => {
+        return {
+          placementTransform: new THREE.Matrix4(),
+          applyRefPoint: false,
+        }
+      },
     })
 
     viewer.setNodes(nodes)

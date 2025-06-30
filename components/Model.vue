@@ -70,9 +70,9 @@ async function loadViewer() {
 const config = useRuntimeConfig()
 
 onMounted(() => {
-  if (config.ENVIROMENT !== 'development') {
+  // if (config.ENVIROMENT !== 'development') {
     loadViewer()
-  }
+  // }
 })
 
 listenStory(version)
